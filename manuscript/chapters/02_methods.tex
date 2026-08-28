@@ -49,6 +49,11 @@ To demystify the "black box" nature of the Random Forest, SHapley Additive exPla
 \end{equation}
 where $N$ is the set of all features, $S$ is a subset of features excluding feature $i$, and $f$ is the model prediction. This provided a ranked list of elements driving the FLT vs. GC distinction.
 
+\subsection{Tabular Foundation Model Benchmarking}
+To validate the Random Forest classification results, we implemented an independent benchmarking pipeline utilizing the state-of-the-art TabPFN (Tabular Prior-data Fitted Network) model \cite{hollmann2025}. Unlike traditional classification algorithms (e.g., Random Forests, Gradient Boosted Trees, or Multi-Layer Perceptrons) that require backpropagation and parameter tuning on the training dataset, TabPFN is a transformer-based foundation model trained offline using millions of synthetic datasets. 
+
+At inference time, the model takes the entire training set (context) and the test set, performing a single forward pass (prior-data fitted learning) to generate zero-shot predictions. This approach is specifically optimized for small-sample classification tasks ($n < 10,000$ samples) and serves as a highly robust baseline to compare and contrast against the Random Forest classifier. Performance was evaluated using the identical LOMOCV strategy.
+
 \subsection{Statistical Testing}
 Non-parametric Mann-Whitney U tests were conducted for univariate comparisons. To account for multiple comparisons, $p$-values were adjusted using the Benjamini-Hochberg False Discovery Rate (FDR) procedure. Effect sizes were computed using Cohen's $d$:
 \begin{equation}

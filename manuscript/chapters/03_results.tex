@@ -60,6 +60,18 @@ The SHAP summary plot (Figure \ref{fig:shap_summary}) revealed that Iron (Fe), P
 \section{Regression Analysis: Predicting Antioxidant Capacity}
 A secondary modeling effort utilized multi-target regression to predict total antioxidant capacity (ORAC) and phenolic content based on the elemental profiles. The Random Forest regressor demonstrated moderate predictive power ($R^2 \approx 0.45$ for ORAC). Feature importance for the regressor highlighted that elements like Sulfur (S) and Manganese (Mn) were highly correlated with antioxidant production. This aligns with biological intuition, as Sulfur is a critical component of antioxidant thiols (e.g., glutathione), and Manganese serves as a cofactor for Superoxide Dismutase (Mn-SOD) enzymes that mitigate oxidative stress in plants.
 
+\section{Tabular Foundation Model Comparison}
+To validate the physiological classification boundaries established by the Random Forest model, the TabPFN foundation model was evaluated using the identical LOMOCV split. 
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/model_comparison.png}
+    \caption{Model performance comparison between Random Forest and the TabPFN tabular foundation model. The scores represent cross-validated accuracy, precision, recall, and F1 score.}
+    \label{fig:model_comparison}
+\end{figure}
+
+As shown in Figure \ref{fig:model_comparison}, the TabPFN foundation model achieved a cross-validated accuracy of 87.8\%, outperforming the traditional Random Forest classifier (83.3\%). TabPFN demonstrated superior recall (90.5\% vs 86.1\%) and F1 score (88.0\% vs 83.2\%). This improvement highlights the benefit of using prior-data fitted transformer representations on very small spaceflight datasets, where classical algorithms struggle to define precise borders without overfitting.
+
 \section{Statistical Significance and Effect Sizes}
 To complement the machine learning insights, non-parametric Mann-Whitney U tests with FDR correction were performed on the top SHAP features.
 

@@ -180,7 +180,9 @@
                         <thead>
                             <tr>
                                 <th>Feature</th>
-                                <th>p-value (T-test)</th>
+                                <th>Raw p-value</th>
+                                <th>FDR p-value</th>
+                                <th>Cohen's d</th>
                                 <th>Significance</th>
                             </tr>
                         </thead>
@@ -204,6 +206,50 @@
                         <p><strong>ORAC R²:</strong> <span id="metric-orac"></span></p>
                         <p><strong>Phenolics R²:</strong> <span id="metric-phenolics"></span></p>
                     </div>
+            </div>
+
+            <!-- TabPFN Benchmarking Section -->
+            <div class="card mt-4">
+                <h3>Tabular Foundation Model Benchmarking (Nature 2025)</h3>
+                <p>We implemented the state-of-the-art **TabPFN (Tabular Prior-data Fitted Network)** foundation model (Hollmann et al., Nature 2025) as an independent pipeline to validate the Random Forest results on small tabular data.</p>
+                <div class="grid-2 mt-2">
+                    <div class="chart-container" style="display: flex; justify-content: center; align-items: center;">
+                        <img src="figures/model_comparison.png" alt="Model Comparison" style="max-width: 100%; height: auto; border: 1px solid #cbd5e1; border-radius: 4px;">
+                    </div>
+                    <div>
+                        <h4>Comparison Summary</h4>
+                        <table class="data-table" id="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th>Random Forest</th>
+                                    <th>TabPFN (Nature 2025)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Accuracy</strong></td>
+                                    <td><span id="comp-rf-acc">83.3%</span></td>
+                                    <td><span id="comp-tab-acc">87.8%</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Precision</strong></td>
+                                    <td><span id="comp-rf-prec">80.6%</span></td>
+                                    <td><span id="comp-tab-prec">85.6%</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Recall</strong></td>
+                                    <td><span id="comp-rf-rec">86.1%</span></td>
+                                    <td><span id="comp-tab-rec">90.5%</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>F1 Score</strong></td>
+                                    <td><span id="comp-rf-f1">83.2%</span></td>
+                                    <td><span id="comp-tab-f1">88.0%</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </section>
@@ -212,10 +258,26 @@
         <section id="panel-about" class="tab-panel">
             <div class="card">
                 <h3>Study Methodology</h3>
-                <p>Lettuce plants were grown in Veggie hardware on the ISS and in ground control chambers at KSC. Samples were harvested, frozen, and returned to Earth. Nutritional analysis included ICP-OES for elemental composition, Folin-Ciocalteu for phenolics, pH differential for anthocyanins, and ORAC for antioxidant capacity.</p>
+                <p>Lettuce plants (<em>Lactuca sativa</em> cv. 'Outredgeous') were grown in Veggie pillows containing solid, porous, arcillite (calcined clay) substrate in two different blends (Blend 1: 100% sized to 600 µm–1 mm or Blend 2: a 1:1 ratio of that size to 1–2 mm) and controlled-release fertilizer (Nutricote 18-6-8, Florikan, Sarasota, FL, United States). Plants were grown for 33 to 56 days aboard the ISS under a red, blue, and green LED array providing approximately 200 µmol/m²/s of photosynthetically active radiation (PAR). Ground control experiments were conducted in controlled environment chambers at KSC under matching temperature, relative humidity, carbon dioxide concentration, and light regimes with a 24-72 hour delay.</p>
+                <p class="mt-2">Harvested leaves were stored at -80°C and returned to Earth. Nutritional assays included:
+                    <ul class="mt-1" style="margin-left: 20px; list-style-type: disc;">
+                        <li><strong>Elemental Profiling:</strong> Inductively Coupled Plasma Optical Emission Spectroscopy (ICP-OES) for Fe, K, Na, P, S, Zn, Ca, Mg, Mn, and Cu (expressed as mg/g dry weight).</li>
+                        <li><strong>Total Phenolic Content:</strong> Folin-Ciocalteu spectrophotometric assay, expressed as gallic acid equivalents (GAE mg/g dry weight).</li>
+                        <li><strong>Anthocyanin Content:</strong> pH differential spectrophotometric assay, expressed as cyanidin-3-glucoside equivalents (mg/g dry weight).</li>
+                        <li><strong>Oxygen Radical Absorbance Capacity (ORAC):</strong> Fluorescein decay antioxidant capacity assay against Trolox standard (µmol TE/g dry weight).</li>
+                    </ul>
+                </p>
                 
-                <h3 class="mt-4">ML Pipeline</h3>
-                <p>Data preprocessing included standardization and handling missing values. PCA was used for dimensionality reduction. A Random Forest classifier was trained to distinguish flight from ground samples, and feature importance was extracted.</p>
+                <h3 class="mt-4">Analysis & ML Pipeline</h3>
+                <p>Our analytical and machine learning pipeline is structured as follows:</p>
+                <ol class="mt-2" style="margin-left: 20px; list-style-type: decimal;">
+                    <li><strong>Data Harmonization:</strong> Merged metadata (missions, conditions) and assay measurements, resolving column types and standardizing units.</li>
+                    <li><strong>Dimensionality Reduction:</strong> Standardized nutritional variables (z-score scaling) and applied Principal Component Analysis (PCA) to extract eigenvectors and coordinates, determining sample separation along the first two principal components.</li>
+                    <li><strong>Random Forest Classification:</strong> Trained an ensemble of 100 decision trees to classify Flight vs. Ground Control samples using the 10-element profile. Validated using <strong>Leave-One-Mission-Out Cross-Validation (LOMOCV)</strong> to guarantee model generalizability across independent spaceflights. Extracted permutation importance and SHAP (SHapley Additive exPlanations) values to identify the most predictive physiological markers.</li>
+                    <li><strong>Tabular Foundation Model Benchmarking:</strong> Implemented **TabPFN** (Tabular Prior-data Fitted Network) as described by Hollmann et al. (Nature 2025). Unlike gradient boosting trees or standard neural networks, TabPFN is a pre-trained transformer model optimized for zero-shot, prior-data fitted classification on small tabular datasets, providing a state-of-the-art comparison baseline.</li>
+                    <li><strong>Antioxidant Capacity Prediction:</strong> Implemented Random Forest regression to predict biochemical outcomes (ORAC and Phenolics) based on multi-element profiles, measuring model performance via R² and root-mean-squared error (RMSE).</li>
+                    <li><strong>Statistical Validation:</strong> Conducted non-parametric Mann-Whitney U tests for all analytes, applying false discovery rate (FDR, Benjamini-Hochberg) and Bonferroni corrections to prevent family-wise error rate inflation, and computed Cohen's <em>d</em> effect sizes.</li>
+                </ol>
 
                 <h3 class="mt-4">Data Provenance (FAIR)</h3>
                 <p>All data is sourced from NASA OSDR <a href="https://osdr.nasa.gov/bio/repo/data/studies/OSD-745" target="_blank">OSD-745</a> following FAIR principles.</p>

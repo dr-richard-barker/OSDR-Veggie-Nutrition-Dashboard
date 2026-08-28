@@ -41,7 +41,4 @@ Thumbs.db
 .idea/
 
 # Data (raw downloads can be re-fetched)
-data/raw/*.jpg
-data/raw/*.png
-data/raw/*.tiff
-data/raw/*.zip
+data/raw/
