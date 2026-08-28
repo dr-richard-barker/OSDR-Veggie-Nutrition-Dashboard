@@ -8,8 +8,13 @@
     "mission": {
       "type": "categorical",
       "description": "ISS Veggie mission identifier",
-      "values": ["VEG-01A", "VEG-01B", "VEG-03A"],
+      "values": ["VEG-01A", "VEG-01B", "VEG-03A", "VEG-04A", "VEG-04B"],
       "source": "ISA-Tab study factor"
+    },
+    "crop": {
+      "type": "categorical",
+      "description": "Crop species classification: lettuce (OSD-745) or mizuna (OSD-655)",
+      "values": ["lettuce", "mizuna"]
     },
     "condition": {
       "type": "categorical",
@@ -26,7 +31,7 @@
       "type": "integer",
       "description": "Day of growth at which leaves were harvested",
       "unit": "days",
-      "range": [33, 56]
+      "range": [28, 56]
     },
     "Fe": {
       "type": "float",
@@ -118,17 +123,31 @@
       "unit": "micromol Trolox equivalents (TE)/g dry weight",
       "assay": "Oxygen Radical Absorbance Capacity",
       "platform": "BioTek Synergy Hybrid"
+    },
+    "micro_apc": {
+      "type": "float",
+      "description": "Aerobic Plate Count for microbial safety validation on leaf tissue",
+      "unit": "log10 CFU/g dry weight",
+      "assay": "Plate Count Assay",
+      "platform": "Standard Plate Count Agar"
+    },
+    "micro_ymc": {
+      "type": "float",
+      "description": "Yeast and Mold Count for microbiological safety check",
+      "unit": "log10 CFU/g dry weight",
+      "assay": "Plate Count Assay",
+      "platform": "Potato Dextrose Agar"
     }
   },
   "metadata": {
-    "dataset_name": "veggie_nutrition_master",
-    "source_study": "NASA OSDR OSD-745",
+    "dataset_name": "veggie_meta_master",
+    "source_study": "NASA OSDR OSD-745, OSD-655, OSD-780",
     "source_doi": "10.3389/fpls.2020.00199",
-    "organism": "Lactuca sativa cv. Outredgeous",
+    "organism": "Lactuca sativa cv. Outredgeous and Brassica rapa cv. Tokyo Bekana",
     "hardware": "Veggie Plant Growth System",
-    "n_samples_expected": 36,
-    "n_missions": 3,
+    "n_samples_expected": 60,
+    "n_missions": 5,
     "n_conditions": 2,
-    "n_features": 14
+    "n_features": 16
   }
 }

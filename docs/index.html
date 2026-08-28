@@ -87,12 +87,22 @@
                     </select>
                 </div>
                 <div class="control-group">
+                    <label for="crop-select">Crop Species:</label>
+                    <select id="crop-select">
+                        <option value="all">All Crops (Meta-Analysis)</option>
+                        <option value="lettuce">Lettuce (OSD-745)</option>
+                        <option value="mizuna">Mizuna Mustard (OSD-655)</option>
+                    </select>
+                </div>
+                <div class="control-group">
                     <label for="mission-filter">Mission:</label>
                     <select id="mission-filter">
                         <option value="all">All Missions</option>
                         <option value="VEG-01A">VEG-01A</option>
                         <option value="VEG-01B">VEG-01B</option>
                         <option value="VEG-03A">VEG-03A</option>
+                        <option value="VEG-04A">VEG-04A</option>
+                        <option value="VEG-04B">VEG-04B</option>
                     </select>
                 </div>
             </div>
@@ -108,17 +118,34 @@
                 </div>
             </div>
 
+            <!-- Microbiological Food Safety Section -->
+            <div class="card mt-4">
+                <h3>Microbiological Food Safety Analysis (APC & YMC Counts)</h3>
+                <p>Space-grown crops are evaluated for microbial hygiene to ensure safety for crew consumption. These boxplots show Aerobic Plate Counts (APC) and Yeast & Mold Counts (YMC) in log10 CFU/g across conditions, compiled from OSD-745 and OSD-780.</p>
+                <div style="display: flex; justify-content: center; align-items: center; padding: 10px;">
+                    <img id="microbiology-img" src="figures/meta_microbiology_boxplot.png" alt="Microbiology Boxplot" style="max-width: 90%; height: auto; border: 1px solid #cbd5e1; border-radius: 4px;">
+                </div>
+            </div>
+
             <div class="card mt-4 table-container">
                 <h3>Detailed Measurements</h3>
                 <table id="data-table" class="data-table">
                     <thead>
                         <tr>
                             <th>Sample ID</th>
+                            <th>Crop</th>
                             <th>Mission</th>
                             <th>Condition</th>
-                            <th>Element/Assay</th>
-                            <th>Value</th>
-                            <th>Unit</th>
+                            <th>Fe (mg/g)</th>
+                            <th>K (mg/g)</th>
+                            <th>Na (mg/g)</th>
+                            <th>P (mg/g)</th>
+                            <th>S (mg/g)</th>
+                            <th>Zn (mg/g)</th>
+                            <th>Ca (mg/g)</th>
+                            <th>Mg (mg/g)</th>
+                            <th>Phenolics</th>
+                            <th>ORAC</th>
                         </tr>
                     </thead>
                     <tbody>

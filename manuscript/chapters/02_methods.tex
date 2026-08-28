@@ -2,25 +2,28 @@
 \label{ch:methods}
 
 \section{Data Source and Curation}
-The primary dataset utilized in this analysis is NASA Open Science Data Repository (OSDR) study OSD-745, titled "Microbiological and Nutritional Analysis of Lettuce Crops Grown on the International Space Station." \cite{khodadad2020}. Data and associated metadata were programmatically retrieved from the OSDR API (\url{https://osdr.nasa.gov}) utilizing the ISA-Tab (Investigation, Study, Assay) standardized format. 
+The datasets utilized in this meta-analysis include three study entries from the NASA Open Science Data Repository (OSDR): OSD-745 (microbiological and nutritional profiles for space-grown lettuce), OSD-655 (nutritional characterization of space-grown Mizuna mustard), and OSD-780 (microbial plate count assays for Mizuna mustard). All files and associated metadata were programmatically fetched from the OSDR API (\url{https://osdr.nasa.gov}) utilizing standard REST queries and parsed from ISA-Tab (Investigation, Study, Assay) format sheets. 
 
 \begin{coseagronomy}[FAIR Principles]
-The data harmonization pipeline developed for this project aligns with FAIR principles. All raw assay files, metadata sheets, and biochemical readouts were merged into a consolidated, version-controlled analytical matrix.
+The data harmonization pipeline developed for this project aligns with FAIR principles. All raw assay files, metadata sheets, microbiological plate counts, and biochemical readouts across studies were merged into a consolidated, version-controlled analytical matrix.
 \end{coseagronomy}
 
 \section{Plant Material and Growth Conditions}
-\textit{Lactuca sativa} cv. 'Outredgeous' (red romaine lettuce) was utilized across three experimental epochs: VEG-01A (May-Jun 2014), VEG-01B (Jul-Aug 2015), and VEG-03A (Oct-Dec 2016). Seeds were sanitized and planted into Veggie "pillows"—expandable root modules containing a solid substrate of calcined clay (arcillite) amended with a controlled-release fertilizer (Nutricote 18-6-8, type 180). 
+Two leafy green crops were analyzed: \textit{Lactuca sativa} cv. 'Outredgeous' (red romaine lettuce) grown during experimental epochs VEG-01A (May-Jun 2014), VEG-01B (Jul-Aug 2015), and VEG-03A (Oct-Dec 2016), and \textit{Brassica rapa} cv. 'Tokyo Bekana' (Mizuna mustard) grown during VEG-04A and VEG-04B. Both crops were seeded into Veggie "pillows" filled with an arcillite-based growth substrate and controlled-release fertilizer (Nutricote 18-6-8, type 180).
 
-In the ISS Flight (FLT) conditions, plants were cultivated within the Veggie hardware under a 16-hour light / 8-hour dark photoperiod. The LED light cap provided a specialized spectrum of Red (630 nm), Blue (455 nm), and Green (530 nm) light at a ratio of approximately 12:3:1 \cite{massa2017a}. Environmental parameters such as temperature, relative humidity, and $CO_2$ concentration were dictated by the ISS cabin environment. Parallel Ground Control (GC) experiments were conducted in environmental chambers at the Kennedy Space Center (KSC), designed to mimic the ISS atmospheric conditions based on telemetry data with a 24- to 48-hour delay.
+Cultivation occurred aboard the ISS (Flight) or under KSC ground environment-control chambers (Ground Control). The Veggie LED light cap provided Red (630 nm), Blue (455 nm), and Green (530 nm) lighting, with photoperiods of 16-hour light / 8-hour dark. Telemetry data from the ISS cabin (relative humidity, temperature, and carbon dioxide concentration) was mirrored in the ground control chambers with a 24- to 72-hour delay to isolate microgravity effects.
 
 \section{Sample Collection and Analytical Methods}
-Upon reaching maturity (approximately 33 days post-imbibition), the lettuce was harvested by the crew. A portion of the tissue was consumed, while the remainder was immediately flash-frozen at $-80^\circ$C using the MELFI (Minus Eighty-Degree Laboratory Freezer for ISS) and subsequently returned to Earth aboard SpaceX Dragon capsules (SpaceX-3 and SpaceX-8).
+Upon reaching maturity (approximately 33 days post-imbibition for lettuce and 28 days for Mizuna), crops were harvested by the crew. A portion of the fresh tissue was consumed in flight, while the remainder was immediately flash-frozen at $-80^\circ$C using the MELFI (Minus Eighty-Degree Laboratory Freezer for ISS) and subsequently returned to Earth aboard SpaceX Dragon capsules for detailed laboratory analyses.
 
 \subsection{Elemental Profiling (ICP-OES)}
 Lyophilized leaf tissue was digested in nitric acid and analyzed for macronutrients and micronutrients using Inductively Coupled Plasma Optical Emission Spectrometry (ICP-OES) via a Thermo Scientific iCAP 7000 series spectrometer. Elements quantified included Iron (Fe), Potassium (K), Sodium (Na), Phosphorus (P), Sulfur (S), Zinc (Zn), Calcium (Ca), Magnesium (Mg), Manganese (Mn), and Copper (Cu).
 
 \subsection{Antioxidants and Phenolics}
 Total antioxidant capacity was determined using the Oxygen Radical Absorbance Capacity (ORAC) assay, read on a BioTek Synergy HT microplate reader. Total phenolic content was measured via the Folin-Ciocalteu colorimetric assay, and anthocyanins were quantified using the pH differential method.
+
+\subsection{Microbiological Plate Counts}
+For food safety validation, microbial loads on leaves and growth pillows were quantified. Tissues were homogenized, serial diluted, and plated in duplicate. Aerobic Plate Counts (APC) were evaluated on Plate Count Agar incubated at 30$^\circ$C, and Yeast and Mold Counts (YMC) were evaluated on Potato Dextrose Agar incubated at 25$^\circ$C. Colony-forming units (CFU) were counted after 48-72 hours and converted to $\log_{10}$ CFU/g dry weight.
 
 \section{Machine Learning Pipeline}
 
@@ -33,8 +36,13 @@ C v = \lambda v
 \end{equation}
 where $C = \frac{1}{n-1} X^T X$. The first two principal components were extracted to visualize the variance captured by the multielemental profile.
 
-\subsection{Classification with LOMOCV}
-A Random Forest Classifier \cite{breiman2001} was trained to distinguish between Flight and Ground Control samples. Given the batch effects inherent in disparate spaceflight missions, a Leave-One-Mission-Out Cross-Validation (LOMOCV) strategy was implemented. The model iteratively trained on two missions (e.g., VEG-01A and VEG-01B) and validated on the holdout mission (e.g., VEG-03A). This ensured robust generalization to unseen mission conditions. 
+\subsection{Classification and Validation Strategies}
+To evaluate spaceflight signatures across crops, we trained classifiers to distinguish Flight vs. Ground Control samples based on elements and biochemicals. We implemented two validation designs:
+\begin{itemize}
+    \item \textbf{Leave-One-Mission-Out Cross-Validation (LOMOCV):} The model was iteratively trained on four spaceflight missions (e.g., VEG-01A, VEG-01B, VEG-03A, VEG-04A) and validated on the remaining mission (e.g., VEG-04B), preventing overfitting to mission-specific microenvironments.
+    \item \textbf{Leave-One-Crop-Out Cross-Validation (LOCOCV):} To test if spaceflight physiological signatures are universal or crop-specific, the models were trained entirely on one species (e.g., Lettuce, OSD-745) and evaluated on the other (e.g., Mizuna, OSD-655).
+\end{itemize}
+We trained both Random Forest classifiers \cite{breiman2001} and TabPFN tabular foundation models \cite{hollmann2025} under these designs.
 
 The Random Forest utilized an ensemble of decision trees, minimizing Gini impurity:
 \begin{equation}

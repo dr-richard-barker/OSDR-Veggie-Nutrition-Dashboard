@@ -11,10 +11,10 @@ To address these challenges, NASA deployed the Vegetable Production System (Vegg
 
 Despite its successes, growing plants in space presents profound environmental stressors. Microgravity alters fluid dynamics, often leading to hypoxia in the root zone. Elevated radiation, continuous ventilation (to prevent boundary layer suffocation), and unique microbial profiles further complicate cultivation \cite{paul2013}. Understanding how these factors influence the nutritional profile and yield of crops is a paramount objective of NASA's Space Biology program.
 
-\section{The OSD-745 Study}
-The Open Science Data Repository (OSDR) study OSD-745 encapsulates a comprehensive analysis of \textit{Lactuca sativa} cv. 'Outredgeous' (red romaine lettuce) cultivated during three distinct ISS missions: VEG-01A, VEG-01B, and VEG-03A \cite{khodadad2020}. This foundational study aimed to validate the Veggie hardware's ability to produce safe, nutritious food. 
+\section{The OSD-745, OSD-655, and OSD-780 Studies}
+The Open Science Data Repository (OSDR) study OSD-745 encapsulates a comprehensive analysis of \textit{Lactuca sativa} cv. 'Outredgeous' (red romaine lettuce) cultivated during three distinct ISS missions: VEG-01A, VEG-01B, and VEG-03A \cite{khodadad2020}. To expand space crop diversity, subsequent experiments under the VEG-04 program evaluated \textit{Brassica rapa} cv. 'Tokyo Bekana' (Mizuna mustard) during VEG-04A and VEG-04B. The chemical and elemental profiles for these Mizuna crops are curated under study OSD-655, while their microbiological safety profile is detailed in study OSD-780.
 
-In these missions, lettuce plants were grown on the ISS (Flight) and compared against parallel cohorts grown in environment-controlled chambers at the Kennedy Space Center (Ground Control). The harvested tissues were analyzed for a suite of metrics, including elemental composition (via ICP-OES), antioxidant capacity (ORAC), phenolic content, and anthocyanins. The original publication by Khodadad et al. (2020) confirmed that space-grown lettuce was microbiologically safe and nutritionally comparable to Earth-grown controls, marking a significant milestone in space agriculture.
+In all of these missions, plants were grown on the ISS (Flight) and compared against parallel cohorts grown in environment-controlled chambers at the Kennedy Space Center (Ground Control). The harvested tissues were analyzed for a suite of metrics, including elemental composition (via ICP-OES), antioxidant capacity (ORAC), phenolic content, and anthocyanins. The original publications confirmed that both crops were microbiologically safe and nutritionally comparable to Earth-grown controls. Merging these datasets enables a true comparative meta-analysis across different space-grown crop species.
 
 \section{Motivation for Machine Learning Reanalysis}
 While the univariate statistical analyses performed in the original study established broad comparability, biological systems are inherently complex and multivariate. Elemental uptake and secondary metabolite synthesis do not occur in isolation; they represent an interconnected web of physiological responses. Single-element ANOVA or t-tests, though valuable, may obscure subtle, systemic shifts in the plant's nutritional network induced by the spaceflight environment.
@@ -26,10 +26,11 @@ This manuscript, alongside its accompanying code and interactive dashboard, embr
 \end{cosealert}
 
 \section{Study Objectives and Research Questions}
-The primary objective of this thesis is to develop a comprehensive machine learning pipeline and an interactive web-based dashboard for the multivariate analysis of the OSD-745 nutritional dataset. We aim to answer the following research questions:
+The primary objective of this thesis is to develop a comprehensive machine learning pipeline and an interactive web-based dashboard to perform a multi-crop comparative meta-analysis of NASA OSDR datasets OSD-745, OSD-655, and OSD-780. We aim to answer the following research questions:
 \begin{enumerate}
-    \item \textbf{Multivariate Differentiation:} Can machine learning classifiers reliably distinguish between Flight and Ground samples based solely on their multielemental profiles?
-    \item \textbf{Feature Importance:} Which specific nutrients or combinations thereof are the strongest drivers of the physiological differences observed in microgravity?
-    \item \textbf{Predictive Modeling:} To what extent can the macro- and micro-elemental composition of the plant predict its antioxidant capacity (ORAC) and phenolic content?
-    \item \textbf{Data Accessibility:} How can interactive visualization tools lower the barrier to entry for space biology data exploration by the broader scientific community?
+    \item \textbf{Multivariate Differentiation:} Can machine learning classifiers reliably distinguish between Flight and Ground samples based solely on their multielemental and biochemical profiles across different plant species?
+    \item \textbf{Cross-Crop Generalizability:} Does a classifier trained on one crop species (e.g., Lettuce) generalize successfully to another species (e.g., Mizuna) grown in the same Veggie spaceflight hardware?
+    \item \textbf{Universal Markers:} Which specific nutrients or combinations thereof serve as universal physiological markers of the spaceflight environment across species?
+    \item \textbf{Food Safety Meta-Analysis:} Do microbiological counts (APC and YMC) significantly differ between crop types or spaceflight conditions, and do they correlate with elemental composition?
+    \item \textbf{Data Accessibility:} How can interactive visualization tools lower the barrier to entry for space biology meta-analysis and data exploration?
 \end{enumerate}

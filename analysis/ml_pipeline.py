@@ -354,7 +354,7 @@ def perform_stats(df, features, results_dir):
         p_corrected = stats.false_discovery_control(p_values)
     else:
         def bh_fdr(p):
-            p = np.asfarray(p)
+            p = np.asarray(p, dtype=float)
             by_descend = p.argsort()[::-1]
             by_orig = by_descend.argsort()
             steps = float(len(p)) / np.arange(len(p), 0, -1)

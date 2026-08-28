@@ -1,251 +1,251 @@
 [
     {
-        "sample_id":"Sample_1",
+        "sample_id":"Sample_L_1",
         "mission":"VEG-01A",
         "condition":"Flight",
         "plant_number":1,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_2",
+        "sample_id":"Sample_L_2",
         "mission":"VEG-01A",
         "condition":"Flight",
         "plant_number":2,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_3",
+        "sample_id":"Sample_L_3",
         "mission":"VEG-01A",
         "condition":"Flight",
         "plant_number":3,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_4",
+        "sample_id":"Sample_L_4",
         "mission":"VEG-01A",
         "condition":"Flight",
         "plant_number":4,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_5",
+        "sample_id":"Sample_L_5",
         "mission":"VEG-01A",
         "condition":"Flight",
         "plant_number":5,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_6",
+        "sample_id":"Sample_L_6",
         "mission":"VEG-01A",
         "condition":"Flight",
         "plant_number":6,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_7",
+        "sample_id":"Sample_L_7",
         "mission":"VEG-01A",
         "condition":"Ground",
         "plant_number":1,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_8",
+        "sample_id":"Sample_L_8",
         "mission":"VEG-01A",
         "condition":"Ground",
         "plant_number":2,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_9",
+        "sample_id":"Sample_L_9",
         "mission":"VEG-01A",
         "condition":"Ground",
         "plant_number":3,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_10",
+        "sample_id":"Sample_L_10",
         "mission":"VEG-01A",
         "condition":"Ground",
         "plant_number":4,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_11",
+        "sample_id":"Sample_L_11",
         "mission":"VEG-01A",
         "condition":"Ground",
         "plant_number":5,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_12",
+        "sample_id":"Sample_L_12",
         "mission":"VEG-01A",
         "condition":"Ground",
         "plant_number":6,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_13",
+        "sample_id":"Sample_L_13",
         "mission":"VEG-01B",
         "condition":"Flight",
         "plant_number":1,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_14",
+        "sample_id":"Sample_L_14",
         "mission":"VEG-01B",
         "condition":"Flight",
         "plant_number":2,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_15",
+        "sample_id":"Sample_L_15",
         "mission":"VEG-01B",
         "condition":"Flight",
         "plant_number":3,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_16",
+        "sample_id":"Sample_L_16",
         "mission":"VEG-01B",
         "condition":"Flight",
         "plant_number":4,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_17",
+        "sample_id":"Sample_L_17",
         "mission":"VEG-01B",
         "condition":"Flight",
         "plant_number":5,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_18",
+        "sample_id":"Sample_L_18",
         "mission":"VEG-01B",
         "condition":"Flight",
         "plant_number":6,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_19",
+        "sample_id":"Sample_L_19",
         "mission":"VEG-01B",
         "condition":"Ground",
         "plant_number":1,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_20",
+        "sample_id":"Sample_L_20",
         "mission":"VEG-01B",
         "condition":"Ground",
         "plant_number":2,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_21",
+        "sample_id":"Sample_L_21",
         "mission":"VEG-01B",
         "condition":"Ground",
         "plant_number":3,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_22",
+        "sample_id":"Sample_L_22",
         "mission":"VEG-01B",
         "condition":"Ground",
         "plant_number":4,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_23",
+        "sample_id":"Sample_L_23",
         "mission":"VEG-01B",
         "condition":"Ground",
         "plant_number":5,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_24",
+        "sample_id":"Sample_L_24",
         "mission":"VEG-01B",
         "condition":"Ground",
         "plant_number":6,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_25",
+        "sample_id":"Sample_L_25",
         "mission":"VEG-03A",
         "condition":"Flight",
         "plant_number":1,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_26",
+        "sample_id":"Sample_L_26",
         "mission":"VEG-03A",
         "condition":"Flight",
         "plant_number":2,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_27",
+        "sample_id":"Sample_L_27",
         "mission":"VEG-03A",
         "condition":"Flight",
         "plant_number":3,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_28",
+        "sample_id":"Sample_L_28",
         "mission":"VEG-03A",
         "condition":"Flight",
         "plant_number":4,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_29",
+        "sample_id":"Sample_L_29",
         "mission":"VEG-03A",
         "condition":"Flight",
         "plant_number":5,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_30",
+        "sample_id":"Sample_L_30",
         "mission":"VEG-03A",
         "condition":"Flight",
         "plant_number":6,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_31",
+        "sample_id":"Sample_L_31",
         "mission":"VEG-03A",
         "condition":"Ground",
         "plant_number":1,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_32",
+        "sample_id":"Sample_L_32",
         "mission":"VEG-03A",
         "condition":"Ground",
         "plant_number":2,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_33",
+        "sample_id":"Sample_L_33",
         "mission":"VEG-03A",
         "condition":"Ground",
         "plant_number":3,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_34",
+        "sample_id":"Sample_L_34",
         "mission":"VEG-03A",
         "condition":"Ground",
         "plant_number":4,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_35",
+        "sample_id":"Sample_L_35",
         "mission":"VEG-03A",
         "condition":"Ground",
         "plant_number":5,
         "harvest_day":33
     },
     {
-        "sample_id":"Sample_36",
+        "sample_id":"Sample_L_36",
         "mission":"VEG-03A",
         "condition":"Ground",
         "plant_number":6,
