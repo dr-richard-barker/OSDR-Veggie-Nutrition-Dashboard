@@ -1,0 +1,77 @@
+{
+  "title": "OSDR Veggie Nutritional Analysis Dashboard & ML Pipeline: Machine learning analysis of space-grown lettuce nutritional composition from NASA OSDR OSD-745",
+  "description": "Interactive dashboard and machine learning analysis pipeline for the nutritional composition of red romaine lettuce (Lactuca sativa cv. 'Outredgeous') grown in the Veggie plant growth hardware aboard the International Space Station. Analyzes elemental composition (Fe, K, Na, P, S, Zn, Ca, Mg, Mn, Cu), total phenolics, anthocyanins, and ORAC antioxidant capacity across three ISS missions (VEG-01A, VEG-01B, VEG-03A). Includes PCA dimensionality reduction, Random Forest classification (flight vs. ground) with SHAP feature importance, multi-target regression, and comprehensive statistical testing. Built with FAIR data principles and deployed as a static GitHub Pages dashboard.",
+  "creators": [
+    {
+      "name": "Barker, Richard",
+      "affiliation": "NASA GeneLab / OSDR"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Khodadad, Christina L. M.",
+      "affiliation": "NASA Kennedy Space Center",
+      "type": "DataCollector"
+    },
+    {
+      "name": "Massa, Gioia D.",
+      "affiliation": "NASA Kennedy Space Center",
+      "type": "DataCollector"
+    }
+  ],
+  "keywords": [
+    "nutritional analysis",
+    "lettuce",
+    "Lactuca sativa",
+    "spaceflight",
+    "ISS",
+    "Veggie hardware",
+    "machine learning",
+    "PCA",
+    "Random Forest",
+    "SHAP",
+    "elemental composition",
+    "phenolics",
+    "anthocyanins",
+    "ORAC",
+    "ICP-OES",
+    "NASA OSDR",
+    "OSD-745",
+    "GeneLab",
+    "FAIR data",
+    "interactive dashboard",
+    "space biology",
+    "controlled environment agriculture"
+  ],
+  "license": "MIT",
+  "communities": [
+    {
+      "identifier": "nasa-genelab"
+    }
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.3389/fpls.2020.00199",
+      "relation": "isDerivedFrom",
+      "resource_type": "publication-article",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "https://osdr.nasa.gov/bio/repo/data/studies/OSD-745",
+      "relation": "isDerivedFrom",
+      "resource_type": "dataset",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/dr-richard-barker/OSDR-Veggie-Nutrition-Dashboard",
+      "relation": "isSupplementTo",
+      "resource_type": "software",
+      "scheme": "url"
+    }
+  ],
+  "version": "1.0.0",
+  "publication_type": "software",
+  "upload_type": "software",
+  "access_right": "open",
+  "prereserve_doi": true
+}

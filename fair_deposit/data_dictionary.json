@@ -1,0 +1,134 @@
+{
+  "columns": {
+    "sample_id": {
+      "type": "string",
+      "description": "Unique sample identifier combining mission, condition, and plant number",
+      "example": "VEG-01A_Flight_P1"
+    },
+    "mission": {
+      "type": "categorical",
+      "description": "ISS Veggie mission identifier",
+      "values": ["VEG-01A", "VEG-01B", "VEG-03A"],
+      "source": "ISA-Tab study factor"
+    },
+    "condition": {
+      "type": "categorical",
+      "description": "Experimental treatment: Flight (ISS Veggie) or Ground (KSC chamber control)",
+      "values": ["Flight", "Ground"],
+      "source": "ISA-Tab study factor"
+    },
+    "plant_number": {
+      "type": "integer",
+      "description": "Plant replicate number within a mission and condition (1-6)",
+      "range": [1, 6]
+    },
+    "harvest_day": {
+      "type": "integer",
+      "description": "Day of growth at which leaves were harvested",
+      "unit": "days",
+      "range": [33, 56]
+    },
+    "Fe": {
+      "type": "float",
+      "description": "Iron concentration measured by ICP-OES",
+      "unit": "mg/g dry weight",
+      "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
+      "platform": "iCAP 7000 Series"
+    },
+    "K": {
+      "type": "float",
+      "description": "Potassium concentration measured by ICP-OES",
+      "unit": "mg/g dry weight",
+      "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
+      "platform": "iCAP 7000 Series"
+    },
+    "Na": {
+      "type": "float",
+      "description": "Sodium concentration measured by ICP-OES",
+      "unit": "mg/g dry weight",
+      "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
+      "platform": "iCAP 7000 Series"
+    },
+    "P": {
+      "type": "float",
+      "description": "Phosphorus concentration measured by ICP-OES",
+      "unit": "mg/g dry weight",
+      "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
+      "platform": "iCAP 7000 Series"
+    },
+    "S": {
+      "type": "float",
+      "description": "Sulfur concentration measured by ICP-OES",
+      "unit": "mg/g dry weight",
+      "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
+      "platform": "iCAP 7000 Series"
+    },
+    "Zn": {
+      "type": "float",
+      "description": "Zinc concentration measured by ICP-OES",
+      "unit": "mg/g dry weight",
+      "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
+      "platform": "iCAP 7000 Series"
+    },
+    "Ca": {
+      "type": "float",
+      "description": "Calcium concentration measured by ICP-OES",
+      "unit": "mg/g dry weight",
+      "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
+      "platform": "iCAP 7000 Series"
+    },
+    "Mg": {
+      "type": "float",
+      "description": "Magnesium concentration measured by ICP-OES",
+      "unit": "mg/g dry weight",
+      "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
+      "platform": "iCAP 7000 Series"
+    },
+    "Mn": {
+      "type": "float",
+      "description": "Manganese concentration measured by ICP-OES",
+      "unit": "mg/g dry weight",
+      "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
+      "platform": "iCAP 7000 Series"
+    },
+    "Cu": {
+      "type": "float",
+      "description": "Copper concentration measured by ICP-OES",
+      "unit": "mg/g dry weight",
+      "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
+      "platform": "iCAP 7000 Series"
+    },
+    "phenolics": {
+      "type": "float",
+      "description": "Total phenolic content by Folin-Ciocalteu spectrophotometric assay",
+      "unit": "gallic acid equivalents (GAE) mg/g dry weight",
+      "assay": "Phenolic Compound Content",
+      "platform": "BioTek Synergy Hybrid"
+    },
+    "anthocyanins": {
+      "type": "float",
+      "description": "Total anthocyanin content by pH differential spectrophotometric assay",
+      "unit": "cyanidin-3-glucoside equivalents mg/g dry weight",
+      "assay": "Anthocyanin Content",
+      "platform": "Beckman DU 700"
+    },
+    "orac": {
+      "type": "float",
+      "description": "Oxygen Radical Absorbance Capacity using fluorescein decay against Trolox standard",
+      "unit": "micromol Trolox equivalents (TE)/g dry weight",
+      "assay": "Oxygen Radical Absorbance Capacity",
+      "platform": "BioTek Synergy Hybrid"
+    }
+  },
+  "metadata": {
+    "dataset_name": "veggie_nutrition_master",
+    "source_study": "NASA OSDR OSD-745",
+    "source_doi": "10.3389/fpls.2020.00199",
+    "organism": "Lactuca sativa cv. Outredgeous",
+    "hardware": "Veggie Plant Growth System",
+    "n_samples_expected": 36,
+    "n_missions": 3,
+    "n_conditions": 2,
+    "n_features": 14
+  }
+}

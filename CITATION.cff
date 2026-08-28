@@ -1,0 +1,63 @@
+cff-version: 1.2.0
+title: "OSDR Veggie Nutritional Analysis Dashboard & ML Pipeline"
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - family-names: Barker
+    given-names: Richard
+    affiliation: "NASA GeneLab / OSDR"
+version: "1.0.0"
+date-released: "2026-08-28"
+license: MIT
+repository-code: "https://github.com/dr-richard-barker/OSDR-Veggie-Nutrition-Dashboard"
+url: "https://dr-richard-barker.github.io/OSDR-Veggie-Nutrition-Dashboard/"
+keywords:
+  - nutritional analysis
+  - lettuce
+  - Lactuca sativa
+  - spaceflight
+  - ISS
+  - Veggie hardware
+  - machine learning
+  - PCA
+  - Random Forest
+  - SHAP
+  - NASA OSDR
+  - OSD-745
+  - FAIR data
+  - interactive dashboard
+preferred-citation:
+  type: article
+  title: "Machine learning analysis of nutritional composition in space-grown lettuce from NASA OSDR OSD-745"
+  authors:
+    - family-names: Barker
+      given-names: Richard
+  journal: "Frontiers in Plant Science"
+  year: 2026
+references:
+  - type: article
+    title: "Microbiological and Nutritional Analysis of Lettuce Crops Grown on the International Space Station"
+    authors:
+      - family-names: Khodadad
+        given-names: Christina L. M.
+      - family-names: Hummerick
+        given-names: Mary E.
+      - family-names: Spencer
+        given-names: LaShelle E.
+      - family-names: Dixit
+        given-names: Anirudha R.
+      - family-names: Richards
+        given-names: Jeffrey T.
+      - family-names: Romeyn
+        given-names: Matthew W.
+      - family-names: Smith
+        given-names: Trent M.
+      - family-names: Wheeler
+        given-names: Raymond M.
+      - family-names: Massa
+        given-names: Gioia D.
+    journal: "Frontiers in Plant Science"
+    volume: 11
+    start: 199
+    year: 2020
+    doi: "10.3389/fpls.2020.00199"

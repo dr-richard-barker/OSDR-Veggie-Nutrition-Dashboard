@@ -1,0 +1,56 @@
+\documentclass[11pt,twoside,openright]{report}
+\usepackage{cose-style}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    {\Huge\sffamily\bfseries\color{cosenavy} Machine Learning Analysis of Nutritional Composition in Space-Grown Lettuce \par}
+    \vspace{1cm}
+    {\Large\sffamily\color{coseblue} Reanalysis of NASA OSDR OSD-745 with Interactive Dashboard \par}
+    
+    \vspace{2.5cm}
+    
+    {\Large\textbf{Author:} Richard Barker\par}
+    \vspace{0.5cm}
+    {\large NASA GeneLab / OSDR \par}
+    
+    \vspace{3cm}
+    
+    \begin{tcolorbox}[colback=cosegray,colframe=cosenavy,arc=4mm,boxrule=1.5pt,width=0.8\textwidth,center]
+        \centering
+        \textbf{Prepared for:}\\
+        Space Biology Community, NASA GeneLab/OSDR\\
+        \vspace{0.5cm}
+        \textbf{Classification:}\\
+        Scientific Analysis \& Open Data | Q3 2026
+    \end{tcolorbox}
+    
+    \vfill
+    
+    {\large \textbf{CoSE Open Science \& Space Biology Initiative} \par}
+    {\large \today \par}
+\end{titlepage}
+
+\pagenumbering{roman}
+\tableofcontents
+\clearpage
+\listoffigures
+\clearpage
+\listoftables
+\clearpage
+
+\pagenumbering{arabic}
+
+\include{chapters/01_introduction}
+\include{chapters/02_methods}
+\include{chapters/03_results}
+\include{chapters/04_discussion}
+\include{chapters/05_conclusion}
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+
+\end{document}

@@ -1,0 +1,103 @@
+{
+  "@context": "https://w3id.org/ro/crate/1.1/context",
+  "@graph": [
+    {
+      "@type": "CreativeWork",
+      "@id": "ro-crate-metadata.json",
+      "about": {"@id": "./"},
+      "conformsTo": {"@id": "https://w3id.org/ro/crate/1.1"}
+    },
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "name": "OSDR Veggie Nutritional Analysis Dashboard & ML Pipeline",
+      "description": "Machine learning analysis of nutritional composition in space-grown lettuce from NASA OSDR OSD-745. Includes elemental analysis (ICP-OES), phenolic content, anthocyanin content, ORAC antioxidant capacity, PCA, Random Forest classification, SHAP feature importance, and statistical testing.",
+      "datePublished": "2026-08-28",
+      "license": {"@id": "https://spdx.org/licenses/MIT.html"},
+      "creator": [
+        {"@id": "#richard-barker"}
+      ],
+      "isBasedOn": {"@id": "https://doi.org/10.3389/fpls.2020.00199"},
+      "hasPart": [
+        {"@id": "data/processed/veggie_nutrition_master.csv"},
+        {"@id": "data/processed/sample_metadata.csv"},
+        {"@id": "analysis/ml_pipeline.py"},
+        {"@id": "analysis/results/ml_results_summary.json"},
+        {"@id": "docs/index.html"},
+        {"@id": "manuscript/main.tex"},
+        {"@id": "fair_deposit/data_dictionary.json"}
+      ]
+    },
+    {
+      "@id": "#richard-barker",
+      "@type": "Person",
+      "name": "Richard Barker",
+      "affiliation": {"@id": "#nasa-genelab"}
+    },
+    {
+      "@id": "#nasa-genelab",
+      "@type": "Organization",
+      "name": "NASA GeneLab / OSDR"
+    },
+    {
+      "@id": "data/processed/veggie_nutrition_master.csv",
+      "@type": "File",
+      "name": "Curated Nutritional Dataset",
+      "description": "Harmonized dataset combining elemental composition, phenolic content, anthocyanin content, and ORAC values for all samples across 3 ISS Veggie missions.",
+      "encodingFormat": "text/csv",
+      "conformsTo": {"@id": "fair_deposit/data_dictionary.json"}
+    },
+    {
+      "@id": "data/processed/sample_metadata.csv",
+      "@type": "File",
+      "name": "Sample Metadata",
+      "description": "Sample-level metadata including mission, condition, plant number, and harvest day.",
+      "encodingFormat": "text/csv"
+    },
+    {
+      "@id": "analysis/ml_pipeline.py",
+      "@type": ["File", "SoftwareSourceCode"],
+      "name": "ML Analysis Pipeline",
+      "description": "Complete machine learning analysis: EDA, PCA, Random Forest classification, SHAP feature importance, regression, and statistical testing.",
+      "programmingLanguage": {"@id": "https://www.python.org/"},
+      "input": [{"@id": "data/processed/veggie_nutrition_master.csv"}],
+      "output": [{"@id": "analysis/results/ml_results_summary.json"}]
+    },
+    {
+      "@id": "analysis/results/ml_results_summary.json",
+      "@type": "File",
+      "name": "ML Results Summary",
+      "description": "JSON export of all ML analysis results including PCA coordinates, feature importances, classification metrics, regression metrics, and statistical tests.",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@id": "docs/index.html",
+      "@type": ["File", "WebPage"],
+      "name": "Interactive Dashboard",
+      "description": "Static client-side web application for exploring nutritional data, images, and ML results. Deployable on GitHub Pages.",
+      "encodingFormat": "text/html"
+    },
+    {
+      "@id": "manuscript/main.tex",
+      "@type": "File",
+      "name": "LaTeX Manuscript",
+      "description": "Modular LaTeX manuscript with CoSE design system styling, compiling to PDF and DOCX.",
+      "encodingFormat": "application/x-tex"
+    },
+    {
+      "@id": "fair_deposit/data_dictionary.json",
+      "@type": "File",
+      "name": "Data Dictionary",
+      "description": "Machine-readable schema documenting every column in the master CSV with data types, units, assay methods, and instrumentation.",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@id": "https://doi.org/10.3389/fpls.2020.00199",
+      "@type": "ScholarlyArticle",
+      "name": "Microbiological and Nutritional Analysis of Lettuce Crops Grown on the International Space Station",
+      "author": "Khodadad et al.",
+      "datePublished": "2020",
+      "identifier": "10.3389/fpls.2020.00199"
+    }
+  ]
+}

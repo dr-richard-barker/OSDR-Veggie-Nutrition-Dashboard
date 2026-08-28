@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSDR Veggie Nutrition Dashboard (OSD-745)</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="logo-title">
+            <div class="logo-placeholder">NASA OSDR</div>
+            <h1>Veggie Nutrition Dashboard</h1>
+        </div>
+        <div class="header-controls">
+            <button id="theme-toggle" class="btn btn-secondary">Toggle Theme</button>
+        </div>
+    </header>
+
+    <nav class="tab-nav">
+        <button class="tab-btn active" data-target="panel-overview">Overview</button>
+        <button class="tab-btn" data-target="panel-nutrition">Nutritional Data</button>
+        <button class="tab-btn" data-target="panel-gallery">Image Gallery</button>
+        <button class="tab-btn" data-target="panel-ml">ML Analysis</button>
+        <button class="tab-btn" data-target="panel-about">About & Methods</button>
+    </nav>
+
+    <main class="dashboard-content">
+        <!-- Panel 1: Study Overview -->
+        <section id="panel-overview" class="tab-panel active">
+            <div class="hero">
+                <h2>Microbiological and Nutritional Analysis of Lettuce Crops Grown on the ISS</h2>
+                <p>Data from NASA OSDR study OSD-745 analyzing Red romaine lettuce (Lactuca sativa cv. 'Outredgeous') grown in Veggie hardware.</p>
+                <a href="https://doi.org/10.3389/fpls.2020.00199" target="_blank" class="btn btn-primary">Read the Paper (Khodadad et al., 2020)</a>
+            </div>
+
+            <div class="grid-3">
+                <div class="card mission-card">
+                    <h3>VEG-01A</h3>
+                    <p><strong>Dates:</strong> May-Jun 2014</p>
+                    <p><strong>Mission:</strong> SpaceX-3</p>
+                    <p>Initial demonstration of Veggie hardware.</p>
+                </div>
+                <div class="card mission-card">
+                    <h3>VEG-01B</h3>
+                    <p><strong>Dates:</strong> Jul-Aug 2015</p>
+                    <p><strong>Mission:</strong> SpaceX-8</p>
+                    <p>Crew consumption and further analysis.</p>
+                </div>
+                <div class="card mission-card">
+                    <h3>VEG-03A</h3>
+                    <p><strong>Dates:</strong> Oct-Dec 2016</p>
+                    <p><strong>Mission:</strong> SpaceX-8</p>
+                    <p>Cut-and-come-again harvesting.</p>
+                </div>
+            </div>
+
+            <div class="grid-3 mt-4">
+                <div class="card stat-card">
+                    <h2>10+</h2>
+                    <p>Elements Tested</p>
+                </div>
+                <div class="card stat-card">
+                    <h2>3</h2>
+                    <p>ISS Missions</p>
+                </div>
+                <div class="card stat-card">
+                    <h2>~36</h2>
+                    <p>Total Samples (Flight + Ground)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Panel 2: Nutritional Data Explorer -->
+        <section id="panel-nutrition" class="tab-panel">
+            <div class="controls-bar card">
+                <div class="control-group">
+                    <label for="element-view-select">Data View:</label>
+                    <select id="element-view-select">
+                        <option value="all">All Elements</option>
+                        <option value="significant">Significant Only</option>
+                        <option value="biochemicals">Biochemicals</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label for="mission-filter">Mission:</label>
+                    <select id="mission-filter">
+                        <option value="all">All Missions</option>
+                        <option value="VEG-01A">VEG-01A</option>
+                        <option value="VEG-01B">VEG-01B</option>
+                        <option value="VEG-03A">VEG-03A</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid-2 mt-4">
+                <div class="card chart-container">
+                    <h3>Elemental Comparison (Flight vs Ground)</h3>
+                    <canvas id="bar-chart"></canvas>
+                </div>
+                <div class="card chart-container">
+                    <h3>Nutritional Profile Overview</h3>
+                    <canvas id="radar-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="card mt-4 table-container">
+                <h3>Detailed Measurements</h3>
+                <table id="data-table" class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Sample ID</th>
+                            <th>Mission</th>
+                            <th>Condition</th>
+                            <th>Element/Assay</th>
+                            <th>Value</th>
+                            <th>Unit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Panel 3: Image Gallery -->
+        <section id="panel-gallery" class="tab-panel">
+            <div class="controls-bar card">
+                <div class="filter-buttons" id="gallery-filters">
+                    <button class="btn btn-small active" data-filter="all">All</button>
+                    <button class="btn btn-small" data-filter="flight">Flight</button>
+                    <button class="btn btn-small" data-filter="ground">Ground</button>
+                    <button class="btn btn-small" data-filter="veg-01a">VEG-01A</button>
+                    <button class="btn btn-small" data-filter="veg-01b">VEG-01B</button>
+                    <button class="btn btn-small" data-filter="veg-03a">VEG-03A</button>
+                </div>
+                <div>
+                    <label><input type="checkbox" id="compare-mode"> Compare Mode (Side-by-side)</label>
+                </div>
+            </div>
+
+            <div id="compare-view" class="grid-2 mt-4 hidden">
+                <div class="card compare-box" id="compare-left">
+                    <h4>Select Flight Image</h4>
+                    <div class="compare-content"></div>
+                </div>
+                <div class="card compare-box" id="compare-right">
+                    <h4>Select Ground Image</h4>
+                    <div class="compare-content"></div>
+                </div>
+            </div>
+
+            <div class="gallery-grid mt-4" id="image-grid">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+        <!-- Panel 4: ML Analysis Results -->
+        <section id="panel-ml" class="tab-panel">
+            <div class="grid-2">
+                <div class="card chart-container">
+                    <h3>PCA of Nutritional Profiles</h3>
+                    <div id="pca-plot" style="width:100%; height:400px;"></div>
+                </div>
+                <div class="card chart-container">
+                    <h3>Feature Importance (Random Forest)</h3>
+                    <canvas id="feature-importance-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="grid-2 mt-4">
+                <div class="card">
+                    <h3>Statistical Test Results</h3>
+                    <table class="data-table" id="stats-table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>p-value (T-test)</th>
+                                <th>Significance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <div class="card mb-4">
+                        <h3>Classification Metrics (Flight vs Ground)</h3>
+                        <div class="grid-2 metrics-grid">
+                            <div class="metric"><strong>Accuracy:</strong> <span id="metric-acc"></span></div>
+                            <div class="metric"><strong>Precision:</strong> <span id="metric-prec"></span></div>
+                            <div class="metric"><strong>Recall:</strong> <span id="metric-rec"></span></div>
+                            <div class="metric"><strong>F1 Score:</strong> <span id="metric-f1"></span></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Regression (Biochemicals)</h3>
+                        <p><strong>ORAC R²:</strong> <span id="metric-orac"></span></p>
+                        <p><strong>Phenolics R²:</strong> <span id="metric-phenolics"></span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Panel 5: About & Methods -->
+        <section id="panel-about" class="tab-panel">
+            <div class="card">
+                <h3>Study Methodology</h3>
+                <p>Lettuce plants were grown in Veggie hardware on the ISS and in ground control chambers at KSC. Samples were harvested, frozen, and returned to Earth. Nutritional analysis included ICP-OES for elemental composition, Folin-Ciocalteu for phenolics, pH differential for anthocyanins, and ORAC for antioxidant capacity.</p>
+                
+                <h3 class="mt-4">ML Pipeline</h3>
+                <p>Data preprocessing included standardization and handling missing values. PCA was used for dimensionality reduction. A Random Forest classifier was trained to distinguish flight from ground samples, and feature importance was extracted.</p>
+
+                <h3 class="mt-4">Data Provenance (FAIR)</h3>
+                <p>All data is sourced from NASA OSDR <a href="https://osdr.nasa.gov/bio/repo/data/studies/OSD-745" target="_blank">OSD-745</a> following FAIR principles.</p>
+
+                <h3 class="mt-4">Citation</h3>
+                <pre class="citation-block">
+@article{khodadad2020microbiological,
+  title={Microbiological and nutritional analysis of lettuce crops grown on the International Space Station},
+  author={Khodadad, Christina L and Hummerick, Mary E and Spencer, LaShelle E and Dixit, Anirudha R and Richards, Jeffrey T and Romeyn, Matthew W and Smith, Trent M and Wheeler, Raymond M and Massa, Gioia D},
+  journal={Frontiers in Plant Science},
+  volume={11},
+  pages={199},
+  year={2020},
+  publisher={Frontiers}
+}
+                </pre>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <img id="lightbox-img" src="" alt="Full view">
+            <div class="metadata-overlay" id="lightbox-meta"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/app.js" type="module"></script>
+</body>
+</html>

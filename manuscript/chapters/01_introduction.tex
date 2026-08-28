@@ -1,0 +1,35 @@
+\chapter{Introduction}
+\label{ch:introduction}
+
+\section{The Imperative of Space Agriculture}
+The future of human space exploration relies heavily on our ability to sustain astronaut health and psychological well-being during long-duration missions. Missions beyond Low Earth Orbit (LEO), such as lunar bases under the Artemis program or crewed missions to Mars, will stretch the limits of pre-packaged food systems. Pre-packaged diets, while calorically dense and microbiologically safe, undergo nutritional degradation over time \cite{wheeler2017}. Key vitamins, such as Vitamin C and B1, naturally decay, presenting significant risks of nutritional deficiencies for crews on multi-year deployments.
+
+Furthermore, the psychological benefits of interacting with living plants—a phenomenon often referred to as "horticultural therapy"—have been widely documented among astronauts \cite{massa2017b}. The presence of fresh greenery provides sensory stimulation and a connection to Earth, breaking the monotony of an artificial, sterile spacecraft environment. Consequently, developing robust space agriculture systems is not merely a logistical necessity but a biological and psychological imperative \cite{zabel2016}.
+
+\section{The Veggie Plant Growth Facility}
+To address these challenges, NASA deployed the Vegetable Production System (Veggie) to the International Space Station (ISS) \cite{massa2017a}. Veggie is a low-resource plant growth facility designed to produce fresh vegetables in microgravity. The hardware consists of a light cap fitted with red, blue, and green Light Emitting Diodes (LEDs), providing customizable photosynthetic and photomorphogenic lighting. Plants are grown in root mat "pillows"—Teflon-coated Kevlar bags filled with an arcillite-based substrate and controlled-release fertilizer. Water is introduced through a root mat, relying on capillary action to transport moisture to the plant roots in the absence of gravity-driven convection and drainage \cite{ferl2002}.
+
+Despite its successes, growing plants in space presents profound environmental stressors. Microgravity alters fluid dynamics, often leading to hypoxia in the root zone. Elevated radiation, continuous ventilation (to prevent boundary layer suffocation), and unique microbial profiles further complicate cultivation \cite{paul2013}. Understanding how these factors influence the nutritional profile and yield of crops is a paramount objective of NASA's Space Biology program.
+
+\section{The OSD-745 Study}
+The Open Science Data Repository (OSDR) study OSD-745 encapsulates a comprehensive analysis of \textit{Lactuca sativa} cv. 'Outredgeous' (red romaine lettuce) cultivated during three distinct ISS missions: VEG-01A, VEG-01B, and VEG-03A \cite{khodadad2020}. This foundational study aimed to validate the Veggie hardware's ability to produce safe, nutritious food. 
+
+In these missions, lettuce plants were grown on the ISS (Flight) and compared against parallel cohorts grown in environment-controlled chambers at the Kennedy Space Center (Ground Control). The harvested tissues were analyzed for a suite of metrics, including elemental composition (via ICP-OES), antioxidant capacity (ORAC), phenolic content, and anthocyanins. The original publication by Khodadad et al. (2020) confirmed that space-grown lettuce was microbiologically safe and nutritionally comparable to Earth-grown controls, marking a significant milestone in space agriculture.
+
+\section{Motivation for Machine Learning Reanalysis}
+While the univariate statistical analyses performed in the original study established broad comparability, biological systems are inherently complex and multivariate. Elemental uptake and secondary metabolite synthesis do not occur in isolation; they represent an interconnected web of physiological responses. Single-element ANOVA or t-tests, though valuable, may obscure subtle, systemic shifts in the plant's nutritional network induced by the spaceflight environment.
+
+Machine learning (ML) offers a powerful toolkit for uncovering these high-dimensional patterns. Techniques such as Random Forests \cite{breiman2001} and Shapley Additive Explanations (SHAP) \cite{lundberg2017} allow us to interpret complex, non-linear relationships and identify the precise combinations of elements that differentiate space-grown from ground-grown crops. By reanalyzing the open-access OSD-745 dataset through an ML lens, we aim to extract deeper biological insights that can inform the design of next-generation life support systems.
+
+\begin{cosealert}[Open Science Commitment]
+This manuscript, alongside its accompanying code and interactive dashboard, embraces the FAIR (Findable, Accessible, Interoperable, and Reusable) data principles. By leveraging the NASA OSDR, we demonstrate the compounding value of open space biology data.
+\end{cosealert}
+
+\section{Study Objectives and Research Questions}
+The primary objective of this thesis is to develop a comprehensive machine learning pipeline and an interactive web-based dashboard for the multivariate analysis of the OSD-745 nutritional dataset. We aim to answer the following research questions:
+\begin{enumerate}
+    \item \textbf{Multivariate Differentiation:} Can machine learning classifiers reliably distinguish between Flight and Ground samples based solely on their multielemental profiles?
+    \item \textbf{Feature Importance:} Which specific nutrients or combinations thereof are the strongest drivers of the physiological differences observed in microgravity?
+    \item \textbf{Predictive Modeling:} To what extent can the macro- and micro-elemental composition of the plant predict its antioxidant capacity (ORAC) and phenolic content?
+    \item \textbf{Data Accessibility:} How can interactive visualization tools lower the barrier to entry for space biology data exploration by the broader scientific community?
+\end{enumerate}

@@ -1,0 +1,59 @@
+\chapter{Materials \& Methods}
+\label{ch:methods}
+
+\section{Data Source and Curation}
+The primary dataset utilized in this analysis is NASA Open Science Data Repository (OSDR) study OSD-745, titled "Microbiological and Nutritional Analysis of Lettuce Crops Grown on the International Space Station." \cite{khodadad2020}. Data and associated metadata were programmatically retrieved from the OSDR API (\url{https://osdr.nasa.gov}) utilizing the ISA-Tab (Investigation, Study, Assay) standardized format. 
+
+\begin{coseagronomy}[FAIR Principles]
+The data harmonization pipeline developed for this project aligns with FAIR principles. All raw assay files, metadata sheets, and biochemical readouts were merged into a consolidated, version-controlled analytical matrix.
+\end{coseagronomy}
+
+\section{Plant Material and Growth Conditions}
+\textit{Lactuca sativa} cv. 'Outredgeous' (red romaine lettuce) was utilized across three experimental epochs: VEG-01A (May-Jun 2014), VEG-01B (Jul-Aug 2015), and VEG-03A (Oct-Dec 2016). Seeds were sanitized and planted into Veggie "pillows"—expandable root modules containing a solid substrate of calcined clay (arcillite) amended with a controlled-release fertilizer (Nutricote 18-6-8, type 180). 
+
+In the ISS Flight (FLT) conditions, plants were cultivated within the Veggie hardware under a 16-hour light / 8-hour dark photoperiod. The LED light cap provided a specialized spectrum of Red (630 nm), Blue (455 nm), and Green (530 nm) light at a ratio of approximately 12:3:1 \cite{massa2017a}. Environmental parameters such as temperature, relative humidity, and $CO_2$ concentration were dictated by the ISS cabin environment. Parallel Ground Control (GC) experiments were conducted in environmental chambers at the Kennedy Space Center (KSC), designed to mimic the ISS atmospheric conditions based on telemetry data with a 24- to 48-hour delay.
+
+\section{Sample Collection and Analytical Methods}
+Upon reaching maturity (approximately 33 days post-imbibition), the lettuce was harvested by the crew. A portion of the tissue was consumed, while the remainder was immediately flash-frozen at $-80^\circ$C using the MELFI (Minus Eighty-Degree Laboratory Freezer for ISS) and subsequently returned to Earth aboard SpaceX Dragon capsules (SpaceX-3 and SpaceX-8).
+
+\subsection{Elemental Profiling (ICP-OES)}
+Lyophilized leaf tissue was digested in nitric acid and analyzed for macronutrients and micronutrients using Inductively Coupled Plasma Optical Emission Spectrometry (ICP-OES) via a Thermo Scientific iCAP 7000 series spectrometer. Elements quantified included Iron (Fe), Potassium (K), Sodium (Na), Phosphorus (P), Sulfur (S), Zinc (Zn), Calcium (Ca), Magnesium (Mg), Manganese (Mn), and Copper (Cu).
+
+\subsection{Antioxidants and Phenolics}
+Total antioxidant capacity was determined using the Oxygen Radical Absorbance Capacity (ORAC) assay, read on a BioTek Synergy HT microplate reader. Total phenolic content was measured via the Folin-Ciocalteu colorimetric assay, and anthocyanins were quantified using the pH differential method.
+
+\section{Machine Learning Pipeline}
+
+The analytical pipeline was constructed using Python 3.10, leveraging \texttt{scikit-learn}, \texttt{pandas}, and \texttt{shap}. 
+
+\subsection{Dimensionality Reduction}
+Principal Component Analysis (PCA) was employed for exploratory data analysis and unsupervised clustering. The elemental data matrix $X$ was standard-scaled to zero mean and unit variance. The covariance matrix $C$ was computed, and the eigenvalues $\lambda$ and eigenvectors $v$ were derived by solving:
+\begin{equation}
+C v = \lambda v
+\end{equation}
+where $C = \frac{1}{n-1} X^T X$. The first two principal components were extracted to visualize the variance captured by the multielemental profile.
+
+\subsection{Classification with LOMOCV}
+A Random Forest Classifier \cite{breiman2001} was trained to distinguish between Flight and Ground Control samples. Given the batch effects inherent in disparate spaceflight missions, a Leave-One-Mission-Out Cross-Validation (LOMOCV) strategy was implemented. The model iteratively trained on two missions (e.g., VEG-01A and VEG-01B) and validated on the holdout mission (e.g., VEG-03A). This ensured robust generalization to unseen mission conditions. 
+
+The Random Forest utilized an ensemble of decision trees, minimizing Gini impurity:
+\begin{equation}
+G = 1 - \sum_{i=1}^{c} p_i^2
+\end{equation}
+where $p_i$ is the probability of a sample belonging to class $i$ at a given node.
+
+\subsection{SHAP Feature Importance}
+To demystify the "black box" nature of the Random Forest, SHapley Additive exPlanations (SHAP) \cite{lundberg2017} were utilized. SHAP values calculate the marginal contribution of each elemental feature to the model's prediction across all possible coalitions of features:
+\begin{equation}
+\phi_i(f, x) = \sum_{S \subseteq N \setminus \{i\}} \frac{|S|!(|N| - |S| - 1)!}{|N|!} \left[ f(S \cup \{i\}) - f(S) \right]
+\end{equation}
+where $N$ is the set of all features, $S$ is a subset of features excluding feature $i$, and $f$ is the model prediction. This provided a ranked list of elements driving the FLT vs. GC distinction.
+
+\subsection{Statistical Testing}
+Non-parametric Mann-Whitney U tests were conducted for univariate comparisons. To account for multiple comparisons, $p$-values were adjusted using the Benjamini-Hochberg False Discovery Rate (FDR) procedure. Effect sizes were computed using Cohen's $d$:
+\begin{equation}
+d = \frac{\mu_1 - \mu_2}{s_{pooled}}
+\end{equation}
+
+\section{Interactive Dashboard Architecture}
+To democratize access to the OSD-745 results, a static interactive dashboard was developed. The application was built utilizing HTML, CSS, and modern JavaScript, leveraging \texttt{Chart.js} and \texttt{Plotly.js} for responsive, client-side rendering of the PCA, SHAP plots, and boxplots. The dashboard incorporates the CoSE design system's aesthetic guidelines and is hosted via GitHub Pages for persistent, serverless accessibility.
