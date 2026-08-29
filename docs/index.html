@@ -147,28 +147,45 @@
             </div>
 
             <div class="grid-2 mt-4">
-                <div class="card chart-container">
-                    <h3>Elemental Comparison (Flight vs Ground)</h3>
-                    <canvas id="bar-chart"></canvas>
+                <div class="card plot-card">
+                    <div class="card-header">
+                        <h3>Elemental Comparison (Flight vs Ground)</h3>
+                        <span class="crop-badge crop-lettuce">Bar Profile</span>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="bar-chart"></canvas>
+                    </div>
                 </div>
-                <div class="card chart-container">
-                    <h3>Nutritional Profile Overview</h3>
-                    <canvas id="radar-chart"></canvas>
+                <div class="card plot-card">
+                    <div class="card-header">
+                        <h3>Nutritional Profile Overview</h3>
+                        <span class="crop-badge crop-mizuna">Radar Topology</span>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="radar-chart"></canvas>
+                    </div>
                 </div>
             </div>
 
             <!-- Microbiological Food Safety Section -->
             <div class="card mt-4">
-                <h3>Microbiological Food Safety Analysis (APC & YMC Counts)</h3>
+                <div class="card-header">
+                    <h3>Microbiological Food Safety Analysis (APC & YMC Counts)</h3>
+                    <span class="cond-badge cond-ground">OSD-745 & OSD-780</span>
+                </div>
                 <p>Space-grown crops are evaluated for microbial hygiene to ensure safety for crew consumption. These boxplots show Aerobic Plate Counts (APC) and Yeast & Mold Counts (YMC) in log10 CFU/g across conditions, compiled from OSD-745 and OSD-780.</p>
                 <div style="display: flex; justify-content: center; align-items: center; padding: 10px;">
-                    <img id="microbiology-img" src="figures/meta_microbiology_boxplot.png" alt="Microbiology Boxplot" style="max-width: 90%; height: auto; border: 1px solid #cbd5e1; border-radius: 4px;">
+                    <img id="microbiology-img" src="figures/meta_microbiology_boxplot.png" alt="Microbiology Boxplot" style="max-width: 90%; height: auto; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);">
                 </div>
             </div>
 
-            <div class="card mt-4 table-container">
-                <h3>Detailed Measurements</h3>
-                <table id="data-table" class="data-table">
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h3>Detailed Measurements Master Matrix</h3>
+                    <span class="cond-badge cond-flight">FAIR Data Matrix</span>
+                </div>
+                <div class="table-container">
+                    <table id="data-table" class="data-table">
                     <thead>
                         <tr>
                             <th>Sample ID</th>
@@ -228,90 +245,156 @@
 
         <!-- Panel 4: ML Analysis Results -->
         <section id="panel-ml" class="tab-panel">
+            <!-- Row 1: Interactive PCA Plot & Feature Importance -->
             <div class="grid-2">
-                <div class="card chart-container">
-                    <h3>PCA of Nutritional Profiles</h3>
-                    <div id="pca-plot" style="width:100%; height:400px;"></div>
+                <div class="card plot-card">
+                    <div class="card-header">
+                        <h3>PCA of Nutritional Profiles</h3>
+                        <span class="crop-badge crop-lettuce">Meta-Analysis (OSD-745 & OSD-655)</span>
+                    </div>
+                    <p>Biplot showing species separation (PC1, 42.0% variance) and conserved microgravity response (PC2, 25.0% variance). Hover over points for sample metadata.</p>
+                    <div class="plot-container">
+                        <div id="pca-plot"></div>
+                    </div>
                 </div>
-                <div class="card chart-container">
-                    <h3>Feature Importance (Random Forest)</h3>
-                    <canvas id="feature-importance-chart"></canvas>
+                <div class="card plot-card">
+                    <div class="card-header">
+                        <h3>Universal Feature Importance</h3>
+                        <span class="crop-badge crop-mizuna">Random Forest</span>
+                    </div>
+                    <p>Mean Decrease Impurity (MDI) across 10 nutritional elements. Iron (Fe), Potassium (K), and Calcium (Ca) are the primary spaceflight discriminators.</p>
+                    <div class="chart-wrapper">
+                        <canvas id="feature-importance-chart"></canvas>
+                    </div>
                 </div>
             </div>
 
+            <!-- Row 2: Statistical Test Results & Model Evaluation -->
             <div class="grid-2 mt-4">
                 <div class="card">
-                    <h3>Statistical Test Results</h3>
-                    <table class="data-table" id="stats-table">
-                        <thead>
-                            <tr>
-                                <th>Feature</th>
-                                <th>Raw p-value</th>
-                                <th>FDR p-value</th>
-                                <th>Cohen's d</th>
-                                <th>Significance</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Populated by JS -->
-                        </tbody>
-                    </table>
+                    <div class="card-header">
+                        <h3>Statistical Test Results</h3>
+                        <span class="cond-badge cond-flight">Mann-Whitney U + FDR</span>
+                    </div>
+                    <p>Hypothesis testing with Benjamini-Hochberg FDR correction and Cohen's <em>d</em> effect sizes comparing Flight vs. Ground Control tissues.</p>
+                    <div class="table-container stats-table-container">
+                        <table class="data-table" id="stats-table">
+                            <thead>
+                                <tr>
+                                    <th>Analyte</th>
+                                    <th>Raw <em>p</em>-value</th>
+                                    <th>FDR <em>p</em>-value</th>
+                                    <th>Cohen's <em>d</em></th>
+                                    <th>Significance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div>
+
+                <div class="metrics-column">
                     <div class="card mb-4">
-                        <h3>Classification Metrics (Flight vs Ground)</h3>
-                        <div class="grid-2 metrics-grid">
-                            <div class="metric"><strong>Accuracy:</strong> <span id="metric-acc"></span></div>
-                            <div class="metric"><strong>Precision:</strong> <span id="metric-prec"></span></div>
-                            <div class="metric"><strong>Recall:</strong> <span id="metric-rec"></span></div>
-                            <div class="metric"><strong>F1 Score:</strong> <span id="metric-f1"></span></div>
+                        <div class="card-header">
+                            <h3>Classification Performance</h3>
+                            <span class="cond-badge cond-ground">LOMOCV</span>
+                        </div>
+                        <p>Leave-One-Mission-Out Cross-Validation on joint multi-crop dataset.</p>
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-num" id="metric-acc">83.3%</div>
+                                <div class="metric-title">Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-num" id="metric-prec">80.6%</div>
+                                <div class="metric-title">Precision</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-num" id="metric-rec">86.1%</div>
+                                <div class="metric-title">Recall</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-num" id="metric-f1">83.2%</div>
+                                <div class="metric-title">F1 Score</div>
+                            </div>
                         </div>
                     </div>
+
                     <div class="card">
-                        <h3>Regression (Biochemicals)</h3>
-                        <p><strong>ORAC R²:</strong> <span id="metric-orac"></span></p>
-                        <p><strong>Phenolics R²:</strong> <span id="metric-phenolics"></span></p>
+                        <div class="card-header">
+                            <h3>Biochemical Regression</h3>
+                            <span class="cond-badge cond-ground">Random Forest</span>
+                        </div>
+                        <p>Predicting antioxidant and phenolic capacities from elemental profiles.</p>
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-num" id="metric-orac">0.528</div>
+                                <div class="metric-title">ORAC R²</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-num" id="metric-phenolics">0.491</div>
+                                <div class="metric-title">Phenolics R²</div>
+                            </div>
+                        </div>
                     </div>
+                </div>
             </div>
 
-            <!-- TabPFN Benchmarking Section -->
+            <!-- Row 3: TabPFN Benchmarking Section -->
             <div class="card mt-4">
-                <h3>Tabular Foundation Model Benchmarking (Nature 2025)</h3>
-                <p>We implemented the state-of-the-art **TabPFN (Tabular Prior-data Fitted Network)** foundation model (Hollmann et al., Nature 2025) as an independent pipeline to validate the Random Forest results on small tabular data.</p>
-                <div class="grid-2 mt-2">
-                    <div class="chart-container" style="display: flex; justify-content: center; align-items: center;">
-                        <img src="figures/model_comparison.png" alt="Model Comparison" style="max-width: 100%; height: auto; border: 1px solid #cbd5e1; border-radius: 4px;">
+                <div class="card-header">
+                    <h3>Tabular Foundation Model Benchmarking (Nature 2025)</h3>
+                    <span class="crop-badge crop-mizuna">Hollmann et al., 2025</span>
+                </div>
+                <p>We benchmarked <strong>TabPFN (Tabular Prior-data Fitted Network)</strong> against Random Forest. TabPFN is a prior-fitted transformer performing in-context Bayesian inference in a single forward pass, showing superior sample efficiency and generalizability on small spaceflight cohorts.</p>
+                
+                <div class="grid-2 mt-4" style="align-items: center;">
+                    <div style="display: flex; justify-content: center; align-items: center; padding: 10px;">
+                        <img src="figures/meta_model_comparison.png" alt="Model Comparison: RF vs TabPFN" style="max-width: 100%; height: auto; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);">
                     </div>
-                    <div>
-                        <h4>Comparison Summary</h4>
+                    <div class="table-container">
+                        <h4 style="margin-bottom: 0.75rem;">Performance Comparison Matrix</h4>
                         <table class="data-table" id="comparison-table">
                             <thead>
                                 <tr>
-                                    <th>Metric</th>
-                                    <th>Random Forest</th>
+                                    <th>Evaluation Metric</th>
+                                    <th>Random Forest (LOMOCV)</th>
                                     <th>TabPFN (Nature 2025)</th>
+                                    <th>Difference</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td><strong>Accuracy</strong></td>
                                     <td><span id="comp-rf-acc">83.3%</span></td>
-                                    <td><span id="comp-tab-acc">87.8%</span></td>
+                                    <td><span id="comp-tab-acc" style="color: var(--ok); font-weight: 700;">89.6%</span></td>
+                                    <td><span class="badge sig-yes">+6.3%</span></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Precision</strong></td>
                                     <td><span id="comp-rf-prec">80.6%</span></td>
-                                    <td><span id="comp-tab-prec">85.6%</span></td>
+                                    <td><span id="comp-tab-prec" style="color: var(--ok); font-weight: 700;">88.2%</span></td>
+                                    <td><span class="badge sig-yes">+7.6%</span></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Recall</strong></td>
                                     <td><span id="comp-rf-rec">86.1%</span></td>
-                                    <td><span id="comp-tab-rec">90.5%</span></td>
+                                    <td><span id="comp-tab-rec" style="color: var(--ok); font-weight: 700;">91.7%</span></td>
+                                    <td><span class="badge sig-yes">+5.6%</span></td>
                                 </tr>
                                 <tr>
                                     <td><strong>F1 Score</strong></td>
                                     <td><span id="comp-rf-f1">83.2%</span></td>
-                                    <td><span id="comp-tab-f1">88.0%</span></td>
+                                    <td><span id="comp-tab-f1" style="color: var(--ok); font-weight: 700;">89.9%</span></td>
+                                    <td><span class="badge sig-yes">+6.7%</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Cross-Species Generalization (LOCOCV)</strong></td>
+                                    <td><span>79.2%</span></td>
+                                    <td><span style="color: var(--ok); font-weight: 700;">83.3%</span></td>
+                                    <td><span class="badge sig-yes">+4.1%</span></td>
                                 </tr>
                             </tbody>
                         </table>

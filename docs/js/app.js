@@ -1,6 +1,6 @@
 import { initCharts } from './charts.js';
 import { initGallery } from './gallery.js';
-import { initML } from './ml-results.js';
+import { initML, resizeMLPlots } from './ml-results.js';
 
 // Demo data fallback for multi-crop meta-analysis
 const demoNutritionData = [
@@ -46,7 +46,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             tabPanels.forEach(p => p.classList.remove('active'));
             
             btn.classList.add('active');
-            document.getElementById(btn.dataset.target).classList.add('active');
+            const targetPanel = document.getElementById(btn.dataset.target);
+            if (targetPanel) {
+                targetPanel.classList.add('active');
+            }
+
+            if (btn.dataset.target === 'panel-ml') {
+                setTimeout(() => {
+                    resizeMLPlots();
+                }, 50);
+            }
         });
     });
 
@@ -60,6 +69,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
             document.documentElement.setAttribute('data-theme', theme);
             localStorage.setItem('theme', theme);
+            if (mlData) {
+                initML(mlData);
+            }
         });
     }
 

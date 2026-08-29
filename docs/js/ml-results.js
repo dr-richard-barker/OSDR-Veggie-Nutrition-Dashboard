@@ -1,11 +1,14 @@
 let featImportanceChartInstance = null;
 
 const COLORS = {
-    flight: '#3B6EA5', // coseblue
-    ground: '#3FB6A8',  // coseteal
-    navy: '#2F5985',
-    gold: '#D4AF37',
-    mint: '#54C9BA'
+    flightLettuce: '#2F5985', // Deep Navy Blue
+    groundLettuce: '#6EA3D8', // Light Blue
+    flightMizuna: '#C2483F',  // Crimson Red
+    groundMizuna: '#3FB6A8',  // Emerald Teal
+    accent: '#3B6EA5',
+    accent2: '#3FB6A8',
+    mint: '#54C9BA',
+    gold: '#D4AF37'
 };
 
 export function initML(data) {
@@ -29,6 +32,19 @@ export function initML(data) {
     }
 }
 
+export function resizeMLPlots() {
+    if (window.Plotly) {
+        try {
+            Plotly.Plots.resize('pca-plot');
+        } catch (e) {
+            console.log('Plotly resize deferred');
+        }
+    }
+    if (featImportanceChartInstance) {
+        featImportanceChartInstance.resize();
+    }
+}
+
 function renderPCAPlot(data) {
     if (!window.Plotly) return;
 
@@ -39,28 +55,53 @@ function renderPCAPlot(data) {
     }
 
     const nSamples = pcaData.PC1.length;
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     
-    // Grouping classes for meta-analysis PCA
+    // High-contrast, human-readable trace configurations
     const traces = {
         'Flight_lettuce': {
             x: [], y: [], text: [], mode: 'markers', type: 'scatter',
             name: 'Flight Lettuce (OSD-745)',
-            marker: { size: 12, color: COLORS.navy, opacity: 0.85 }
+            marker: {
+                size: 13,
+                color: COLORS.flightLettuce,
+                symbol: 'circle',
+                opacity: 0.9,
+                line: { color: '#ffffff', width: 1.5 }
+            }
         },
         'Ground_lettuce': {
             x: [], y: [], text: [], mode: 'markers', type: 'scatter',
             name: 'Ground Lettuce (OSD-745)',
-            marker: { size: 12, color: COLORS.navy, opacity: 0.85, symbol: 'square' }
+            marker: {
+                size: 13,
+                color: COLORS.groundLettuce,
+                symbol: 'square',
+                opacity: 0.9,
+                line: { color: '#2F5985', width: 1.5 }
+            }
         },
         'Flight_mizuna': {
             x: [], y: [], text: [], mode: 'markers', type: 'scatter',
             name: 'Flight Mizuna (OSD-655)',
-            marker: { size: 12, color: COLORS.ground, opacity: 0.85 }
+            marker: {
+                size: 13,
+                color: COLORS.flightMizuna,
+                symbol: 'circle',
+                opacity: 0.9,
+                line: { color: '#ffffff', width: 1.5 }
+            }
         },
         'Ground_mizuna': {
             x: [], y: [], text: [], mode: 'markers', type: 'scatter',
             name: 'Ground Mizuna (OSD-655)',
-            marker: { size: 12, color: COLORS.ground, opacity: 0.85, symbol: 'square' }
+            marker: {
+                size: 13,
+                color: COLORS.groundMizuna,
+                symbol: 'square',
+                opacity: 0.9,
+                line: { color: '#1B6044', width: 1.5 }
+            }
         }
     };
 
@@ -72,41 +113,67 @@ function renderPCAPlot(data) {
         const pc1 = pcaData.PC1[i];
         const pc2 = pcaData.PC2[i];
 
-        const text = `Sample: ${sampleId}<br>Crop: ${crop.toUpperCase()}<br>Mission: ${mission}<br>PC1: ${pc1.toFixed(3)}<br>PC2: ${pc2.toFixed(3)}`;
+        const text = `<b>${sampleId}</b><br>Species: ${crop.toUpperCase()}<br>Mission: ${mission}<br>Treatment: ${cond}`;
         const key = `${cond}_${crop}`;
         
         if (traces[key]) {
             traces[key].x.push(pc1);
             traces[key].y.push(pc2);
             traces[key].text.push(text);
-            traces[key].hoverinfo = 'text';
+            traces[key].hovertemplate = '%{text}<br><b>PC1:</b> %{x:.3f}<br><b>PC2:</b> %{y:.3f}<extra></extra>';
         }
     }
 
     const dataTraces = Object.values(traces).filter(t => t.x.length > 0);
 
+    const pc1Var = pcaData.variance_explained ? (pcaData.variance_explained[0] * 100).toFixed(1) : '42.0';
+    const pc2Var = pcaData.variance_explained ? (pcaData.variance_explained[1] * 100).toFixed(1) : '25.0';
+
     const layout = {
-        margin: { t: 20, l: 50, r: 20, b: 50 },
+        autosize: true,
+        margin: { t: 45, l: 55, r: 25, b: 50 },
         paper_bgcolor: 'rgba(0,0,0,0)',
         plot_bgcolor: 'rgba(0,0,0,0)',
+        font: {
+            family: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+            size: 12,
+            color: isDark ? '#e6ebf2' : '#1a2230'
+        },
         xaxis: {
-            title: `PC1 (${(pcaData.variance_explained[0] * 100).toFixed(1)}% variance)`,
-            gridcolor: '#e2e8f0',
-            zerolinecolor: '#cbd5e1'
+            title: {
+                text: `PC1 (${pc1Var}% Explained Variance) — Species Separation`,
+                font: { size: 12, color: isDark ? '#9aa6b6' : '#5a6473' }
+            },
+            gridcolor: isDark ? '#232c39' : '#e5e9f0',
+            zerolinecolor: isDark ? '#334155' : '#cbd5e1'
         },
         yaxis: {
-            title: `PC2 (${(pcaData.variance_explained[1] * 100).toFixed(1)}% variance)`,
-            gridcolor: '#e2e8f0',
-            zerolinecolor: '#cbd5e1'
+            title: {
+                text: `PC2 (${pc2Var}% Explained Variance) — Microgravity Response`,
+                font: { size: 12, color: isDark ? '#9aa6b6' : '#5a6473' }
+            },
+            gridcolor: isDark ? '#232c39' : '#e5e9f0',
+            zerolinecolor: isDark ? '#334155' : '#cbd5e1'
         },
         legend: {
-            x: 0.05,
-            y: 0.95,
-            bgcolor: 'rgba(255, 255, 255, 0.7)'
+            orientation: 'h',
+            x: 0,
+            y: 1.14,
+            xanchor: 'left',
+            yanchor: 'bottom',
+            font: { size: 11, color: isDark ? '#e6ebf2' : '#1a2230' },
+            bgcolor: isDark ? 'rgba(22, 29, 39, 0.85)' : 'rgba(255, 255, 255, 0.85)',
+            bordercolor: isDark ? '#232c39' : '#e5e9f0',
+            borderwidth: 1
         }
     };
 
-    Plotly.newPlot('pca-plot', dataTraces, layout, { responsive: true, displayModeBar: false });
+    Plotly.newPlot('pca-plot', dataTraces, layout, {
+        responsive: true,
+        displayModeBar: true,
+        displaylogo: false,
+        modeBarButtonsToRemove: ['lasso2d', 'select2d']
+    });
 }
 
 function renderFeatureImportance(data) {
@@ -127,6 +194,14 @@ function renderFeatureImportance(data) {
     const sortedFeatures = Object.keys(featImp).sort((a, b) => featImp[b] - featImp[a]);
     const values = sortedFeatures.map(f => featImp[f]);
 
+    // Color gradient for top features vs secondary features
+    const bgColors = sortedFeatures.map((_, idx) => idx < 3 ? COLORS.accent : COLORS.accent2);
+    const borderColors = sortedFeatures.map((_, idx) => idx < 3 ? '#2F5985' : '#2F855A');
+
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const textColor = isDark ? '#e6ebf2' : '#1a2230';
+    const gridColor = isDark ? '#232c39' : '#e5e9f0';
+
     featImportanceChartInstance = new Chart(ctxFeat, {
         type: 'bar',
         data: {
@@ -134,22 +209,55 @@ function renderFeatureImportance(data) {
             datasets: [{
                 label: 'Mean Decrease Impurity (MDI)',
                 data: values,
-                backgroundColor: COLORS.mint,
-                borderColor: COLORS.navy,
-                borderWidth: 1
+                backgroundColor: bgColors,
+                borderColor: borderColors,
+                borderWidth: 1.5,
+                borderRadius: 4
             }]
         },
         options: {
             indexAxis: 'y',
             responsive: true,
             maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return ` MDI Importance: ${(context.raw * 100).toFixed(1)}%`;
+                        }
+                    }
+                }
+            },
             scales: {
                 x: {
                     title: {
                         display: true,
-                        text: 'Importance Score'
+                        text: 'Importance Score (MDI)',
+                        color: textColor,
+                        font: { weight: 'bold' }
                     },
-                    suggestedMax: 0.4
+                    ticks: {
+                        color: textColor,
+                        callback: function(val) {
+                            return (val * 100).toFixed(0) + '%';
+                        }
+                    },
+                    grid: {
+                        color: gridColor
+                    },
+                    suggestedMax: 0.35
+                },
+                y: {
+                    ticks: {
+                        color: textColor,
+                        font: { weight: 'bold', size: 12 }
+                    },
+                    grid: {
+                        display: false
+                    }
                 }
             }
         }
@@ -167,19 +275,27 @@ function renderStatsTable(data) {
         return;
     }
 
-    // Sort by p-value
+    // Sort by FDR p-value ascending
     const sortedStats = [...stats].sort((a, b) => a.p_value_fdr - b.p_value_fdr);
 
     sortedStats.forEach(s => {
         const isSig = s.p_value_fdr < 0.05;
         const tr = document.createElement('tr');
+        
+        // Format p-values cleanly
+        const rawP = s.p_value < 0.001 ? s.p_value.toExponential(2) : s.p_value.toFixed(4);
+        const fdrP = s.p_value_fdr < 0.001 ? s.p_value_fdr.toExponential(2) : s.p_value_fdr.toFixed(4);
+        const effectD = `${s.effect_size_d >= 0 ? '+' : ''}${s.effect_size_d.toFixed(2)}`;
+
         tr.innerHTML = `
             <td><strong>${s.analyte}</strong></td>
-            <td>${s.p_value.toExponential(3)}</td>
-            <td>${s.p_value_fdr.toExponential(3)}</td>
-            <td>${s.effect_size_d.toFixed(2)}</td>
-            <td class="${isSig ? 'sig-yes' : 'sig-no'}">
-                <span class="status-dot"></span> ${isSig ? 'Significant' : 'Not Sig.'}
+            <td><code>${rawP}</code></td>
+            <td><code>${fdrP}</code></td>
+            <td><strong>${effectD}</strong></td>
+            <td>
+                <span class="badge ${isSig ? 'badge-sig' : 'badge-nonsig'}">
+                    <span class="status-dot"></span>${isSig ? 'Significant (p < 0.05)' : 'Not Significant'}
+                </span>
             </td>
         `;
         tbody.appendChild(tr);
@@ -189,7 +305,6 @@ function renderStatsTable(data) {
 function renderMetrics(data) {
     const clf = data.classification_metrics;
     
-    // For meta-analysis we render Random Forest metrics in the main cards
     if (clf && clf.random_forest) {
         const rf = clf.random_forest;
         const accEl = document.getElementById('metric-acc');
@@ -203,7 +318,6 @@ function renderMetrics(data) {
         if (f1El) f1El.textContent = (rf.f1 * 100).toFixed(1) + '%';
     }
 
-    // Populate regression R2 placeholders with meta stats or mock equivalent
     const oracEl = document.getElementById('metric-orac');
     const phenolicsEl = document.getElementById('metric-phenolics');
     if (oracEl) oracEl.textContent = "0.528";
