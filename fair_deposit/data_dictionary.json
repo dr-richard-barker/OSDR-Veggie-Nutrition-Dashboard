@@ -142,7 +142,7 @@
   "metadata": {
     "dataset_name": "veggie_meta_master",
     "source_study": "NASA OSDR OSD-745, OSD-655, OSD-780",
-    "source_doi": "10.3389/fpls.2020.00199",
+    "source_doi": ["10.3389/fpls.2020.00199", "10.1080/17429145.2023.2292220"],
     "organism": "Lactuca sativa cv. Outredgeous and Brassica rapa cv. Tokyo Bekana",
     "hardware": "Veggie Plant Growth System",
     "n_samples_expected": 60,

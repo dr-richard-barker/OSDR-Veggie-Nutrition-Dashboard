@@ -19,6 +19,7 @@
       ],
       "isBasedOn": [
         {"@id": "https://doi.org/10.3389/fpls.2020.00199"},
+        {"@id": "https://doi.org/10.1080/17429145.2023.2292220"},
         {"@id": "https://osdr.nasa.gov/bio/repo/data/studies/OSD-655"},
         {"@id": "https://osdr.nasa.gov/bio/repo/data/studies/OSD-780"}
       ],
@@ -94,6 +95,14 @@
       "author": "Khodadad et al.",
       "datePublished": "2020",
       "identifier": "10.3389/fpls.2020.00199"
+    },
+    {
+      "@id": "https://doi.org/10.1080/17429145.2023.2292220",
+      "@type": "ScholarlyArticle",
+      "name": "Pick-and-eat space crop production flight testing on the International Space Station",
+      "author": "Bunchek et al.",
+      "datePublished": "2023",
+      "identifier": "10.1080/17429145.2023.2292220"
     }
   ]
 }
