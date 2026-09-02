@@ -1,106 +1,106 @@
 [
   {
     "analyte": "Fe",
-    "test_stat": 297.0,
-    "p_value": 2.0868337461425805e-05,
-    "effect_size_d": 1.9800965384556737,
-    "p_value_fdr": 9.479659986913889e-05,
-    "p_value_bonferroni": 0.0002712883869985355
+    "test_stat": 188.5,
+    "p_value": 0.41040194706912336,
+    "effect_size_d": -0.06149105455329044,
+    "p_value_fdr": 0.4850204828998731,
+    "p_value_bonferroni": 1.0
   },
   {
     "analyte": "K",
-    "test_stat": 17.0,
-    "p_value": 4.836038848919186e-06,
-    "effect_size_d": -2.1701977154006684,
-    "p_value_fdr": 6.286850503594942e-05,
-    "p_value_bonferroni": 6.286850503594942e-05
+    "test_stat": 99.0,
+    "p_value": 0.04789444246460129,
+    "effect_size_d": -0.8726050971789443,
+    "p_value_fdr": 0.0778284690049771,
+    "p_value_bonferroni": 0.6226277520398168
   },
   {
     "analyte": "Na",
-    "test_stat": 293.0,
-    "p_value": 3.646023071889957e-05,
-    "effect_size_d": 1.7649876325171274,
-    "p_value_fdr": 9.479659986913889e-05,
-    "p_value_bonferroni": 0.00047398299934569443
+    "test_stat": 258.5,
+    "p_value": 0.002376213114907387,
+    "effect_size_d": 1.1310664230682268,
+    "p_value_fdr": 0.01029692349793201,
+    "p_value_bonferroni": 0.03089077049379603
   },
   {
     "analyte": "P",
-    "test_stat": 40.0,
-    "p_value": 0.00012100065435238344,
-    "effect_size_d": -1.6089484124217412,
-    "p_value_fdr": 0.0002621680844301641,
-    "p_value_bonferroni": 0.0015730085065809847
+    "test_stat": 143.5,
+    "p_value": 0.5689706658878579,
+    "effect_size_d": 0.04927057629804359,
+    "p_value_fdr": 0.6163848880451794,
+    "p_value_bonferroni": 1.0
   },
   {
     "analyte": "S",
-    "test_stat": 295.0,
-    "p_value": 2.7636646531024953e-05,
-    "effect_size_d": 1.7401248558669247,
-    "p_value_fdr": 9.479659986913889e-05,
-    "p_value_bonferroni": 0.00035927640490332436
+    "test_stat": 252.5,
+    "p_value": 0.004404233110400061,
+    "effect_size_d": 1.0548893433114392,
+    "p_value_fdr": 0.014313757608800198,
+    "p_value_bonferroni": 0.05725503043520079
   },
   {
     "analyte": "Zn",
-    "test_stat": 293.0,
-    "p_value": 3.646023071889957e-05,
-    "effect_size_d": 1.8535951429777033,
-    "p_value_fdr": 9.479659986913889e-05,
-    "p_value_bonferroni": 0.00047398299934569443
+    "test_stat": 281.0,
+    "p_value": 0.0001740288814692677,
+    "effect_size_d": 1.5083326009733629,
+    "p_value_fdr": 0.0011311877295502402,
+    "p_value_bonferroni": 0.0022623754591004804
   },
   {
     "analyte": "Ca",
-    "test_stat": 179.0,
-    "p_value": 0.6016446404961844,
-    "effect_size_d": 0.19426196460310025,
-    "p_value_fdr": 0.7372797320463829,
-    "p_value_bonferroni": 1.0
+    "test_stat": 227.5,
+    "p_value": 0.03935166176448592,
+    "effect_size_d": 0.7691598745772391,
+    "p_value_fdr": 0.07308165756261671,
+    "p_value_bonferroni": 0.5115716029383169
   },
   {
     "analyte": "Mg",
-    "test_stat": 151.0,
-    "p_value": 0.7397342431142654,
-    "effect_size_d": -0.1408457916345141,
-    "p_value_fdr": 0.8013787633737874,
-    "p_value_bonferroni": 1.0
+    "test_stat": 235.0,
+    "p_value": 0.02168344297826654,
+    "effect_size_d": 0.8528726016446697,
+    "p_value_fdr": 0.0469807931195775,
+    "p_value_bonferroni": 0.28188475871746504
   },
   {
     "analyte": "Mn",
-    "test_stat": 178.0,
-    "p_value": 0.6238520809623239,
-    "effect_size_d": 0.2026913069457683,
-    "p_value_fdr": 0.7372797320463829,
-    "p_value_bonferroni": 1.0
+    "test_stat": 221.0,
+    "p_value": 0.06377877098603077,
+    "effect_size_d": 0.6702354245785804,
+    "p_value_fdr": 0.09212489142426666,
+    "p_value_bonferroni": 0.8291240228184
   },
   {
     "analyte": "Cu",
-    "test_stat": 142.0,
-    "p_value": 0.537265926636113,
-    "effect_size_d": -0.25280405194303973,
-    "p_value_fdr": 0.7372797320463829,
+    "test_stat": 194.5,
+    "p_value": 0.30109456797325995,
+    "effect_size_d": 0.39060957382930916,
+    "p_value_fdr": 0.39142293836523795,
     "p_value_bonferroni": 1.0
   },
   {
     "analyte": "phenolics",
-    "test_stat": 225.0,
-    "p_value": 0.047995023176385085,
-    "effect_size_d": 0.8141792806772332,
-    "p_value_fdr": 0.07799191266162576,
-    "p_value_bonferroni": 0.6239353012930061
+    "test_stat": 316.5,
+    "p_value": 1.0819764698614891e-06,
+    "effect_size_d": 2.496101134318401,
+    "p_value_fdr": 1.4065694108199359e-05,
+    "p_value_bonferroni": 1.4065694108199359e-05
   },
   {
     "analyte": "anthocyanins",
-    "test_stat": 161.0,
-    "p_value": 0.9873785512460885,
-    "effect_size_d": 0.07038797725479126,
-    "p_value_fdr": 0.9873785512460885,
+    "test_stat": 172.5,
+    "p_value": 0.751368911334869,
+    "effect_size_d": 0.25552165693271767,
+    "p_value_fdr": 0.751368911334869,
     "p_value_bonferroni": 1.0
   },
   {
     "analyte": "orac",
-    "test_stat": 225.0,
-    "p_value": 0.047995023176385085,
-    "effect_size_d": 0.7058495438653037,
-    "p_value_fdr": 0.07799191266162576,
-    "p_value_bonferroni": 0.6239353012930061
+    "test_stat": 241.0,
+    "p_value": 0.012917675174940151,
+    "effect_size_d": 0.9589574002366189,
+    "p_value_fdr": 0.03358595545484439,
+    "p_value_bonferroni": 0.16792977727422195
   }
 ]

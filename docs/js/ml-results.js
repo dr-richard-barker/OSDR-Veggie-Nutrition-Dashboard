@@ -346,5 +346,27 @@ function renderComparisonTable(clfMetrics) {
         if (tabRec) tabRec.textContent = (tab.recall * 100).toFixed(1) + '%';
         if (rfF1) rfF1.textContent = (rf.f1 * 100).toFixed(1) + '%';
         if (tabF1) tabF1.textContent = (tab.f1 * 100).toFixed(1) + '%';
+
+        // Update difference badges
+        const table = document.getElementById('comparison-table');
+        if (table) {
+            const rows = table.querySelectorAll('tbody tr');
+            const diffs = [
+                (tab.accuracy - rf.accuracy) * 100,
+                (tab.precision - rf.precision) * 100,
+                (tab.recall - rf.recall) * 100,
+                (tab.f1 - rf.f1) * 100
+            ];
+            diffs.forEach((diff, idx) => {
+                if (rows[idx]) {
+                    const badge = rows[idx].querySelector('.badge');
+                    if (badge) {
+                        const sign = diff >= 0 ? '+' : '';
+                        badge.textContent = `${sign}${diff.toFixed(1)}%`;
+                        badge.className = `badge ${diff >= 0 ? 'sig-yes' : 'sig-no'}`;
+                    }
+                }
+            });
+        }
     }
 }

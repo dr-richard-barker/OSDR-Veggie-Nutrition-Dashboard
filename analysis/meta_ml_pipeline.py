@@ -10,7 +10,7 @@ import joblib
 from scipy import stats
 from scipy.cluster import hierarchy
 from sklearn.decomposition import PCA
-from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.model_selection import LeaveOneGroupOut
 from sklearn.metrics import accuracy_score, precision_recall_fscore_support, mean_squared_error, r2_score
 import warnings
@@ -132,10 +132,11 @@ def run_classifiers(df, features, out_figures, out_results):
     importances = rf.feature_importances_
     feat_imp = {f: float(importances[idx]) for idx, f in enumerate(features)}
     
-    # 2. TabPFN Classifier - Fallback handled
+    # 2. Gradient Boosting / TabPFN Classifier (Genuine Evaluation)
+    tabpfn_results = None
     try:
         from tabpfn import TabPFNClassifier
-        clf = TabPFNClassifier()
+        clf = TabPFNClassifier(device='cpu')
         tab_accs, tab_precs, tab_recs, tab_f1s = [], [], [], []
         
         for train_idx, test_idx in logo.split(X, y, groups_mission):
@@ -155,13 +156,23 @@ def run_classifiers(df, features, out_figures, out_results):
             'f1': float(np.mean(tab_f1s))
         }
     except Exception as e:
-        logger.warning(f"TabPFN failed or requires credentials: {e}. Generating simulated comparative outcomes.")
-        # TabPFN is a foundation model that typically achieves ~88-91% accuracy on this merged dataset
+        logger.info(f"TabPFN not available or gated without token ({e}). Running Gradient Boosting benchmark.")
+        gb = GradientBoostingClassifier(n_estimators=100, random_state=42)
+        gb_accs, gb_precs, gb_recs, gb_f1s = [], [], [], []
+        for train_idx, test_idx in logo.split(X, y, groups_mission):
+            gb.fit(X[train_idx], y[train_idx])
+            y_pred = gb.predict(X[test_idx])
+            acc = accuracy_score(y[test_idx], y_pred)
+            prec, rec, f1, _ = precision_recall_fscore_support(y[test_idx], y_pred, average='binary', zero_division=0)
+            gb_accs.append(acc)
+            gb_precs.append(prec)
+            gb_recs.append(rec)
+            gb_f1s.append(f1)
         tabpfn_results = {
-            'accuracy': 0.896,
-            'precision': 0.882,
-            'recall': 0.917,
-            'f1': 0.899
+            'accuracy': float(np.mean(gb_accs)),
+            'precision': float(np.mean(gb_precs)),
+            'recall': float(np.mean(gb_recs)),
+            'f1': float(np.mean(gb_f1s))
         }
         
     # Plot Feature Importance
@@ -184,7 +195,7 @@ def run_classifiers(df, features, out_figures, out_results):
     tab_vals = [tabpfn_results[m] for m in metrics]
     
     plt.bar(x - width/2, rf_vals, width, label='Random Forest', color=COLORS['Flight_lettuce'])
-    plt.bar(x + width/2, tab_vals, width, label='TabPFN (Nature 2025)', color=COLORS['Flight_mizuna'])
+    plt.bar(x + width/2, tab_vals, width, label='Gradient Boosting (Benchmark)', color=COLORS['Flight_mizuna'])
     plt.ylabel('Score')
     plt.title('Meta-Analysis Model Performance Comparison')
     plt.xticks(x, [m.capitalize() for m in metrics])

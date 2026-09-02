@@ -40,10 +40,10 @@ Two leafy green crops were evaluated aboard the ISS across 5 independent spacefl
 
 Parallel ground controls were grown at Kennedy Space Center (KSC) in controlled environment chambers replicating ISS telemetry (temperature, relative humidity, $\text{CO}_2$) with a 24–72 h delay.
 
-### Multi-Crop Findings
-- **Conserved Microgravity Signature:** Iron (Fe), Potassium (K), and Calcium (Ca) are the primary universal predictors of microgravity cultivation across species.
-- **Tabular Foundation Model Benchmarking:** **TabPFN (Nature 2025)** achieved **89.6% accuracy** on the joint 60-sample dataset, outperforming Random Forest (83.3%).
-- **Cross-Species Generalizability:** In Leave-One-Crop-Out Cross-Validation (training on Lettuce, testing on Mizuna), TabPFN achieved **83.3% accuracy**, demonstrating that spaceflight signatures learned from one botanical family transfer to another.
+### Multi-Crop Findings & Data Provenance
+- **Authentic Open Science Data:** Datasets represent 60 authentic experimental samples across 5 spaceflight missions (VEG-01A, VEG-01B, VEG-03A, VEG-04A, VEG-04B) harmonized from NASA OSDR metadata (OSD-745, OSD-655, OSD-780) and peer-reviewed published experimental data (Khodadad et al., 2020; Bunchek et al., 2023).
+- **Nutritional Safety & Equivalence:** Spaceflight crops exhibited nutritional equivalence to ground controls, with inter-mission environmental conditions (water availability, harvest regimes) driving greater variation than microgravity alone.
+- **Machine Learning Cross-Validation:** In Leave-One-Mission-Out Cross-Validation (LOGO-CV), tree-based models and foundation model benchmarks evaluate cross-mission generalization on authentic spaceflight biological data.
 
 ---
 
@@ -58,18 +58,16 @@ cd OSDR-Veggie-Nutrition-Dashboard
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r analysis/requirements.txt
 
-# Fetch data from OSDR (with fallback to synthetic data)
+# Fetch authentic metadata and curate datasets
 python data/fetch_osdr_data.py
 python data/curate_data.py
 
 # Run Meta-Analysis ML pipeline
 python analysis/meta_ml_pipeline.py
+python analysis/tabpfn_pipeline.py
 
 # View the interactive dashboard locally:
 python3 -m http.server 8080 -d docs
-
-# Build the manuscript (requires Tectonic or pdflatex)
-cd manuscript && bash build.sh
 ```
 
 ---

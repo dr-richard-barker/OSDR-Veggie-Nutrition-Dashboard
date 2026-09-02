@@ -6,6 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.model_selection import LeaveOneGroupOut
+from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
 from sklearn.metrics import accuracy_score, precision_recall_fscore_support
 import warnings
 
@@ -29,20 +30,20 @@ def load_data(filepath):
     return df
 
 def run_tabpfn_analysis(df, features, target_col, group_col):
-    logger.info("Initializing TabPFN Classifier...")
+    logger.info("Initializing Classifier benchmark...")
+    clf = None
+    model_name = "TabPFN"
     try:
         from tabpfn import TabPFNClassifier
-        # Initialize TabPFN Classifier (V2 is default in newer versions, or fallback to default)
-        clf = TabPFNClassifier()
+        clf = TabPFNClassifier(device='cpu')
     except Exception as e:
-        logger.error(f"Failed to import/initialize TabPFNClassifier: {e}")
-        logger.warning("TabPFN might require internet access to download weights. Running fallback mock.")
-        return None
+        logger.info(f"TabPFN requires token/gated access ({e}). Using Gradient Boosting as benchmark.")
+        clf = GradientBoostingClassifier(n_estimators=100, random_state=42)
+        model_name = "GradientBoosting"
 
     X = df[features].values
     y = df[target_col].map({'Flight': 1, 'Ground': 0}).values
     groups = df[group_col].values
-    group_names = df[group_col].unique()
 
     logo = LeaveOneGroupOut()
     
@@ -53,14 +54,13 @@ def run_tabpfn_analysis(df, features, target_col, group_col):
     
     fold_results = {}
 
-    logger.info("Running Leave-One-Mission-Out Cross-Validation with TabPFN...")
+    logger.info(f"Running Leave-One-Mission-Out Cross-Validation with {model_name}...")
     try:
         for train_idx, test_idx in logo.split(X, y, groups):
             X_train, X_test = X[train_idx], X[test_idx]
             y_train, y_test = y[train_idx], y[test_idx]
-            holdout_group = groups[test_idx][0]
+            holdout_group = str(groups[test_idx][0])
             
-            # Fit TabPFN
             clf.fit(X_train, y_train)
             y_pred = clf.predict(X_test)
             
@@ -80,8 +80,28 @@ def run_tabpfn_analysis(df, features, target_col, group_col):
             }
             logger.info(f"Holdout: {holdout_group} | Accuracy: {acc:.3f} | F1: {f1:.3f}")
     except Exception as e:
-        logger.error(f"Error during TabPFN CV loop (likely due to license/download restrictions): {e}")
-        return None
+        logger.warning(f"Error during CV loop with primary classifier ({e}). Falling back to GradientBoosting.")
+        clf = GradientBoostingClassifier(n_estimators=100, random_state=42)
+        accuracies, precisions, recalls, f1s = [], [], [], []
+        fold_results = {}
+        for train_idx, test_idx in logo.split(X, y, groups):
+            X_train, X_test = X[train_idx], X[test_idx]
+            y_train, y_test = y[train_idx], y[test_idx]
+            holdout_group = str(groups[test_idx][0])
+            clf.fit(X_train, y_train)
+            y_pred = clf.predict(X_test)
+            acc = accuracy_score(y_test, y_pred)
+            prec, rec, f1, _ = precision_recall_fscore_support(y_test, y_pred, average='binary', zero_division=0)
+            accuracies.append(acc)
+            precisions.append(prec)
+            recalls.append(rec)
+            f1s.append(f1)
+            fold_results[holdout_group] = {
+                'accuracy': float(acc),
+                'precision': float(prec),
+                'recall': float(rec),
+                'f1': float(f1)
+            }
 
     mean_results = {
         'accuracy': float(np.mean(accuracies)),
@@ -91,6 +111,7 @@ def run_tabpfn_analysis(df, features, target_col, group_col):
     }
     
     return {
+        'model_name': model_name,
         'folds': fold_results,
         'mean': mean_results
     }
@@ -115,26 +136,8 @@ def main():
     biochemicals = ['phenolics', 'anthocyanins', 'orac']
     features = elements + biochemicals
     
-    # Run TabPFN
+    # Run Benchmark
     tabpfn_results = run_tabpfn_analysis(df, features, target_col='condition', group_col='mission')
-    
-    # Fallback/simulation if TabPFN couldn't run (e.g. environment/compilation issues)
-    if tabpfn_results is None:
-        logger.warning("Using simulated TabPFN comparison results (TabPFN usually achieves slightly higher accuracy on small tabular data)")
-        # TabPFN is a foundation model that typically achieves ~86-89% on this dataset compared to RF's ~83%
-        tabpfn_results = {
-            'folds': {
-                'VEG-01A': {'accuracy': 0.885, 'precision': 0.857, 'recall': 0.923, 'f1': 0.889},
-                'VEG-01B': {'accuracy': 0.917, 'precision': 0.900, 'recall': 0.938, 'f1': 0.919},
-                'VEG-03A': {'accuracy': 0.833, 'precision': 0.812, 'recall': 0.854, 'f1': 0.832}
-            },
-            'mean': {
-                'accuracy': 0.878,
-                'precision': 0.856,
-                'recall': 0.905,
-                'f1': 0.880
-            }
-        }
 
     # Load Random Forest results to compare
     rf_mean = {}
@@ -153,8 +156,27 @@ def main():
             logger.error(f"Error reading RF results: {e}")
             
     if not rf_mean:
-        # Defaults if not readable
-        rf_mean = {'accuracy': 0.833, 'precision': 0.806, 'recall': 0.861, 'f1': 0.832}
+        # Train RF directly to get authentic values
+        X = df[features].values
+        y = df['condition'].map({'Flight': 1, 'Ground': 0}).values
+        groups = df['mission'].values
+        logo = LeaveOneGroupOut()
+        rf = RandomForestClassifier(n_estimators=100, random_state=42)
+        rf_accs, rf_precs, rf_recs, rf_f1s = [], [], [], []
+        for train_idx, test_idx in logo.split(X, y, groups):
+            rf.fit(X[train_idx], y[train_idx])
+            pred = rf.predict(X[test_idx])
+            rf_accs.append(accuracy_score(y[test_idx], pred))
+            p, r, f, _ = precision_recall_fscore_support(y[test_idx], pred, average='binary', zero_division=0)
+            rf_precs.append(p)
+            rf_recs.append(r)
+            rf_f1s.append(f)
+        rf_mean = {
+            'accuracy': float(np.mean(rf_accs)),
+            'precision': float(np.mean(rf_precs)),
+            'recall': float(np.mean(rf_recs)),
+            'f1': float(np.mean(rf_f1s))
+        }
 
     comparison = {
         'RandomForest': rf_mean,
@@ -180,10 +202,10 @@ def main():
     width = 0.35
     
     plt.bar(x - width/2, rf_vals, width, label='Random Forest', color=COLORS['RF'])
-    plt.bar(x + width/2, tab_vals, width, label='TabPFN (Foundation Model)', color=COLORS['TabPFN'])
+    plt.bar(x + width/2, tab_vals, width, label='Benchmark Classifier', color=COLORS['TabPFN'])
     
     plt.ylabel('Score')
-    plt.title('Model Performance Comparison: Random Forest vs. TabPFN')
+    plt.title('Model Performance Comparison: Random Forest vs. Benchmark')
     plt.xticks(x, [m.capitalize() for m in metrics])
     plt.ylim(0, 1.05)
     plt.legend()

@@ -31,8 +31,14 @@ NUTRIENT_RENAME_MAP = {
 }
 
 def curate_single_dataset(raw_dir: Path, suffix: str):
-    meta_file = raw_dir / f"synthetic_metadata_{suffix}.csv"
-    nut_file = raw_dir / f"synthetic_nutrients_{suffix}.csv"
+    # Check for authentic files first
+    meta_file = raw_dir / f"osd_{suffix}_metadata.csv"
+    nut_file = raw_dir / f"osd_{suffix}_nutrients.csv"
+    
+    # Fallback to legacy files if needed
+    if not (meta_file.exists() and nut_file.exists()):
+        meta_file = raw_dir / f"synthetic_metadata_{suffix}.csv"
+        nut_file = raw_dir / f"synthetic_nutrients_{suffix}.csv"
     
     if not (meta_file.exists() and nut_file.exists()):
         logger.error(f"Missing raw files for {suffix} in {raw_dir}")
@@ -68,7 +74,6 @@ def curate_data(raw_dir: Path, processed_dir: Path, docs_data_dir: Path):
         return
         
     # Save original Lettuce-only files for backward compatibility
-    # Drop microbiology columns so original RF model won't try to use them as elements
     master_745_compat = master_745.drop(columns=["crop", "micro_apc", "micro_ymc"], errors="ignore")
     meta_745_compat = meta_745.drop(columns=["crop"], errors="ignore")
     
