@@ -318,10 +318,14 @@ function renderMetrics(data) {
         if (f1El) f1El.textContent = (rf.f1 * 100).toFixed(1) + '%';
     }
 
-    const oracEl = document.getElementById('metric-orac');
-    const phenolicsEl = document.getElementById('metric-phenolics');
-    if (oracEl) oracEl.textContent = "0.528";
-    if (phenolicsEl) phenolicsEl.textContent = "0.491";
+    // The ORAC and phenolics R² tiles were removed from index.html. They
+    // displayed the literals "0.528" and "0.491", which appear in no result
+    // file in this repository, written here rather than read from `data`
+    // like the classification metrics above. Nothing is written in their
+    // place: the computed regression in analysis/ml_pipeline.py is fit and
+    // scored on the same rows, so it is in-sample and not a valid substitute.
+    // See veggie_correction/CORRECTION_NOTE_2_ANTIOXIDANTS.md in
+    // SpaceMineralAtlas.
 }
 
 function renderComparisonTable(clfMetrics) {

@@ -18,7 +18,14 @@
         <!-- CoSE Sidebar Rail Navigation -->
         <aside class="rail">
             <div class="rail-brand">
-                <img src="cose/cose-logo.png" alt="CoSE Logo" onerror="this.src='cose/regolith-logo.png';">
+                <!-- Served from the canonical CoSE kit origin, matching the theme CSS/JS
+                     above. This repository has no docs/cose/ directory, so the previous
+                     relative src 404ed and its onerror fallback pointed at a file that
+                     does not exist anywhere -- each failure re-fired onerror and re-set
+                     the same src, producing an unbounded request loop on every page view.
+                     `this.onerror=null` first is what guarantees a single retry at most. -->
+                <img src="https://dr-richard-barker.github.io/Plant_response_to_radiation/cose/cose-logo.png"
+                     alt="CoSE Logo" onerror="this.onerror=null; this.style.display='none';">
                 <div>
                     <div class="t1">Veggie Nutrition</div>
                     <div class="t2">COSE / OPEN SCIENCE</div>
@@ -331,18 +338,25 @@
                     <div class="card">
                         <div class="card-header">
                             <h3>Biochemical Regression</h3>
-                            <span class="cond-badge cond-ground">Random Forest</span>
+                            <span class="cond-badge cond-withdrawn">Withdrawn</span>
                         </div>
-                        <p>Predicting antioxidant and phenolic capacities from elemental profiles.</p>
-                        <div class="metrics-grid">
-                            <div class="metric-card">
-                                <div class="metric-num" id="metric-orac">0.528</div>
-                                <div class="metric-title">ORAC R²</div>
-                            </div>
-                            <div class="metric-card">
-                                <div class="metric-num" id="metric-phenolics">0.491</div>
-                                <div class="metric-title">Phenolics R²</div>
-                            </div>
+                        <div class="data-notice">
+                            <p><strong>These figures have been withdrawn.</strong> This card
+                            previously reported an ORAC R² of 0.528 and a phenolics R² of 0.491.
+                            Both were written directly into the page and appear in no result file
+                            in this repository.</p>
+                            <p>They have not been replaced. The regression this repository does
+                            compute is fit and scored on the same rows
+                            (<code>analysis/ml_pipeline.py</code>), so its R² of 0.96–0.99 is
+                            in-sample and is not a generalisation estimate either. No metric is
+                            shown here because none can currently be sourced.</p>
+                            <p>The underlying NASA assays (ORAC, total phenolics, anthocyanin) were
+                            listed in the OSDR file manifests throughout but had never been
+                            downloaded. They have since been obtained and analysed: blocking on
+                            mission, <strong>no assay shows a flight effect at FDR 0.05</strong> in
+                            either crop. Full detail in the <a
+                            href="https://github.com/dr-richard-barker/SpaceMineralAtlas/blob/main/veggie_correction/CORRECTION_NOTE_2_ANTIOXIDANTS.md"
+                            target="_blank" rel="noopener">correction note</a>.</p>
                         </div>
                     </div>
                 </div>

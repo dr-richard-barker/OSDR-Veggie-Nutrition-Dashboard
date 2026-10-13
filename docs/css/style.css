@@ -510,6 +510,28 @@ select {
 }
 .cond-flight { background-color: rgba(212, 175, 55, 0.18); color: var(--warn); }
 .cond-ground { background-color: rgba(90, 100, 115, 0.15); color: var(--muted); }
+.cond-withdrawn { background-color: rgba(194, 72, 63, 0.14); color: var(--danger); }
+
+/* Marks a figure that has been withdrawn rather than silently removed, so a
+   reader who saw the earlier number learns what happened to it. Deliberately
+   quiet: it is a correction, not an alarm. */
+.data-notice {
+    border-left: 3px solid var(--danger);
+    background-color: var(--card);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+.data-notice p { margin: 0 0 8px; }
+.data-notice p:last-child { margin-bottom: 0; }
+.data-notice strong { color: var(--fg); }
+.data-notice code {
+    font-size: 0.85em;
+    padding: 1px 4px;
+    border-radius: 4px;
+    background-color: rgba(90, 100, 115, 0.12);
+}
 
 .sig-yes {
     color: var(--ok);
