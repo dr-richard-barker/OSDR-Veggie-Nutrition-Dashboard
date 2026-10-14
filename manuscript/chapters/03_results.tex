@@ -67,12 +67,12 @@ To determine if spaceflight signatures are conserved across species, we performe
 As seen in Figure \ref{fig:meta_pca_biplot}, Principal Component 1 (PC1) captures 42.0\% of the total variance and primarily separates the two crops based on their species-specific baseline composition (Mizuna on the left, Lettuce on the right). PC2, which captures 25.0\% of the variance, reveals a shared Flight vs. Ground Control response. Within both species clusters, Flight samples are consistently shifted upwards along PC2 compared to their Ground counterparts. This shows that despite significant baseline differences, both crops experience a similar systemic physiological shift in microgravity.
 
 \section{Cross-Validation and Classification Benchmarks}
-We evaluated classifiers to distinguish FLT vs. GC using the merged 13-feature dataset. Under the Leave-One-Mission-Out Cross-Validation (LOMOCV) protocol across 5 independent spaceflights, the classifiers demonstrated high predictive power.
+We evaluated classifiers to distinguish FLT vs. GC using the 11 features with complete coverage across both crops ($N = 55$; 6 samples with an incomplete feature vector are dropped), under Leave-One-Mission-Out Cross-Validation (LOMOCV) across 5 independent spaceflights.
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/meta_model_comparison.png}
-    \caption{Classification performance comparison (Accuracy, Precision, Recall, and F1 score) between the Random Forest classifier and the TabPFN tabular foundation model evaluated via LOMOCV on the joint meta-analysis dataset.}
+    \caption{Classification performance (accuracy, precision, recall and F1) of the Random Forest classifier and the benchmark model under LOMOCV on the joint dataset. The benchmark is the Gradient Boosting fallback, because TabPFN did not run without a license token. Neither model separates flight from ground.}
     \label{fig:meta_model_comparison}
 \end{figure}
 
@@ -112,13 +112,13 @@ and testing on the other is therefore worse than chance, which is the opposite
 of the conclusion withdrawn above. A universal cross-species signature is not
 supported by these data.
 
-\section{Universal Feature Importance \& SHAP Interpretation}
+\section{Feature Importance \& SHAP Interpretation}
 Shapley Additive Explanations (SHAP) and Gini feature importance were extracted from the joint classifiers to identify the primary drivers of the spaceflight signature.
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/meta_feature_importance.png}
-    \caption{Universal feature importance (Mean Decrease Impurity) for the joint Flight-vs-Ground classifier. Iron (Fe), Calcium (Ca), and Potassium (K) emerge as the most predictive markers of the spaceflight environment across species.}
+    \caption{Feature importance (mean decrease in impurity) for the joint flight-versus-ground Random Forest classifier. Potassium, sodium, sulfur and manganese rank highest. Because the classifier performs at chance, the ranking shows what the model attended to, not validated spaceflight markers.}
     \label{fig:meta_feature_importance}
 \end{figure}
 
@@ -128,10 +128,11 @@ $0.081$. The superseded text reported Fe $= 0.28$, K $= 0.18$, Ca $= 0.15$,
 Na $= 0.12$, which reproduced the placeholder object in \texttt{docs/js/app.js}
 rather than any computed output. Given that the classifier itself performs at
 chance, this ranking describes what the model attended to, not a set of
-validated spaceflight markers.
-- **Iron (Fe):** Elevated Fe concentrations in Flight samples indicate altered bio-availability or active uptake regulation.
-- **Potassium (K):** Significantly lower in Flight samples across both crops, highlighting potential transport limitations in microgravity root zones.
-- **Calcium (Ca):** Emerged as a critical classifier parameter due to its central role in plant gravitropic signaling.
+validated spaceflight markers. The per-element interpretation that followed
+here (iron elevated in flight, potassium significantly lower in flight across
+both crops, calcium a critical classifier parameter) is withdrawn: potassium
+is higher in flight, and iron and calcium do not differ after FDR correction
+(Table \ref{tab:meta_stats}).
 
 \section{Regression: Predicting Biochemical Outputs}
 \textbf{This section has been withdrawn.} It previously reported that a Random

@@ -88,12 +88,11 @@ references:
         given-names: Raymond M.
       - family-names: Massa
         given-names: Gioia D.
-    journal: "International Journal of Vegetable Science"
-    volume: 30
+    journal: "Journal of Plant Interactions"
+    volume: 19
     issue: 1
-    start: 1
-    end: 22
-    year: 2023
+    start: 2292220
+    year: 2024
     doi: "10.1080/17429145.2023.2292220"
   - type: article
     title: "Accurate predictions on small data with a tabular foundation model"

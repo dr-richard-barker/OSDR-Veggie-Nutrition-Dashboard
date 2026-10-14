@@ -13,7 +13,7 @@
 > **Data Sources:** [NASA OSDR OSD-745](https://osdr.nasa.gov/bio/repo/data/studies/OSD-745), [OSD-655](https://osdr.nasa.gov/bio/repo/data/studies/OSD-655), [OSD-780](https://osdr.nasa.gov/bio/repo/data/studies/OSD-780)  
 > **Reference Publications:** 
 > - Khodadad et al. (2020) *Front. Plant Sci.* [DOI: 10.3389/fpls.2020.00199](https://doi.org/10.3389/fpls.2020.00199)
-> - Bunchek et al. (2023) *Int. J. Veg. Sci.* [DOI: 10.1080/17429145.2023.2292220](https://doi.org/10.1080/17429145.2023.2292220)
+> - Bunchek et al. (2024) *J. Plant Interact.* [DOI: 10.1080/17429145.2023.2292220](https://doi.org/10.1080/17429145.2023.2292220)
 > - Hollmann et al. (2025) *Nature* [DOI: 10.1038/s41586-024-08328-6](https://doi.org/10.1038/s41586-024-08328-6)
 
 ---
@@ -152,14 +152,14 @@ OSDR-Veggie-Nutrition-Dashboard/
   doi       = {10.3389/fpls.2020.00199}
 }
 
-@article{bunchek2023pick,
+@article{bunchek2024pick,
   title     = {Pick-and-eat space crop production flight testing on the International Space Station},
   author    = {Bunchek, Jess M. and Hummerick, Mary E. and Spencer, LaShelle E. and Romeyn, Matthew W. and Young, Millennia and Morrow, Robert C. and Mitchell, Cary A. and Douglas, Grace L. and Wheeler, Raymond M. and Massa, Gioia D.},
-  journal   = {International Journal of Vegetable Science},
-  volume    = {30},
+  journal   = {Journal of Plant Interactions},
+  volume    = {19},
   number    = {1},
-  pages     = {1--22},
-  year      = {2023},
+  pages     = {2292220},
+  year      = {2024},
   doi       = {10.1080/17429145.2023.2292220}
 }
 

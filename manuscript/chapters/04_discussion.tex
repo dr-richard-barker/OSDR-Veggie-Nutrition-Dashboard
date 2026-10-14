@@ -2,16 +2,20 @@
 \label{ch:discussion}
 
 \section{Nutritional Equivalence and Species Diversity}
-The comparative meta-analysis of Lettuce (\textit{Lactuca sativa}, OSD-745 \cite{khodadad2020}) and Mizuna mustard (\textit{Brassica rapa}, OSD-655 \cite{bunchek2023}) grown inside Veggie pillow modules demonstrates that both spaceflight crops maintain high nutritional density. Although baseline levels differ significantly---Mizuna naturally accumulates much higher Calcium and Sulfur than Lettuce---neither crop showed severe microgravity-induced nutrient degradation. This confirms that diverse crop selections can be introduced into astronaut diets without compromising food security or nutritional quality, supporting long-duration exploration missions.
+The comparative meta-analysis of Lettuce (\textit{Lactuca sativa}, OSD-745 \cite{khodadad2020}) and Mizuna mustard (\textit{Brassica rapa}, OSD-655 \cite{bunchek2024}) grown inside Veggie pillow modules demonstrates that both spaceflight crops maintain high nutritional density. Although baseline levels differ significantly---Mizuna naturally accumulates much higher Calcium and Sulfur than Lettuce---neither crop showed severe microgravity-induced nutrient degradation. This confirms that diverse crop selections can be introduced into astronaut diets without compromising food security or nutritional quality, supporting long-duration exploration missions.
 
 \section{Universal Mechanistic Responses to Microgravity}
-Our joint PCA (Figure \ref{fig:meta_pca_biplot}) and classification analysis reveal a shared, universal physiological response to microgravity that transcends crop species. Despite distinct genetic and metabolic profiles, both crops showed systematic alterations in the same set of elemental markers:
-- **Iron and Substrate Hypoxia:** The increased accumulation of Iron (Fe) under spaceflight is consistent across crops. This shift points to microgravity fluid behavior, where waterlogged, hypoxic pockets in the arcillite substrate increase the bioavailability of reduced iron ($Fe^{2+}$) in the rhizosphere \cite{paul2013}.
-- **Transpiration and Potassium Uptake:** The consistent depression of Potassium (K) in flight indicates altered mass-flow dynamics in the transpiration stream, likely caused by boundary layer build-up under microgravity ventilation regimes \cite{stutte2015}.
-- **Gravitropic Signaling and Calcium:** The significant shift in Calcium (Ca) levels across crops in flight aligns with its role as a primary messenger in gravity-sensing root cells.
+\textbf{This section has been withdrawn.} It argued that both crops share a
+universal elemental response to microgravity (iron up, potassium down and
+calcium shifted in flight) and proposed substrate hypoxia, transpiration and
+gravitropic signalling as mechanisms. The archive data do not show that
+pattern: the joint classifier performs at chance, potassium is higher rather
+than lower in flight, and iron and calcium do not differ after FDR correction
+(Table \ref{tab:meta_stats}). With no consistent shift to explain, the
+proposed mechanisms are not discussed further.
 
 \section{The Power of Tabular Foundation Models (TabPFN)}
-A key methodological finding is the superior performance of the TabPFN tabular foundation model \cite{hollmann2025} over the traditional Random Forest model. Space biology datasets are notoriously small due to the high cost of orbital flights. Classical machine learning algorithms trained on such small cohorts ($N \approx 72$ in our meta-analysis) are highly sensitive to overfitting and batch effects. 
+This study set out to compare the TabPFN tabular foundation model \cite{hollmann2025} with a traditional Random Forest model. Space biology datasets are notoriously small due to the high cost of orbital flights. Classical machine learning algorithms trained on such small cohorts ($N = 55$ in our meta-analysis) are highly sensitive to overfitting and batch effects. 
 
 The accuracy figures this paragraph rested on (89.6\% and 83.3\%) were computed
 from data that did not come from the archive. Regenerated, the classifiers reach
