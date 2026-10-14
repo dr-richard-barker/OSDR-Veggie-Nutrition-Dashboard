@@ -41,6 +41,7 @@ Two leafy green crops were evaluated aboard the ISS across 5 independent spacefl
 Parallel ground controls were grown at Kennedy Space Center (KSC) in controlled environment chambers replicating ISS telemetry (temperature, relative humidity, $\text{CO}_2$) with a 24–72 h delay.
 
 ### Multi-Crop Findings & Data Provenance
+- **Translational Countermeasures & Astronaut Health:** Crop elemental mineral yields ($\text{K}^+$, $\text{Ca}^{2+}$, $\text{Mg}^{2+}$, $\text{Fe}^{2+}$, $\text{Zn}^{2+}$) provide dietary countermeasures for spaceflight mineral imbalances identified in human crew members. See companion repository [**astronaut-mineral-deficiency-multiomics**](https://github.com/dr-richard-barker/astronaut-mineral-deficiency-multiomics) for Inspiration4 multi-omics mineral pathway regulation and NHANES population comparisons.
 - **Open Science Data, read from the archive:** 24 lettuce samples (OSD-745; 11 flight, 13 ground) and 36 Tokyo Bekana (OSD-655; 18, 18), plus one Tokyo Bekana sample with a phenolic measurement but no elemental data, across 5 missions (VEG-01A, VEG-01B, VEG-03A, VEG-04A, VEG-04B). Downloaded by `data/fetch_osdr_data.py`; checksums and unit provenance in `data/raw/osdr_fetch_provenance.json`.
 
 > **⚠️ Correction, 13 October 2026.** Earlier versions of this repository
