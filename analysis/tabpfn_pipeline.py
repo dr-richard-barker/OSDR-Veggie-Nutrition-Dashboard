@@ -132,8 +132,18 @@ def main():
 
     df = load_data(data_path)
     
-    elements = ['Fe', 'K', 'Na', 'P', 'S', 'Zn', 'Ca', 'Mg', 'Mn', 'Cu']
-    biochemicals = ['phenolics', 'anthocyanins', 'orac']
+    # Feature set is limited to elements BOTH studies measured for EVERY sample,
+    # so dropna() cannot silently shrink the cohort:
+    #   - OSD-745 (lettuce) measured neither copper nor aluminium. Copper was in
+    #     the superseded literal data and is not in the archive at all.
+    #   - Boron is measured by both studies but is populated for only 12 of 24
+    #     lettuce samples, so including it would halve the lettuce cohort. It is
+    #     excluded here and remains available for single-crop analyses.
+    #   - Anthocyanin was assayed for OSD-745 only, so it cannot be a cross-crop
+    #     feature; it too remains available for lettuce-only analyses.
+    # These nine give complete coverage: 24 lettuce + 36 Tokyo Bekana = 60 rows.
+    elements = ['Fe', 'K', 'Na', 'P', 'S', 'Zn', 'Ca', 'Mg', 'Mn']
+    biochemicals = ['phenolics', 'orac']
     features = elements + biochemicals
     
     # Run Benchmark

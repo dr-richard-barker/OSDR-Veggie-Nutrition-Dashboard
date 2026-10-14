@@ -23,11 +23,17 @@ NUTRIENT_RENAME_MAP = {
     "Mg (mg/g)": "Mg",
     "Mn (mg/g)": "Mn",
     "Cu (mg/g)": "Cu",
+    # Boron is measured by both studies; aluminium by OSD-655 only. Neither was
+    # present in the superseded literal data.
+    "B (mg/g)": "B",
+    "Al (mg/g)": "Al",
     "Phenolics (GAE mg/g)": "phenolics",
     "Anthocyanins (mg/g)": "anthocyanins",
     "ORAC (umol TE/g)": "orac",
-    "Microbiology_APC (log10 CFU/g)": "micro_apc",
-    "Microbiology_YMC (log10 CFU/g)": "micro_ymc"
+    # Microbiology_APC / Microbiology_YMC are deliberately absent: the previous
+    # literal data carried a per-sample microbial count for every nutrient
+    # sample, but microbial counts come from OSD-780, a different study with
+    # different samples. They were never per-sample measurements of these plants.
 }
 
 def curate_single_dataset(raw_dir: Path, suffix: str):

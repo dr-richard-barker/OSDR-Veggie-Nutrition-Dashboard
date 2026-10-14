@@ -1,482 +1,551 @@
 [
     {
-        "sample_id":"VEG01A_FLT_1",
+        "sample_id":"VEG-01A_A_Flight_33days",
         "mission":"VEG-01A",
         "condition":"Flight",
-        "plant_number":1,
-        "harvest_day":33,
-        "crop":"lettuce"
+        "plant_number":"A",
+        "harvest_day":33.0,
+        "crop":"lettuce",
+        "Light":null
     },
     {
-        "sample_id":"VEG01A_FLT_2",
-        "mission":"VEG-01A",
-        "condition":"Flight",
-        "plant_number":2,
-        "harvest_day":33,
-        "crop":"lettuce"
-    },
-    {
-        "sample_id":"VEG01A_FLT_3",
-        "mission":"VEG-01A",
-        "condition":"Flight",
-        "plant_number":3,
-        "harvest_day":33,
-        "crop":"lettuce"
-    },
-    {
-        "sample_id":"VEG01A_FLT_4",
-        "mission":"VEG-01A",
-        "condition":"Flight",
-        "plant_number":4,
-        "harvest_day":33,
-        "crop":"lettuce"
-    },
-    {
-        "sample_id":"VEG01A_FLT_5",
-        "mission":"VEG-01A",
-        "condition":"Flight",
-        "plant_number":5,
-        "harvest_day":33,
-        "crop":"lettuce"
-    },
-    {
-        "sample_id":"VEG01A_FLT_6",
-        "mission":"VEG-01A",
-        "condition":"Flight",
-        "plant_number":6,
-        "harvest_day":33,
-        "crop":"lettuce"
-    },
-    {
-        "sample_id":"VEG01A_GRD_1",
+        "sample_id":"VEG-01A_A_Ground_33days",
         "mission":"VEG-01A",
         "condition":"Ground",
-        "plant_number":1,
-        "harvest_day":33,
-        "crop":"lettuce"
+        "plant_number":"A",
+        "harvest_day":33.0,
+        "crop":"lettuce",
+        "Light":null
     },
     {
-        "sample_id":"VEG01A_GRD_2",
+        "sample_id":"VEG-01A_B_Ground_33days",
         "mission":"VEG-01A",
         "condition":"Ground",
-        "plant_number":2,
-        "harvest_day":33,
-        "crop":"lettuce"
+        "plant_number":"B",
+        "harvest_day":33.0,
+        "crop":"lettuce",
+        "Light":null
     },
     {
-        "sample_id":"VEG01A_GRD_3",
+        "sample_id":"VEG-01A_C_Flight_33days",
+        "mission":"VEG-01A",
+        "condition":"Flight",
+        "plant_number":"C",
+        "harvest_day":33.0,
+        "crop":"lettuce",
+        "Light":null
+    },
+    {
+        "sample_id":"VEG-01A_C_Ground_33days",
         "mission":"VEG-01A",
         "condition":"Ground",
-        "plant_number":3,
-        "harvest_day":33,
-        "crop":"lettuce"
+        "plant_number":"C",
+        "harvest_day":33.0,
+        "crop":"lettuce",
+        "Light":null
     },
     {
-        "sample_id":"VEG01A_GRD_4",
-        "mission":"VEG-01A",
-        "condition":"Ground",
-        "plant_number":4,
-        "harvest_day":33,
-        "crop":"lettuce"
-    },
-    {
-        "sample_id":"VEG01A_GRD_5",
-        "mission":"VEG-01A",
-        "condition":"Ground",
-        "plant_number":5,
-        "harvest_day":33,
-        "crop":"lettuce"
-    },
-    {
-        "sample_id":"VEG01A_GRD_6",
-        "mission":"VEG-01A",
-        "condition":"Ground",
-        "plant_number":6,
-        "harvest_day":33,
-        "crop":"lettuce"
-    },
-    {
-        "sample_id":"VEG01B_FLT_1",
-        "mission":"VEG-01B",
-        "condition":"Flight",
-        "plant_number":1,
-        "harvest_day":33,
-        "crop":"lettuce"
-    },
-    {
-        "sample_id":"VEG01B_FLT_2",
-        "mission":"VEG-01B",
-        "condition":"Flight",
-        "plant_number":2,
-        "harvest_day":33,
-        "crop":"lettuce"
-    },
-    {
-        "sample_id":"VEG01B_FLT_3",
-        "mission":"VEG-01B",
-        "condition":"Flight",
-        "plant_number":3,
-        "harvest_day":33,
-        "crop":"lettuce"
-    },
-    {
-        "sample_id":"VEG01B_FLT_4",
-        "mission":"VEG-01B",
-        "condition":"Flight",
-        "plant_number":4,
-        "harvest_day":33,
-        "crop":"lettuce"
-    },
-    {
-        "sample_id":"VEG01B_FLT_5",
-        "mission":"VEG-01B",
-        "condition":"Flight",
-        "plant_number":5,
-        "harvest_day":33,
-        "crop":"lettuce"
-    },
-    {
-        "sample_id":"VEG01B_FLT_6",
-        "mission":"VEG-01B",
-        "condition":"Flight",
-        "plant_number":6,
-        "harvest_day":33,
-        "crop":"lettuce"
-    },
-    {
-        "sample_id":"VEG01B_GRD_1",
+        "sample_id":"VEG-01B_A_Ground_33days",
         "mission":"VEG-01B",
         "condition":"Ground",
-        "plant_number":1,
-        "harvest_day":33,
-        "crop":"lettuce"
+        "plant_number":"A",
+        "harvest_day":33.0,
+        "crop":"lettuce",
+        "Light":null
     },
     {
-        "sample_id":"VEG01B_GRD_2",
+        "sample_id":"VEG-01B_C_Flight_33days",
+        "mission":"VEG-01B",
+        "condition":"Flight",
+        "plant_number":"C",
+        "harvest_day":33.0,
+        "crop":"lettuce",
+        "Light":null
+    },
+    {
+        "sample_id":"VEG-01B_C_Ground_33days",
         "mission":"VEG-01B",
         "condition":"Ground",
-        "plant_number":2,
-        "harvest_day":33,
-        "crop":"lettuce"
+        "plant_number":"C",
+        "harvest_day":33.0,
+        "crop":"lettuce",
+        "Light":null
     },
     {
-        "sample_id":"VEG01B_GRD_3",
+        "sample_id":"VEG-01B_D_Flight_33days",
+        "mission":"VEG-01B",
+        "condition":"Flight",
+        "plant_number":"D",
+        "harvest_day":33.0,
+        "crop":"lettuce",
+        "Light":null
+    },
+    {
+        "sample_id":"VEG-01B_D_Ground_33days",
         "mission":"VEG-01B",
         "condition":"Ground",
-        "plant_number":3,
-        "harvest_day":33,
-        "crop":"lettuce"
+        "plant_number":"D",
+        "harvest_day":33.0,
+        "crop":"lettuce",
+        "Light":null
     },
     {
-        "sample_id":"VEG01B_GRD_4",
+        "sample_id":"VEG-01B_E_Flight_33days",
+        "mission":"VEG-01B",
+        "condition":"Flight",
+        "plant_number":"E",
+        "harvest_day":33.0,
+        "crop":"lettuce",
+        "Light":null
+    },
+    {
+        "sample_id":"VEG-01B_F_Ground_33days",
         "mission":"VEG-01B",
         "condition":"Ground",
-        "plant_number":4,
-        "harvest_day":33,
-        "crop":"lettuce"
+        "plant_number":"F",
+        "harvest_day":33.0,
+        "crop":"lettuce",
+        "Light":null
     },
     {
-        "sample_id":"VEG01B_GRD_5",
-        "mission":"VEG-01B",
-        "condition":"Ground",
-        "plant_number":5,
-        "harvest_day":33,
-        "crop":"lettuce"
-    },
-    {
-        "sample_id":"VEG01B_GRD_6",
-        "mission":"VEG-01B",
-        "condition":"Ground",
-        "plant_number":6,
-        "harvest_day":33,
-        "crop":"lettuce"
-    },
-    {
-        "sample_id":"VEG03A_FLT_1",
+        "sample_id":"VEG-03A_A_Flight_33days",
         "mission":"VEG-03A",
         "condition":"Flight",
-        "plant_number":1,
-        "harvest_day":33,
-        "crop":"lettuce"
+        "plant_number":"A",
+        "harvest_day":33.0,
+        "crop":"lettuce",
+        "Light":null
     },
     {
-        "sample_id":"VEG03A_FLT_2",
-        "mission":"VEG-03A",
-        "condition":"Flight",
-        "plant_number":2,
-        "harvest_day":33,
-        "crop":"lettuce"
-    },
-    {
-        "sample_id":"VEG03A_FLT_3",
-        "mission":"VEG-03A",
-        "condition":"Flight",
-        "plant_number":3,
-        "harvest_day":33,
-        "crop":"lettuce"
-    },
-    {
-        "sample_id":"VEG03A_FLT_4",
-        "mission":"VEG-03A",
-        "condition":"Flight",
-        "plant_number":4,
-        "harvest_day":33,
-        "crop":"lettuce"
-    },
-    {
-        "sample_id":"VEG03A_FLT_5",
-        "mission":"VEG-03A",
-        "condition":"Flight",
-        "plant_number":5,
-        "harvest_day":33,
-        "crop":"lettuce"
-    },
-    {
-        "sample_id":"VEG03A_FLT_6",
-        "mission":"VEG-03A",
-        "condition":"Flight",
-        "plant_number":6,
-        "harvest_day":33,
-        "crop":"lettuce"
-    },
-    {
-        "sample_id":"VEG03A_GRD_1",
+        "sample_id":"VEG-03A_A_Ground_33days",
         "mission":"VEG-03A",
         "condition":"Ground",
-        "plant_number":1,
-        "harvest_day":33,
-        "crop":"lettuce"
+        "plant_number":"A",
+        "harvest_day":33.0,
+        "crop":"lettuce",
+        "Light":null
     },
     {
-        "sample_id":"VEG03A_GRD_2",
+        "sample_id":"VEG-03A_B_Flight_33days",
+        "mission":"VEG-03A",
+        "condition":"Flight",
+        "plant_number":"B",
+        "harvest_day":33.0,
+        "crop":"lettuce",
+        "Light":null
+    },
+    {
+        "sample_id":"VEG-03A_B_Ground_33days",
         "mission":"VEG-03A",
         "condition":"Ground",
-        "plant_number":2,
-        "harvest_day":33,
-        "crop":"lettuce"
+        "plant_number":"B",
+        "harvest_day":33.0,
+        "crop":"lettuce",
+        "Light":null
     },
     {
-        "sample_id":"VEG03A_GRD_3",
+        "sample_id":"VEG-03A_C_Flight_33days",
+        "mission":"VEG-03A",
+        "condition":"Flight",
+        "plant_number":"C",
+        "harvest_day":33.0,
+        "crop":"lettuce",
+        "Light":null
+    },
+    {
+        "sample_id":"VEG-03A_C_Ground_33days",
         "mission":"VEG-03A",
         "condition":"Ground",
-        "plant_number":3,
-        "harvest_day":33,
-        "crop":"lettuce"
+        "plant_number":"C",
+        "harvest_day":33.0,
+        "crop":"lettuce",
+        "Light":null
     },
     {
-        "sample_id":"VEG03A_GRD_4",
+        "sample_id":"VEG-03A_D_Flight_33days",
+        "mission":"VEG-03A",
+        "condition":"Flight",
+        "plant_number":"D",
+        "harvest_day":33.0,
+        "crop":"lettuce",
+        "Light":null
+    },
+    {
+        "sample_id":"VEG-03A_D_Ground_33days",
         "mission":"VEG-03A",
         "condition":"Ground",
-        "plant_number":4,
-        "harvest_day":33,
-        "crop":"lettuce"
+        "plant_number":"D",
+        "harvest_day":33.0,
+        "crop":"lettuce",
+        "Light":null
     },
     {
-        "sample_id":"VEG03A_GRD_5",
+        "sample_id":"VEG-03A_E_Flight_33days",
+        "mission":"VEG-03A",
+        "condition":"Flight",
+        "plant_number":"E",
+        "harvest_day":33.0,
+        "crop":"lettuce",
+        "Light":null
+    },
+    {
+        "sample_id":"VEG-03A_E_Ground_33days",
         "mission":"VEG-03A",
         "condition":"Ground",
-        "plant_number":5,
-        "harvest_day":33,
-        "crop":"lettuce"
+        "plant_number":"E",
+        "harvest_day":33.0,
+        "crop":"lettuce",
+        "Light":null
     },
     {
-        "sample_id":"VEG03A_GRD_6",
+        "sample_id":"VEG-03A_F_Flight_33days",
+        "mission":"VEG-03A",
+        "condition":"Flight",
+        "plant_number":"F",
+        "harvest_day":33.0,
+        "crop":"lettuce",
+        "Light":null
+    },
+    {
+        "sample_id":"VEG-03A_F_Ground_33days",
         "mission":"VEG-03A",
         "condition":"Ground",
-        "plant_number":6,
-        "harvest_day":33,
-        "crop":"lettuce"
+        "plant_number":"F",
+        "harvest_day":33.0,
+        "crop":"lettuce",
+        "Light":null
     },
     {
-        "sample_id":"VEG04A_FLT_1",
-        "mission":"VEG-04A",
+        "sample_id":"VEG04A_F_leaf_pillow11_blue",
+        "mission":"VEG04A",
         "condition":"Flight",
-        "plant_number":1,
-        "harvest_day":28,
-        "crop":"mizuna"
+        "plant_number":"pillow11",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"blue"
     },
     {
-        "sample_id":"VEG04A_FLT_2",
-        "mission":"VEG-04A",
+        "sample_id":"VEG04A_F_leaf_pillow12_blue",
+        "mission":"VEG04A",
         "condition":"Flight",
-        "plant_number":2,
-        "harvest_day":28,
-        "crop":"mizuna"
+        "plant_number":"pillow12",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"blue"
     },
     {
-        "sample_id":"VEG04A_FLT_3",
-        "mission":"VEG-04A",
+        "sample_id":"VEG04A_F_leaf_pillow1_red",
+        "mission":"VEG04A",
         "condition":"Flight",
-        "plant_number":3,
-        "harvest_day":28,
-        "crop":"mizuna"
+        "plant_number":"pillow1",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"red"
     },
     {
-        "sample_id":"VEG04A_FLT_4",
-        "mission":"VEG-04A",
+        "sample_id":"VEG04A_F_leaf_pillow2_red",
+        "mission":"VEG04A",
         "condition":"Flight",
-        "plant_number":4,
-        "harvest_day":28,
-        "crop":"mizuna"
+        "plant_number":"pillow2",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"red"
     },
     {
-        "sample_id":"VEG04A_FLT_5",
-        "mission":"VEG-04A",
+        "sample_id":"VEG04A_F_leaf_pillow3_red",
+        "mission":"VEG04A",
         "condition":"Flight",
-        "plant_number":5,
-        "harvest_day":28,
-        "crop":"mizuna"
+        "plant_number":"pillow3",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"red"
     },
     {
-        "sample_id":"VEG04A_FLT_6",
-        "mission":"VEG-04A",
+        "sample_id":"VEG04A_F_leaf_pillow4_red",
+        "mission":"VEG04A",
         "condition":"Flight",
-        "plant_number":6,
-        "harvest_day":28,
-        "crop":"mizuna"
+        "plant_number":"pillow4",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"red"
     },
     {
-        "sample_id":"VEG04A_GRD_1",
-        "mission":"VEG-04A",
-        "condition":"Ground",
-        "plant_number":1,
-        "harvest_day":28,
-        "crop":"mizuna"
-    },
-    {
-        "sample_id":"VEG04A_GRD_2",
-        "mission":"VEG-04A",
-        "condition":"Ground",
-        "plant_number":2,
-        "harvest_day":28,
-        "crop":"mizuna"
-    },
-    {
-        "sample_id":"VEG04A_GRD_3",
-        "mission":"VEG-04A",
-        "condition":"Ground",
-        "plant_number":3,
-        "harvest_day":28,
-        "crop":"mizuna"
-    },
-    {
-        "sample_id":"VEG04A_GRD_4",
-        "mission":"VEG-04A",
-        "condition":"Ground",
-        "plant_number":4,
-        "harvest_day":28,
-        "crop":"mizuna"
-    },
-    {
-        "sample_id":"VEG04A_GRD_5",
-        "mission":"VEG-04A",
-        "condition":"Ground",
-        "plant_number":5,
-        "harvest_day":28,
-        "crop":"mizuna"
-    },
-    {
-        "sample_id":"VEG04A_GRD_6",
-        "mission":"VEG-04A",
-        "condition":"Ground",
-        "plant_number":6,
-        "harvest_day":28,
-        "crop":"mizuna"
-    },
-    {
-        "sample_id":"VEG04B_FLT_1",
-        "mission":"VEG-04B",
+        "sample_id":"VEG04A_F_leaf_pillow6_red",
+        "mission":"VEG04A",
         "condition":"Flight",
-        "plant_number":1,
-        "harvest_day":28,
-        "crop":"mizuna"
+        "plant_number":"pillow6",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"red"
     },
     {
-        "sample_id":"VEG04B_FLT_2",
-        "mission":"VEG-04B",
+        "sample_id":"VEG04A_F_leaf_pillow7_blue",
+        "mission":"VEG04A",
         "condition":"Flight",
-        "plant_number":2,
-        "harvest_day":28,
-        "crop":"mizuna"
+        "plant_number":"pillow7",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"blue"
     },
     {
-        "sample_id":"VEG04B_FLT_3",
-        "mission":"VEG-04B",
+        "sample_id":"VEG04A_GC_leaf_pillow12_blue",
+        "mission":"VEG04A",
+        "condition":"Ground",
+        "plant_number":"pillow12",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"blue"
+    },
+    {
+        "sample_id":"VEG04A_GC_leaf_pillow3_red",
+        "mission":"VEG04A",
+        "condition":"Ground",
+        "plant_number":"pillow3",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"red"
+    },
+    {
+        "sample_id":"VEG04A_GC_leaf_pillow5_red",
+        "mission":"VEG04A",
+        "condition":"Ground",
+        "plant_number":"pillow5",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"red"
+    },
+    {
+        "sample_id":"VEG04A_GC_leaf_pillow6_red",
+        "mission":"VEG04A",
+        "condition":"Ground",
+        "plant_number":"pillow6",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"red"
+    },
+    {
+        "sample_id":"VEG04A_GC_leaf_pillow7_blue",
+        "mission":"VEG04A",
+        "condition":"Ground",
+        "plant_number":"pillow7",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"blue"
+    },
+    {
+        "sample_id":"VEG04A_GC_leaf_pillow8_blue",
+        "mission":"VEG04A",
+        "condition":"Ground",
+        "plant_number":"pillow8",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"blue"
+    },
+    {
+        "sample_id":"VEG04B_F_leaf_pillow10_blue",
+        "mission":"VEG04B",
         "condition":"Flight",
-        "plant_number":3,
-        "harvest_day":28,
-        "crop":"mizuna"
+        "plant_number":"pillow10",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"blue"
     },
     {
-        "sample_id":"VEG04B_FLT_4",
-        "mission":"VEG-04B",
+        "sample_id":"VEG04B_F_leaf_pillow11_blue",
+        "mission":"VEG04B",
         "condition":"Flight",
-        "plant_number":4,
-        "harvest_day":28,
-        "crop":"mizuna"
+        "plant_number":"pillow11",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"blue"
     },
     {
-        "sample_id":"VEG04B_FLT_5",
-        "mission":"VEG-04B",
+        "sample_id":"VEG04B_F_leaf_pillow12_blue",
+        "mission":"VEG04B",
         "condition":"Flight",
-        "plant_number":5,
-        "harvest_day":28,
-        "crop":"mizuna"
+        "plant_number":"pillow12",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"blue"
     },
     {
-        "sample_id":"VEG04B_FLT_6",
-        "mission":"VEG-04B",
+        "sample_id":"VEG04B_F_leaf_pillow1_red",
+        "mission":"VEG04B",
         "condition":"Flight",
-        "plant_number":6,
-        "harvest_day":28,
-        "crop":"mizuna"
+        "plant_number":"pillow1",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"red"
     },
     {
-        "sample_id":"VEG04B_GRD_1",
-        "mission":"VEG-04B",
-        "condition":"Ground",
-        "plant_number":1,
-        "harvest_day":28,
-        "crop":"mizuna"
+        "sample_id":"VEG04B_F_leaf_pillow2_red",
+        "mission":"VEG04B",
+        "condition":"Flight",
+        "plant_number":"pillow2",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"red"
     },
     {
-        "sample_id":"VEG04B_GRD_2",
-        "mission":"VEG-04B",
-        "condition":"Ground",
-        "plant_number":2,
-        "harvest_day":28,
-        "crop":"mizuna"
+        "sample_id":"VEG04B_F_leaf_pillow3_red",
+        "mission":"VEG04B",
+        "condition":"Flight",
+        "plant_number":"pillow3",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"red"
     },
     {
-        "sample_id":"VEG04B_GRD_3",
-        "mission":"VEG-04B",
-        "condition":"Ground",
-        "plant_number":3,
-        "harvest_day":28,
-        "crop":"mizuna"
+        "sample_id":"VEG04B_F_leaf_pillow4_red",
+        "mission":"VEG04B",
+        "condition":"Flight",
+        "plant_number":"pillow4",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"red"
     },
     {
-        "sample_id":"VEG04B_GRD_4",
-        "mission":"VEG-04B",
-        "condition":"Ground",
-        "plant_number":4,
-        "harvest_day":28,
-        "crop":"mizuna"
+        "sample_id":"VEG04B_F_leaf_pillow5_red",
+        "mission":"VEG04B",
+        "condition":"Flight",
+        "plant_number":"pillow5",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"red"
     },
     {
-        "sample_id":"VEG04B_GRD_5",
-        "mission":"VEG-04B",
-        "condition":"Ground",
-        "plant_number":5,
-        "harvest_day":28,
-        "crop":"mizuna"
+        "sample_id":"VEG04B_F_leaf_pillow6_red",
+        "mission":"VEG04B",
+        "condition":"Flight",
+        "plant_number":"pillow6",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"red"
     },
     {
-        "sample_id":"VEG04B_GRD_6",
-        "mission":"VEG-04B",
+        "sample_id":"VEG04B_F_leaf_pillow8_blue",
+        "mission":"VEG04B",
+        "condition":"Flight",
+        "plant_number":"pillow8",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"blue"
+    },
+    {
+        "sample_id":"VEG04B_F_leaf_pillow9_blue",
+        "mission":"VEG04B",
+        "condition":"Flight",
+        "plant_number":"pillow9",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"blue"
+    },
+    {
+        "sample_id":"VEG04B_GC_leaf_pillow10_blue",
+        "mission":"VEG04B",
         "condition":"Ground",
-        "plant_number":6,
-        "harvest_day":28,
-        "crop":"mizuna"
+        "plant_number":"pillow10",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"blue"
+    },
+    {
+        "sample_id":"VEG04B_GC_leaf_pillow11_blue",
+        "mission":"VEG04B",
+        "condition":"Ground",
+        "plant_number":"pillow11",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"blue"
+    },
+    {
+        "sample_id":"VEG04B_GC_leaf_pillow12_blue",
+        "mission":"VEG04B",
+        "condition":"Ground",
+        "plant_number":"pillow12",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"blue"
+    },
+    {
+        "sample_id":"VEG04B_GC_leaf_pillow1_red",
+        "mission":"VEG04B",
+        "condition":"Ground",
+        "plant_number":"pillow1",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"red"
+    },
+    {
+        "sample_id":"VEG04B_GC_leaf_pillow2_red",
+        "mission":"VEG04B",
+        "condition":"Ground",
+        "plant_number":"pillow2",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"red"
+    },
+    {
+        "sample_id":"VEG04B_GC_leaf_pillow3_red",
+        "mission":"VEG04B",
+        "condition":"Ground",
+        "plant_number":"pillow3",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"red"
+    },
+    {
+        "sample_id":"VEG04B_GC_leaf_pillow4_red",
+        "mission":"VEG04B",
+        "condition":"Ground",
+        "plant_number":"pillow4",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"red"
+    },
+    {
+        "sample_id":"VEG04B_GC_leaf_pillow5_red",
+        "mission":"VEG04B",
+        "condition":"Ground",
+        "plant_number":"pillow5",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"red"
+    },
+    {
+        "sample_id":"VEG04B_GC_leaf_pillow6_red",
+        "mission":"VEG04B",
+        "condition":"Ground",
+        "plant_number":"pillow6",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"red"
+    },
+    {
+        "sample_id":"VEG04B_GC_leaf_pillow7_blue",
+        "mission":"VEG04B",
+        "condition":"Ground",
+        "plant_number":"pillow7",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"blue"
+    },
+    {
+        "sample_id":"VEG04B_GC_leaf_pillow8_blue",
+        "mission":"VEG04B",
+        "condition":"Ground",
+        "plant_number":"pillow8",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"blue"
+    },
+    {
+        "sample_id":"VEG04B_GC_leaf_pillow9_blue",
+        "mission":"VEG04B",
+        "condition":"Ground",
+        "plant_number":"pillow9",
+        "harvest_day":null,
+        "crop":"tokyo_bekana",
+        "Light":"blue"
     }
 ]

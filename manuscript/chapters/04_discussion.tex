@@ -13,7 +13,11 @@ Our joint PCA (Figure \ref{fig:meta_pca_biplot}) and classification analysis rev
 \section{The Power of Tabular Foundation Models (TabPFN)}
 A key methodological finding is the superior performance of the TabPFN tabular foundation model \cite{hollmann2025} over the traditional Random Forest model. Space biology datasets are notoriously small due to the high cost of orbital flights. Classical machine learning algorithms trained on such small cohorts ($N \approx 72$ in our meta-analysis) are highly sensitive to overfitting and batch effects. 
 
-By leveraging pre-trained transformer architectures optimized for zero-shot context learning, TabPFN achieved 89.6\% cross-validated accuracy, representing an improvement over the Random Forest (83.3\%).
+The accuracy figures this paragraph rested on (89.6\% and 83.3\%) were computed
+from data that did not come from the archive. Regenerated, the classifiers reach
+$0.572$ and $0.490$ --- at or below chance for a two-class problem --- so there
+is no performance difference here to interpret, and the benchmark figure is
+Gradient Boosting rather than TabPFN in any run without a license token.
 \textbf{The cross-species sentence that followed here has been withdrawn.} It
 reported that TabPFN ``generalized across species with 83.3\% accuracy'' under
 LOCOCV. No leave-one-crop-out split was implemented --- every

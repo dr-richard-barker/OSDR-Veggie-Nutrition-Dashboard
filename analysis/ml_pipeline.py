@@ -12,7 +12,7 @@ from scipy import stats
 from scipy.cluster import hierarchy
 from sklearn.decomposition import PCA
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
-from sklearn.model_selection import LeaveOneGroupOut
+from sklearn.model_selection import LeaveOneGroupOut, cross_val_predict
 from sklearn.metrics import accuracy_score, confusion_matrix, precision_recall_fscore_support, mean_squared_error, r2_score
 from sklearn.inspection import permutation_importance
 import warnings
@@ -40,8 +40,18 @@ def load_data(filepath):
 
 def perform_eda(df, out_dir):
     logging.info("Performing Exploratory Data Analysis...")
-    elements = ['Fe', 'K', 'Na', 'P', 'S', 'Zn', 'Ca', 'Mg', 'Mn', 'Cu']
-    biochemicals = ['phenolics', 'anthocyanins', 'orac']
+    # Feature set is limited to elements BOTH studies measured for EVERY sample,
+    # so dropna() cannot silently shrink the cohort:
+    #   - OSD-745 (lettuce) measured neither copper nor aluminium. Copper was in
+    #     the superseded literal data and is not in the archive at all.
+    #   - Boron is measured by both studies but is populated for only 12 of 24
+    #     lettuce samples, so including it would halve the lettuce cohort. It is
+    #     excluded here and remains available for single-crop analyses.
+    #   - Anthocyanin was assayed for OSD-745 only, so it cannot be a cross-crop
+    #     feature; it too remains available for lettuce-only analyses.
+    # These nine give complete coverage: 24 lettuce + 36 Tokyo Bekana = 60 rows.
+    elements = ['Fe', 'K', 'Na', 'P', 'S', 'Zn', 'Ca', 'Mg', 'Mn']
+    biochemicals = ['phenolics', 'orac']
     features = elements + biochemicals
     
     # 1. Correlation heatmap
@@ -290,19 +300,45 @@ def perform_regression(df, elements, biochemicals, out_dir):
             
         X = df_clean[elements]
         y = df_clean[target]
-        
+
+        # Scored out-of-fold, grouped by mission.
+        #
+        # This previously called rf.fit(X, y) and then rf.predict(X), scoring
+        # the model on the rows it was fit on. With 100 trees that approaches
+        # 1.0 on almost any input, which is why it reported R2 of 0.96-0.99.
+        # An in-sample R2 is not a generalisation estimate and must not be
+        # published as one. Grouping on mission matches the cross-validation
+        # used elsewhere in this repository and keeps samples from one mission
+        # out of the fold that scores them.
         rf = RandomForestRegressor(n_estimators=100, random_state=42)
-        rf.fit(X, y)
-        y_pred = rf.predict(X)
-        
+        groups = df_clean['mission']
+        n_groups = groups.nunique()
+        if n_groups < 2:
+            logging.warning("%s: only %d mission group(s); cannot cross-validate. "
+                            "No R2 reported.", target, n_groups)
+            metrics[target] = {
+                'R2': None, 'RMSE': None,
+                'note': f'Not cross-validatable: {n_groups} mission group(s).',
+            }
+            rf.fit(X, y)          # fit anyway so SHAP below still has a model
+            continue
+
+        y_pred = cross_val_predict(rf, X, y, cv=LeaveOneGroupOut(), groups=groups)
         r2 = r2_score(y, y_pred)
         rmse = np.sqrt(mean_squared_error(y, y_pred))
-        
+
         metrics[target] = {
             'R2': float(r2),
-            'RMSE': float(rmse)
+            'RMSE': float(rmse),
+            'scoring': 'out-of-fold, LeaveOneGroupOut on mission',
+            'n_samples': int(len(df_clean)),
+            'n_groups': int(n_groups),
         }
-        
+
+        # Refit on all rows for the SHAP explanation below. The explanation
+        # describes the fitted model; the score above is the out-of-fold one.
+        rf.fit(X, y)
+
         try:
             explainer = shap.TreeExplainer(rf)
             shap_values = explainer.shap_values(X)
@@ -391,8 +427,18 @@ def main():
         
     df = load_data(data_path)
     
-    elements = ['Fe', 'K', 'Na', 'P', 'S', 'Zn', 'Ca', 'Mg', 'Mn', 'Cu']
-    biochemicals = ['phenolics', 'anthocyanins', 'orac']
+    # Feature set is limited to elements BOTH studies measured for EVERY sample,
+    # so dropna() cannot silently shrink the cohort:
+    #   - OSD-745 (lettuce) measured neither copper nor aluminium. Copper was in
+    #     the superseded literal data and is not in the archive at all.
+    #   - Boron is measured by both studies but is populated for only 12 of 24
+    #     lettuce samples, so including it would halve the lettuce cohort. It is
+    #     excluded here and remains available for single-crop analyses.
+    #   - Anthocyanin was assayed for OSD-745 only, so it cannot be a cross-crop
+    #     feature; it too remains available for lettuce-only analyses.
+    # These nine give complete coverage: 24 lettuce + 36 Tokyo Bekana = 60 rows.
+    elements = ['Fe', 'K', 'Na', 'P', 'S', 'Zn', 'Ca', 'Mg', 'Mn']
+    biochemicals = ['phenolics', 'orac']
     features = elements + biochemicals
     
     perform_eda(df, out_figures)

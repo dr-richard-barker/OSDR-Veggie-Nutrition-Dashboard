@@ -41,7 +41,24 @@ Two leafy green crops were evaluated aboard the ISS across 5 independent spacefl
 Parallel ground controls were grown at Kennedy Space Center (KSC) in controlled environment chambers replicating ISS telemetry (temperature, relative humidity, $\text{CO}_2$) with a 24–72 h delay.
 
 ### Multi-Crop Findings & Data Provenance
-- **Authentic Open Science Data:** Datasets represent 60 authentic experimental samples across 5 spaceflight missions (VEG-01A, VEG-01B, VEG-03A, VEG-04A, VEG-04B) harmonized from NASA OSDR metadata (OSD-745, OSD-655, OSD-780) and peer-reviewed published experimental data (Khodadad et al., 2020; Bunchek et al., 2023).
+- **Open Science Data, read from the archive:** 24 lettuce samples (OSD-745; 11 flight, 13 ground) and 36 Tokyo Bekana (OSD-655; 18, 18), plus one Tokyo Bekana sample with a phenolic measurement but no elemental data, across 5 missions (VEG-01A, VEG-01B, VEG-03A, VEG-04A, VEG-04B). Downloaded by `data/fetch_osdr_data.py`; checksums and unit provenance in `data/raw/osdr_fetch_provenance.json`.
+
+> **⚠️ Correction, 13 October 2026.** Earlier versions of this repository
+> reported figures that did not come from NASA OSDR. `data/fetch_osdr_data.py`
+> returned values written as literals in its own source — first produced by
+> `numpy.random.normal()`, later replaced by hand-typed numbers that still did
+> not match the archive (36 lettuce samples against the archive's 24, calcium
+> about 3× the measured value, a copper column for a study that never measured
+> copper). The data layer now downloads and uses the archive and has no
+> synthetic fallback, and all derived results have been regenerated.
+>
+> **What changed:** classification accuracy fell from 83.3%/89.6% to 0.490/0.572
+> (at or below chance); the elemental→antioxidant regression, scored out-of-fold
+> rather than in-sample, gives R² of −0.90 and −2.16 (worse than predicting the
+> mean); of five analytes previously reported significant, only potassium and
+> sulfur survive FDR correction; and the cross-species (LOCOCV) claim is
+> withdrawn — no crop-based split was ever implemented. Full detail in
+> [CORRECTION_NOTE_2_ANTIOXIDANTS.md](https://github.com/dr-richard-barker/SpaceMineralAtlas/blob/main/veggie_correction/CORRECTION_NOTE_2_ANTIOXIDANTS.md).
 - **Nutritional Safety & Equivalence:** Spaceflight crops exhibited nutritional equivalence to ground controls, with inter-mission environmental conditions (water availability, harvest regimes) driving greater variation than microgravity alone.
 - **Machine Learning Cross-Validation:** In Leave-One-Mission-Out Cross-Validation (LOGO-CV), tree-based models and foundation model benchmarks evaluate cross-mission generalization on authentic spaceflight biological data.
 

@@ -150,13 +150,19 @@ def run_classifiers(df, features, out_figures, out_results):
             tab_f1s.append(f1)
             
         tabpfn_results = {
+            'model': 'TabPFN',
+            'is_tabpfn': True,
             'accuracy': float(np.mean(tab_accs)),
             'precision': float(np.mean(tab_precs)),
             'recall': float(np.mean(tab_recs)),
             'f1': float(np.mean(tab_f1s))
         }
     except Exception as e:
-        logger.info(f"TabPFN not available or gated without token ({e}). Running Gradient Boosting benchmark.")
+        logger.warning(
+            "TabPFN unavailable (%s). Falling back to GradientBoostingClassifier. "
+            "The result is recorded under the 'tabpfn' key for consumer "
+            "compatibility but is labelled model='GradientBoostingClassifier' "
+            "and is_tabpfn=False: it must not be reported as a TabPFN result.", e)
         gb = GradientBoostingClassifier(n_estimators=100, random_state=42)
         gb_accs, gb_precs, gb_recs, gb_f1s = [], [], [], []
         for train_idx, test_idx in logo.split(X, y, groups_mission):
@@ -169,6 +175,10 @@ def run_classifiers(df, features, out_figures, out_results):
             gb_recs.append(rec)
             gb_f1s.append(f1)
         tabpfn_results = {
+            # Key kept for consumer compatibility; the label is what is true.
+            'model': 'GradientBoostingClassifier',
+            'is_tabpfn': False,
+            'fallback_reason': f'TabPFN unavailable: {e}',
             'accuracy': float(np.mean(gb_accs)),
             'precision': float(np.mean(gb_precs)),
             'recall': float(np.mean(gb_recs)),
@@ -259,10 +269,25 @@ def perform_meta_stats(df, features, out_results):
 
 def perform_microbiology_analysis(df, out_figures):
     logger.info("Analyzing microbiological counts...")
-    
+
+    # The superseded literal dataset carried a per-sample APC and YMC value for
+    # every nutrient sample. Those were not measurements of these plants:
+    # microbial counts come from OSD-780, a separate study with its own samples,
+    # and cannot be joined to a nutrient sample row. Rather than fabricate the
+    # join, this analysis is skipped when the columns are absent.
+    required = ['micro_apc', 'micro_ymc']
+    missing = [c for c in required if c not in df.columns]
+    if missing:
+        logger.warning(
+            "Skipping microbiology analysis: %s not present. Per-sample microbial "
+            "counts do not exist in the archive for these studies; OSD-780 is a "
+            "separate study and is not joinable to these nutrient samples.",
+            ", ".join(missing))
+        return None
+
     # Filter valid rows
     micro_df = df[['crop', 'condition', 'micro_apc', 'micro_ymc']].dropna()
-    
+
     plt.figure(figsize=(12, 5))
     
     # 1. APC Boxplot
@@ -319,12 +344,47 @@ def main():
         
     df = load_data(data_path)
     
-    elements = ['Fe', 'K', 'Na', 'P', 'S', 'Zn', 'Ca', 'Mg', 'Mn', 'Cu']
-    biochemicals = ['phenolics', 'anthocyanins', 'orac']
+    # Feature set is limited to elements BOTH studies measured for EVERY sample,
+    # so dropna() cannot silently shrink the cohort:
+    #   - OSD-745 (lettuce) measured neither copper nor aluminium. Copper was in
+    #     the superseded literal data and is not in the archive at all.
+    #   - Boron is measured by both studies but is populated for only 12 of 24
+    #     lettuce samples, so including it would halve the lettuce cohort. It is
+    #     excluded here and remains available for single-crop analyses.
+    #   - Anthocyanin was assayed for OSD-745 only, so it cannot be a cross-crop
+    #     feature; it too remains available for lettuce-only analyses.
+    # These nine give complete coverage: 24 lettuce + 36 Tokyo Bekana = 60 rows.
+    elements = ['Fe', 'K', 'Na', 'P', 'S', 'Zn', 'Ca', 'Mg', 'Mn']
+    biochemicals = ['phenolics', 'orac']
     features = elements + biochemicals
-    
-    pca_res = perform_meta_pca(df, features, out_figures, out_results)
-    clf_res = run_classifiers(df, features, out_figures, out_results)
+
+    # Real assay coverage is incomplete: the ORAC and phenolic assays did not
+    # run on every sample that the ICP-OES assay covered. The superseded literal
+    # dataset had no gaps because every value in it was invented, so nothing
+    # downstream ever had to handle missingness.
+    #
+    # Rows with an incomplete feature vector are DROPPED for the multivariate
+    # steps, and the drop is reported. They are not imputed: filling a gap with
+    # a modelled value would put numbers back into this pipeline that no
+    # instrument produced, which is the failure this repository is recovering
+    # from. Per-analyte statistics further down use each analyte's own coverage
+    # and are unaffected.
+    complete = df.dropna(subset=features)
+    dropped = len(df) - len(complete)
+    if dropped:
+        by_crop = (df[df[features].isna().any(axis=1)]
+                   .groupby('crop').size().to_dict())
+        logger.warning(
+            "Multivariate steps use %d of %d rows; %d dropped for incomplete "
+            "feature vectors (by crop: %s). Not imputed by design.",
+            len(complete), len(df), dropped, by_crop)
+    else:
+        logger.info("Multivariate steps use all %d rows.", len(complete))
+
+    pca_res = perform_meta_pca(complete, features, out_figures, out_results)
+    clf_res = run_classifiers(complete, features, out_figures, out_results)
+    clf_res['n_samples_used'] = int(len(complete))
+    clf_res['n_samples_dropped_incomplete'] = int(dropped)
     stats_res = perform_meta_stats(df, features, out_results)
     micro_res = perform_microbiology_analysis(df, out_figures)
     
