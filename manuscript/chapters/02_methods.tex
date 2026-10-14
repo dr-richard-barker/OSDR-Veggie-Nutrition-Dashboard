@@ -40,7 +40,14 @@ where $C = \frac{1}{n-1} X^T X$. The first two principal components were extract
 To evaluate spaceflight signatures across crops, we trained classifiers to distinguish Flight vs. Ground Control samples based on elements and biochemicals. We implemented two validation designs:
 \begin{itemize}
     \item \textbf{Leave-One-Mission-Out Cross-Validation (LOMOCV):} The model was iteratively trained on four spaceflight missions (e.g., VEG-01A, VEG-01B, VEG-03A, VEG-04A) and validated on the remaining mission (e.g., VEG-04B), preventing overfitting to mission-specific microenvironments.
-    \item \textbf{Leave-One-Crop-Out Cross-Validation (LOCOCV):} To test if spaceflight physiological signatures are universal or crop-specific, the models were trained entirely on one species (e.g., Lettuce, OSD-745) and evaluated on the other (e.g., Mizuna, OSD-655).
+    \item \textbf{Leave-One-Crop-Out Cross-Validation (LOCOCV): not performed.}
+          This item previously described training on one species and evaluating
+          on the other. No such split was implemented: every
+          \texttt{LeaveOneGroupOut} call in \texttt{analysis/} groups on mission,
+          not crop. The item is kept in place, rather than deleted, so that
+          readers of the earlier version can see what was claimed and that it
+          was withdrawn. See Results for the cross-crop result obtained on the
+          real data elsewhere.
 \end{itemize}
 We trained both Random Forest classifiers \cite{breiman2001} and TabPFN tabular foundation models \cite{hollmann2025} under these designs.
 

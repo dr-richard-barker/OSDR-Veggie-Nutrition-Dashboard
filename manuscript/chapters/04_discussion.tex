@@ -13,7 +13,16 @@ Our joint PCA (Figure \ref{fig:meta_pca_biplot}) and classification analysis rev
 \section{The Power of Tabular Foundation Models (TabPFN)}
 A key methodological finding is the superior performance of the TabPFN tabular foundation model \cite{hollmann2025} over the traditional Random Forest model. Space biology datasets are notoriously small due to the high cost of orbital flights. Classical machine learning algorithms trained on such small cohorts ($N \approx 72$ in our meta-analysis) are highly sensitive to overfitting and batch effects. 
 
-By leveraging pre-trained transformer architectures optimized for zero-shot context learning, TabPFN achieved 89.6\% cross-validated accuracy, representing a significant improvement over the Random Forest (83.3\%). More importantly, under Leave-One-Crop-Out cross-validation (LOCOCV), TabPFN generalized across species with 83.3\% accuracy. This demonstrates that tabular foundation models are exceptionally well-suited to small, high-dimensional datasets in space biology and clinical medicine.
+By leveraging pre-trained transformer architectures optimized for zero-shot context learning, TabPFN achieved 89.6\% cross-validated accuracy, representing an improvement over the Random Forest (83.3\%).
+\textbf{The cross-species sentence that followed here has been withdrawn.} It
+reported that TabPFN ``generalized across species with 83.3\% accuracy'' under
+LOCOCV. No leave-one-crop-out split was implemented --- every
+\texttt{LeaveOneGroupOut} call in \texttt{analysis/} groups on mission --- and
+when the comparison is run on the real OSDR data, cross-crop transfer falls
+\emph{below} a stratified-dummy baseline (balanced accuracy 0.486 versus 0.600).
+Whether tabular foundation models suit small space-biology datasets is therefore
+not something this study is positioned to demonstrate, and the claim that it
+does is withdrawn with it.
 
 \section{Microbiological Safety and Crew Hygiene}
 Comparing microbial safety counts between OSD-745 (lettuce) and OSD-780 (Mizuna) confirmed that both crops were safe to eat. Leaf surface bacterial and fungal loads remained well below food safety thresholds. The slightly elevated microbial counts observed in flight (Figure \ref{fig:meta_microbiology}) highlight the microenvironmental challenges inside closed space cabins, where higher humidity and lower boundary-layer air convection facilitate localized microbe colonization. This emphasizes the need for continuous cabin sanitization and plant washing protocols before consumption.

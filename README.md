@@ -21,7 +21,7 @@
 ## 🔬 Key Outputs
 
 - 🌐 **[Interactive CoSE Dashboard](https://dr-richard-barker.github.io/OSDR-Veggie-Nutrition-Dashboard/)** — Multi-crop data explorer, ISS photography gallery, food safety microbiology, and ML benchmarking
-- 📊 **Meta-Analysis ML Pipeline** — Joint PCA, Leave-One-Mission-Out CV, Leave-One-Crop-Out Cross-Validation (LOCOCV), TabPFN foundation model benchmarking, and Gini/SHAP feature importance
+- 📊 **Meta-Analysis ML Pipeline** — Joint PCA, Leave-One-Mission-Out CV, TabPFN foundation model benchmarking, and Gini/SHAP feature importance. *(Leave-One-Crop-Out CV was previously listed here and has been withdrawn: no crop-based split is implemented — every `LeaveOneGroupOut` in `analysis/` groups on mission. On the real OSDR data, cross-crop transfer performs below a stratified-dummy baseline.)*
 - 📄 **LaTeX Manuscript** — Publication-ready PDF ([OSDR_Veggie_Nutrition_Analysis.pdf](manuscript/OSDR_Veggie_Nutrition_Analysis.pdf)) styled under the Center of Space Exploration (CoSE) design system
 
 ---
@@ -92,7 +92,7 @@ OSDR-Veggie-Nutrition-Dashboard/
 │   └── images/                       # ISS Veggie photographs
 │
 ├── analysis/                          # Machine learning pipeline
-│   ├── meta_ml_pipeline.py           # Joint PCA, RF, TabPFN & LOCOCV script
+│   ├── meta_ml_pipeline.py           # Joint PCA, RF, TabPFN; LOMOCV only (groups on mission)
 │   ├── requirements.txt              # Python dependencies
 │   ├── figures/                      # High-res publication plots (300 DPI)
 │   ├── results/                      # JSON summaries for dashboard

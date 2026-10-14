@@ -63,7 +63,7 @@
       "@id": "analysis/meta_ml_pipeline.py",
       "@type": ["File", "SoftwareSourceCode"],
       "name": "Multi-Crop ML Meta-Analysis Pipeline",
-      "description": "Python script performing joint PCA, Random Forest and TabPFN classification (LOMOCV and LOCOCV), SHAP feature importance, and non-parametric statistical testing with FDR/Bonferroni corrections.",
+      "description": "Python script performing joint PCA, Random Forest and TabPFN classification (LOMOCV only: LeaveOneGroupOut groups on mission; no leave-one-crop-out split is implemented), SHAP feature importance, and non-parametric statistical testing with FDR/Bonferroni corrections.",
       "programmingLanguage": {"@id": "https://www.python.org/"},
       "input": [{"@id": "data/processed/veggie_meta_master.csv"}],
       "output": [{"@id": "analysis/results/meta_ml_results.json"}]

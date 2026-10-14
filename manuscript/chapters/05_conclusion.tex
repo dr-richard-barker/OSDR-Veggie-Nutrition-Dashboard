@@ -5,7 +5,17 @@ The cultivation of fresh crops in microgravity is a critical milestone for long-
 
 In this work, we developed a comprehensive machine learning and meta-analysis pipeline to study Lettuce and Mizuna mustard grown aboard the ISS. Our multivariate approach, driven by Random Forest classification and interpreted via SHAP feature importance, successfully demonstrated that space-grown leafy greens exhibit a conserved multielemental fingerprint. Crucially, while these physiological shifts were significant, they did not compromise the safety or the overall nutritional value of the crops, reaffirming the viability of the Veggie platform.
 
-Furthermore, we established that the tabular foundation model TabPFN (Nature 2025) is exceptionally well-suited for small space biology datasets, achieving 89.6\% cross-validated accuracy and showing strong cross-species generalizability (83.3\%) under LOCOCV. This validates the existence of a universal spaceflight physiological signature across plant families.
+\textbf{The cross-species conclusion has been withdrawn.} It previously stated
+that TabPFN showed ``strong cross-species generalizability (83.3\%) under
+LOCOCV'', and that this ``validates the existence of a universal spaceflight
+physiological signature across plant families''.
+
+No leave-one-crop-out cross-validation was performed in this study. Run on the
+real OSDR elemental data, cross-crop transfer performs below a stratified-dummy
+baseline (balanced accuracy 0.486 against 0.600), so the data support the
+opposite reading: the flight signature does not transfer between these two
+species. The remaining TabPFN comparison is a within-mission result and should
+not be read as evidence of cross-species generality.
 
 Beyond the scientific findings, this project actively championed the principles of Open Science. By aggregating, cleaning, and publishing a harmonized meta-analysis matrix, we have enhanced the FAIR properties of the original OSDR data. The accompanying interactive web dashboard democratizes access to these complex machine learning insights, allowing researchers, agronomists, and the public to visually explore the data.
 

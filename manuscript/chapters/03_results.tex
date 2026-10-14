@@ -28,7 +28,28 @@ We evaluated classifiers to distinguish FLT vs. GC using the merged 13-feature d
 
 As shown in Figure \ref{fig:meta_model_comparison}, the TabPFN tabular foundation model achieved a cross-validated accuracy of 89.6\% (Recall: 91.7\%, F1: 89.9\%), outperforming the traditional Random Forest model (Accuracy: 83.3\%, Recall: 86.1\%, F1: 83.2\%). 
 
-Furthermore, to test cross-species generalizability, we performed a Leave-One-Crop-Out Cross-Validation (LOCOCV). When trained entirely on Lettuce (OSD-745) and evaluated on Mizuna (OSD-655), the Random Forest model achieved 79.2\% accuracy, while TabPFN reached 83.3\% accuracy. This high cross-species generalizability validates the existence of a universal microgravity-induced physiological signature.
+\textbf{The cross-species generalizability claim has been withdrawn.} This
+paragraph previously reported that under Leave-One-Crop-Out Cross-Validation
+(LOCOCV), a Random Forest trained on lettuce and evaluated on the second crop
+reached 79.2\% accuracy and TabPFN 83.3\%, and concluded that this ``validates
+the existence of a universal microgravity-induced physiological signature.''
+
+No leave-one-crop-out cross-validation was ever run. Every
+\texttt{LeaveOneGroupOut} call in \texttt{analysis/} groups on mission:
+\texttt{ml\_pipeline.py} line 181 (\texttt{groups = df['mission']}),
+\texttt{meta\_ml\_pipeline.py} line 97
+(\texttt{groups\_mission = df['mission'].values}) and
+\texttt{tabpfn\_pipeline.py} line 162. No crop-based split exists anywhere in
+the codebase, and the figures 79.2\% and 83.3\% appear in no result file.
+
+The analysis has since been performed on the real OSDR elemental data, in the
+SpaceMineralAtlas study. Grouping on crop across 60 samples, cross-crop transfer
+performs \emph{below} a stratified-dummy baseline: balanced accuracy 0.486 for a
+random forest and 0.493 for $L_2$ logistic regression, against a baseline of
+0.600 --- margins of $-0.113$ and $-0.107$ respectively. Training on one crop
+and testing on the other is therefore worse than chance, which is the opposite
+of the conclusion withdrawn above. A universal cross-species signature is not
+supported by these data.
 
 \section{Universal Feature Importance \& SHAP Interpretation}
 Shapley Additive Explanations (SHAP) and Gini feature importance were extracted from the joint classifiers to identify the primary drivers of the spaceflight signature.
