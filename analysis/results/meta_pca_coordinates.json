@@ -195,248 +195,248 @@
     "PC1":0.6687581343,
     "PC2":3.2938789873,
     "condition":"Flight",
-    "crop":"tokyo_bekana",
+    "crop":"mizuna",
     "mission":"VEG04A",
     "sample_id":"VEG04A_F_leaf_pillow11_blue"
   },
   {
     "PC1":-0.8455164531,
     "PC2":2.2669851807,
-    "condition":null,
-    "crop":null,
-    "mission":null,
-    "sample_id":null
+    "condition":"Flight",
+    "crop":"mizuna",
+    "mission":"VEG04A",
+    "sample_id":"VEG04A_F_leaf_pillow1_red"
   },
   {
     "PC1":-1.2622672504,
     "PC2":1.8938060621,
     "condition":"Flight",
-    "crop":"tokyo_bekana",
+    "crop":"mizuna",
     "mission":"VEG04A",
-    "sample_id":"VEG04A_F_leaf_pillow1_red"
+    "sample_id":"VEG04A_F_leaf_pillow2_red"
   },
   {
     "PC1":0.0813369369,
     "PC2":4.1935500299,
     "condition":"Flight",
-    "crop":"tokyo_bekana",
+    "crop":"mizuna",
     "mission":"VEG04A",
-    "sample_id":"VEG04A_F_leaf_pillow2_red"
+    "sample_id":"VEG04A_F_leaf_pillow4_red"
   },
   {
     "PC1":-0.8775926552,
     "PC2":0.725224579,
-    "condition":null,
-    "crop":null,
-    "mission":null,
-    "sample_id":null
+    "condition":"Flight",
+    "crop":"mizuna",
+    "mission":"VEG04A",
+    "sample_id":"VEG04A_F_leaf_pillow6_red"
   },
   {
     "PC1":-1.6079028662,
     "PC2":-0.1411633988,
     "condition":"Flight",
-    "crop":"tokyo_bekana",
+    "crop":"mizuna",
     "mission":"VEG04A",
-    "sample_id":"VEG04A_F_leaf_pillow4_red"
+    "sample_id":"VEG04A_F_leaf_pillow7_blue"
   },
   {
     "PC1":-0.4028233613,
     "PC2":0.7427672663,
-    "condition":"Flight",
-    "crop":"tokyo_bekana",
+    "condition":"Ground",
+    "crop":"mizuna",
     "mission":"VEG04A",
-    "sample_id":"VEG04A_F_leaf_pillow6_red"
+    "sample_id":"VEG04A_GC_leaf_pillow12_blue"
   },
   {
     "PC1":-0.7360687105,
     "PC2":0.5293677805,
-    "condition":"Flight",
-    "crop":"tokyo_bekana",
+    "condition":"Ground",
+    "crop":"mizuna",
     "mission":"VEG04A",
-    "sample_id":"VEG04A_F_leaf_pillow7_blue"
+    "sample_id":"VEG04A_GC_leaf_pillow3_red"
   },
   {
     "PC1":-0.5167949879,
     "PC2":0.9701491435,
     "condition":"Ground",
-    "crop":"tokyo_bekana",
+    "crop":"mizuna",
     "mission":"VEG04A",
-    "sample_id":"VEG04A_GC_leaf_pillow12_blue"
+    "sample_id":"VEG04A_GC_leaf_pillow5_red"
   },
   {
     "PC1":-1.8556685729,
     "PC2":-1.2836661854,
     "condition":"Ground",
-    "crop":"tokyo_bekana",
+    "crop":"mizuna",
     "mission":"VEG04A",
-    "sample_id":"VEG04A_GC_leaf_pillow3_red"
+    "sample_id":"VEG04A_GC_leaf_pillow6_red"
   },
   {
     "PC1":-1.5545822945,
     "PC2":-0.2807803337,
     "condition":"Ground",
-    "crop":"tokyo_bekana",
+    "crop":"mizuna",
     "mission":"VEG04A",
-    "sample_id":"VEG04A_GC_leaf_pillow5_red"
+    "sample_id":"VEG04A_GC_leaf_pillow7_blue"
   },
   {
     "PC1":-1.2867945972,
     "PC2":0.553545038,
     "condition":"Ground",
-    "crop":"tokyo_bekana",
+    "crop":"mizuna",
     "mission":"VEG04A",
-    "sample_id":"VEG04A_GC_leaf_pillow6_red"
+    "sample_id":"VEG04A_GC_leaf_pillow8_blue"
   },
   {
     "PC1":-2.5201978541,
     "PC2":0.8580240876,
-    "condition":"Ground",
-    "crop":"tokyo_bekana",
-    "mission":"VEG04A",
-    "sample_id":"VEG04A_GC_leaf_pillow7_blue"
+    "condition":"Flight",
+    "crop":"mizuna",
+    "mission":"VEG04B",
+    "sample_id":"VEG04B_F_leaf_pillow10_blue"
   },
   {
     "PC1":-1.87627489,
     "PC2":0.2666838327,
-    "condition":"Ground",
-    "crop":"tokyo_bekana",
-    "mission":"VEG04A",
-    "sample_id":"VEG04A_GC_leaf_pillow8_blue"
+    "condition":"Flight",
+    "crop":"mizuna",
+    "mission":"VEG04B",
+    "sample_id":"VEG04B_F_leaf_pillow1_red"
   },
   {
     "PC1":-1.6371379385,
     "PC2":1.4755401431,
     "condition":"Flight",
-    "crop":"tokyo_bekana",
+    "crop":"mizuna",
     "mission":"VEG04B",
-    "sample_id":"VEG04B_F_leaf_pillow10_blue"
+    "sample_id":"VEG04B_F_leaf_pillow3_red"
   },
   {
     "PC1":-1.9227570322,
     "PC2":-1.0346928984,
-    "condition":null,
-    "crop":null,
-    "mission":null,
-    "sample_id":null
+    "condition":"Flight",
+    "crop":"mizuna",
+    "mission":"VEG04B",
+    "sample_id":"VEG04B_F_leaf_pillow4_red"
   },
   {
     "PC1":-2.0512736931,
     "PC2":1.172576844,
-    "condition":null,
-    "crop":null,
-    "mission":null,
-    "sample_id":null
+    "condition":"Flight",
+    "crop":"mizuna",
+    "mission":"VEG04B",
+    "sample_id":"VEG04B_F_leaf_pillow6_red"
   },
   {
     "PC1":-2.1395243635,
     "PC2":2.498129387,
     "condition":"Flight",
-    "crop":"tokyo_bekana",
-    "mission":"VEG04B",
-    "sample_id":"VEG04B_F_leaf_pillow1_red"
-  },
-  {
-    "PC1":-1.9134434603,
-    "PC2":3.8006485447,
-    "condition":null,
-    "crop":null,
-    "mission":null,
-    "sample_id":null
-  },
-  {
-    "PC1":-2.3363437036,
-    "PC2":-0.6990227358,
-    "condition":"Flight",
-    "crop":"tokyo_bekana",
-    "mission":"VEG04B",
-    "sample_id":"VEG04B_F_leaf_pillow3_red"
-  },
-  {
-    "PC1":-1.9607095299,
-    "PC2":0.9165703757,
-    "condition":"Flight",
-    "crop":"tokyo_bekana",
-    "mission":"VEG04B",
-    "sample_id":"VEG04B_F_leaf_pillow4_red"
-  },
-  {
-    "PC1":-2.0239872948,
-    "PC2":0.3076770395,
-    "condition":null,
-    "crop":null,
-    "mission":null,
-    "sample_id":null
-  },
-  {
-    "PC1":-1.9410224043,
-    "PC2":0.4849451147,
-    "condition":"Flight",
-    "crop":"tokyo_bekana",
-    "mission":"VEG04B",
-    "sample_id":"VEG04B_F_leaf_pillow6_red"
-  },
-  {
-    "PC1":-2.1777108612,
-    "PC2":-0.1120379549,
-    "condition":"Flight",
-    "crop":"tokyo_bekana",
+    "crop":"mizuna",
     "mission":"VEG04B",
     "sample_id":"VEG04B_F_leaf_pillow8_blue"
   },
   {
-    "PC1":-1.9414314466,
-    "PC2":-0.504504193,
+    "PC1":-1.9134434603,
+    "PC2":3.8006485447,
     "condition":"Flight",
-    "crop":"tokyo_bekana",
+    "crop":"mizuna",
     "mission":"VEG04B",
     "sample_id":"VEG04B_F_leaf_pillow9_blue"
+  },
+  {
+    "PC1":-2.3363437036,
+    "PC2":-0.6990227358,
+    "condition":"Ground",
+    "crop":"mizuna",
+    "mission":"VEG04B",
+    "sample_id":"VEG04B_GC_leaf_pillow10_blue"
+  },
+  {
+    "PC1":-1.9607095299,
+    "PC2":0.9165703757,
+    "condition":"Ground",
+    "crop":"mizuna",
+    "mission":"VEG04B",
+    "sample_id":"VEG04B_GC_leaf_pillow11_blue"
+  },
+  {
+    "PC1":-2.0239872948,
+    "PC2":0.3076770395,
+    "condition":"Ground",
+    "crop":"mizuna",
+    "mission":"VEG04B",
+    "sample_id":"VEG04B_GC_leaf_pillow12_blue"
+  },
+  {
+    "PC1":-1.9410224043,
+    "PC2":0.4849451147,
+    "condition":"Ground",
+    "crop":"mizuna",
+    "mission":"VEG04B",
+    "sample_id":"VEG04B_GC_leaf_pillow1_red"
+  },
+  {
+    "PC1":-2.1777108612,
+    "PC2":-0.1120379549,
+    "condition":"Ground",
+    "crop":"mizuna",
+    "mission":"VEG04B",
+    "sample_id":"VEG04B_GC_leaf_pillow2_red"
+  },
+  {
+    "PC1":-1.9414314466,
+    "PC2":-0.504504193,
+    "condition":"Ground",
+    "crop":"mizuna",
+    "mission":"VEG04B",
+    "sample_id":"VEG04B_GC_leaf_pillow3_red"
   },
   {
     "PC1":-2.3101642508,
     "PC2":0.0045626831,
     "condition":"Ground",
-    "crop":"tokyo_bekana",
+    "crop":"mizuna",
     "mission":"VEG04B",
-    "sample_id":"VEG04B_GC_leaf_pillow10_blue"
+    "sample_id":"VEG04B_GC_leaf_pillow4_red"
   },
   {
     "PC1":-2.4162497397,
     "PC2":-0.7055606521,
     "condition":"Ground",
-    "crop":"tokyo_bekana",
+    "crop":"mizuna",
     "mission":"VEG04B",
-    "sample_id":"VEG04B_GC_leaf_pillow11_blue"
+    "sample_id":"VEG04B_GC_leaf_pillow5_red"
   },
   {
     "PC1":-2.1477846301,
     "PC2":-0.6335496927,
     "condition":"Ground",
-    "crop":"tokyo_bekana",
+    "crop":"mizuna",
     "mission":"VEG04B",
-    "sample_id":"VEG04B_GC_leaf_pillow12_blue"
+    "sample_id":"VEG04B_GC_leaf_pillow6_red"
   },
   {
     "PC1":-1.8149961756,
     "PC2":0.1083478991,
     "condition":"Ground",
-    "crop":"tokyo_bekana",
+    "crop":"mizuna",
     "mission":"VEG04B",
-    "sample_id":"VEG04B_GC_leaf_pillow1_red"
+    "sample_id":"VEG04B_GC_leaf_pillow7_blue"
   },
   {
     "PC1":-2.1930879311,
     "PC2":0.725393275,
     "condition":"Ground",
-    "crop":"tokyo_bekana",
+    "crop":"mizuna",
     "mission":"VEG04B",
-    "sample_id":"VEG04B_GC_leaf_pillow2_red"
+    "sample_id":"VEG04B_GC_leaf_pillow8_blue"
   },
   {
     "PC1":-2.278287952,
     "PC2":0.7391667009,
     "condition":"Ground",
-    "crop":"tokyo_bekana",
+    "crop":"mizuna",
     "mission":"VEG04B",
-    "sample_id":"VEG04B_GC_leaf_pillow3_red"
+    "sample_id":"VEG04B_GC_leaf_pillow9_blue"
   }
 ]

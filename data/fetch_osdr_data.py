@@ -28,8 +28,10 @@ What this version does differently
   and YMC value for every nutrient sample. Microbial counts come from OSD-780, a
   different study with different samples; they were never per-sample measurements
   of these plants.
-* **OSD-655 is Tokyo Bekana.** The previous version labelled it "mizuna"
-  throughout; mizuna is a different *Brassica rapa* cultivar group.
+* **OSD-655 is mizuna** (*Brassica rapa* var. *japonica*). Its OSDR study
+  record describes VEG-04A/B as "two flight tests ... growing mizuna mustard".
+  A 13 Oct 2026 revision relabelled it Tokyo Bekana without a source; reverted
+  14 Oct 2026.
 
 Usage:
     python3 data/fetch_osdr_data.py
@@ -65,7 +67,7 @@ TIMEOUT_S = 120
 
 METADATA_STUDIES = ["OSD-745", "OSD-655", "OSD-780"]
 
-# OSD-780 is the microbial food-safety study for the VEG-04 (Tokyo Bekana)
+# OSD-780 is the microbial food-safety study for the VEG-04 (mizuna)
 # missions. It is fetched as its own table rather than as columns on the
 # nutrient rows, because it is not a per-sample measurement of those rows:
 #
@@ -117,8 +119,8 @@ STUDIES = {
         },
     },
     "655": {
-        "osd": "OSD-655", "crop": "tokyo_bekana", "species": "Brassica rapa",
-        "cultivar": "Tokyo Bekana", "reference": "Bunchek et al. 2024",
+        "osd": "OSD-655", "crop": "mizuna", "species": "Brassica rapa",
+        "cultivar": "Mizuna", "reference": "Bunchek et al. 2024",
         "assays": {
             "elemental": ("ICPOES", "TRANSFORMED"),
             "orac": ("Oxygen Radical Absorbance Capacity", "TRANSFORMED"),

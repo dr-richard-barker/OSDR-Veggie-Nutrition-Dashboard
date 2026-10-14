@@ -101,19 +101,18 @@
                     of in-sample, gives R² of −0.90 and −2.16, worse than predicting the mean; and
                     of five analytes previously reported significant, only potassium and sulfur
                     survive FDR correction.</p>
-                    <p>Cohort as fetched: 24 lettuce (OSD-745; 11 flight, 13 ground) and 36 Tokyo
-                    Bekana (OSD-655; 18, 18). OSD-655 is Tokyo Bekana, not mizuna. Full detail in
+                    <p>Cohort as fetched: 24 lettuce (OSD-745; 11 flight, 13 ground) and 36 mizuna (OSD-655; 18, 18). Full detail in
                     the <a href="https://github.com/dr-richard-barker/SpaceMineralAtlas/blob/main/veggie_correction/CORRECTION_NOTE_2_ANTIOXIDANTS.md"
                     target="_blank" rel="noopener">correction note</a>.</p>
                 </div>
             </div>
             <div class="hero">
                 <h2>Multi-Crop Meta-Analysis of Spaceflight-Grown Crops on the ISS</h2>
-                <p>Synthesizing data from NASA OSDR studies OSD-745 (Lettuce), OSD-655 (Tokyo Bekana), and OSD-780 (Food Safety Microbiology) grown in Veggie hardware.</p>
+                <p>Synthesizing data from NASA OSDR studies OSD-745 (Lettuce), OSD-655 (Mizuna), and OSD-780 (Food Safety Microbiology) grown in Veggie hardware.</p>
                 <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
                     <a href="https://doi.org/10.3389/fpls.2020.00199" target="_blank" class="btn btn-primary">Khodadad et al. (2020) [Lettuce]</a>
-                    <a href="https://doi.org/10.1080/17429145.2023.2292220" target="_blank" class="btn btn-primary">Bunchek et al. (2024) [Tokyo Bekana]</a>
-                    <a href="https://osdr.nasa.gov/bio/repo/data/studies/OSD-655" target="_blank" class="btn btn-secondary">OSD-655 Study (Tokyo Bekana)</a>
+                    <a href="https://doi.org/10.1080/17429145.2023.2292220" target="_blank" class="btn btn-primary">Bunchek et al. (2024) [Mizuna]</a>
+                    <a href="https://osdr.nasa.gov/bio/repo/data/studies/OSD-655" target="_blank" class="btn btn-secondary">OSD-655 Study (Mizuna)</a>
                     <a href="https://osdr.nasa.gov/bio/repo/data/studies/OSD-780" target="_blank" class="btn btn-secondary">OSD-780 Study (Microbiology)</a>
                 </div>
             </div>
@@ -130,7 +129,7 @@
                     <p>Repetitive cut-and-come-again canopy harvesting trial.</p>
                 </div>
                 <div class="card mission-card">
-                    <h3>VEG-04A &amp; 04B (Tokyo Bekana)</h3>
+                    <h3>VEG-04A &amp; 04B (Mizuna)</h3>
                     <p><strong>Dates:</strong> 2019-2020 | SpaceX-18/19</p>
                     <p>Pick-and-eat space crop production, sensory, and microbiological safety testing.</p>
                 </div>
@@ -147,7 +146,7 @@
                 </div>
                 <div class="card stat-card">
                     <h2>60</h2>
-                    <p>Samples with elemental data<br><span style="font-size:0.75em;opacity:0.7">24 lettuce + 36 Tokyo Bekana</span></p>
+                    <p>Samples with elemental data<br><span style="font-size:0.75em;opacity:0.7">24 lettuce + 36 mizuna</span></p>
                 </div>
             </div>
         </section>
@@ -168,7 +167,7 @@
                     <select id="crop-select">
                         <option value="all">All Crops (Meta-Analysis)</option>
                         <option value="lettuce">Lettuce (OSD-745)</option>
-                        <option value="tokyo_bekana">Tokyo Bekana (OSD-655)</option>
+                        <option value="mizuna">Mizuna (OSD-655)</option>
                     </select>
                 </div>
                 <div class="control-group">
@@ -212,7 +211,7 @@
                     <span class="cond-badge cond-ground">OSD-780 (VEG-04 only)</span>
                 </div>
                 <p>Aerobic Plate Counts (APC) and Yeast &amp; Mould Counts (YMC) on
-                <strong>Tokyo Bekana leaf tissue</strong>, from OSD-780. Plotted as
+                <strong>Mizuna leaf tissue</strong>, from OSD-780. Plotted as
                 log<sub>10</sub>(CFU/g + 1): raw counts span zero to 1.7×10<sup>7</sup> CFU/g
                 and over half the ground samples are exactly zero.</p>
                 <div class="data-notice">
@@ -314,18 +313,18 @@
                         <h3>PCA of Nutritional Profiles</h3>
                         <span class="crop-badge crop-lettuce">Meta-Analysis (OSD-745 & OSD-655)</span>
                     </div>
-                    <p>Biplot showing species separation (PC1, 42.0% variance) and conserved microgravity response (PC2, 25.0% variance). Hover over points for sample metadata.</p>
+                    <p>Joint PCA of lettuce and mizuna on the 11 features with complete coverage (55 samples). PC1 separates the two crops. Lettuce groups by mission rather than by flight or ground; mizuna flight samples tend to sit higher on PC2, with overlap. Hover over points for sample metadata.</p>
                     <div class="plot-container">
                         <div id="pca-plot"></div>
                     </div>
                 </div>
                 <div class="card plot-card">
                     <div class="card-header">
-                        <h3>Universal Feature Importance</h3>
+                        <h3>Feature Importance</h3>
                         <span class="crop-badge crop-mizuna">Random Forest</span>
                     </div>
-                    <p>Mean Decrease Impurity (MDI) across the nine elements measured for every
-                    sample in both studies. Regenerated from the archive data, the ranking is
+                    <p>Mean Decrease Impurity (MDI) across the 11 features the classifier uses (nine
+                    elements plus phenolics and ORAC). Regenerated from the archive data, the ranking is
                     Potassium, Sodium and Sulfur. Because the classifier itself performs at
                     chance (see the metrics above), this shows what the model attended to — it
                     does not identify validated spaceflight discriminators.</p>
@@ -374,15 +373,15 @@
                                 <div class="metric-title">Accuracy</div>
                             </div>
                             <div class="metric-card">
-                                <div class="metric-num" id="metric-prec">80.6%</div>
+                                <div class="metric-num" id="metric-prec">&mdash;</div>
                                 <div class="metric-title">Precision</div>
                             </div>
                             <div class="metric-card">
-                                <div class="metric-num" id="metric-rec">86.1%</div>
+                                <div class="metric-num" id="metric-rec">&mdash;</div>
                                 <div class="metric-title">Recall</div>
                             </div>
                             <div class="metric-card">
-                                <div class="metric-num" id="metric-f1">83.2%</div>
+                                <div class="metric-num" id="metric-f1">&mdash;</div>
                                 <div class="metric-title">F1 Score</div>
                             </div>
                         </div>
@@ -421,11 +420,11 @@
                     <h3>Tabular Foundation Model Benchmarking (Nature 2025)</h3>
                     <span class="crop-badge crop-mizuna">Hollmann et al., 2025</span>
                 </div>
-                <p>We benchmarked <strong>TabPFN (Tabular Prior-data Fitted Network)</strong> against Random Forest. TabPFN is a prior-fitted transformer performing in-context Bayesian inference in a single forward pass, showing superior sample efficiency and generalizability on small spaceflight cohorts.</p>
+                <p>We set out to benchmark <strong>TabPFN (Tabular Prior-data Fitted Network)</strong> against Random Forest. TabPFN needs a license token to download its weights; without one the pipeline falls back to Gradient Boosting, and that fallback is what the benchmark column shows. Neither model separates flight from ground.</p>
                 
                 <div class="grid-2 mt-4" style="align-items: center;">
                     <div style="display: flex; justify-content: center; align-items: center; padding: 10px;">
-                        <img src="figures/meta_model_comparison.png" alt="Model Comparison: RF vs TabPFN" style="max-width: 100%; height: auto; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);">
+                        <img src="figures/meta_model_comparison.png" alt="Model comparison: Random Forest vs the benchmark model" style="max-width: 100%; height: auto; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);">
                     </div>
                     <div class="table-container">
                         <h4 style="margin-bottom: 0.75rem;">Performance Comparison Matrix</h4>
@@ -434,7 +433,7 @@
                                 <tr>
                                     <th>Evaluation Metric</th>
                                     <th>Random Forest (LOMOCV)</th>
-                                    <th>TabPFN (Nature 2025)</th>
+                                    <th id="comp-tab-header">Benchmark model</th>
                                     <th>Difference</th>
                                 </tr>
                             </thead>
@@ -442,26 +441,26 @@
                                 <tr>
                                     <td><strong>Accuracy</strong></td>
                                     <td><span id="comp-rf-acc">&mdash;</span></td>
-                                    <td><span id="comp-tab-acc" style="color: var(--ok); font-weight: 700;">89.6%</span></td>
-                                    <td><span class="badge sig-yes">+6.3%</span></td>
+                                    <td><span id="comp-tab-acc">&mdash;</span></td>
+                                    <td><span class="badge">&mdash;</span></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Precision</strong></td>
-                                    <td><span id="comp-rf-prec">80.6%</span></td>
-                                    <td><span id="comp-tab-prec" style="color: var(--ok); font-weight: 700;">88.2%</span></td>
-                                    <td><span class="badge sig-yes">+7.6%</span></td>
+                                    <td><span id="comp-rf-prec">&mdash;</span></td>
+                                    <td><span id="comp-tab-prec">&mdash;</span></td>
+                                    <td><span class="badge">&mdash;</span></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Recall</strong></td>
-                                    <td><span id="comp-rf-rec">86.1%</span></td>
-                                    <td><span id="comp-tab-rec" style="color: var(--ok); font-weight: 700;">91.7%</span></td>
-                                    <td><span class="badge sig-yes">+5.6%</span></td>
+                                    <td><span id="comp-rf-rec">&mdash;</span></td>
+                                    <td><span id="comp-tab-rec">&mdash;</span></td>
+                                    <td><span class="badge">&mdash;</span></td>
                                 </tr>
                                 <tr>
                                     <td><strong>F1 Score</strong></td>
-                                    <td><span id="comp-rf-f1">83.2%</span></td>
-                                    <td><span id="comp-tab-f1" style="color: var(--ok); font-weight: 700;">89.9%</span></td>
-                                    <td><span class="badge sig-yes">+6.7%</span></td>
+                                    <td><span id="comp-rf-f1">&mdash;</span></td>
+                                    <td><span id="comp-tab-f1">&mdash;</span></td>
+                                    <td><span class="badge">&mdash;</span></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Cross-Species Generalization (LOCOCV)</strong></td>
@@ -507,7 +506,7 @@
                 </ol>
 
                 <h3 class="mt-4">Data Provenance (FAIR)</h3>
-                <p>All data is sourced from NASA OSDR studies <a href="https://osdr.nasa.gov/bio/repo/data/studies/OSD-745" target="_blank">OSD-745 (Lettuce)</a>, <a href="https://osdr.nasa.gov/bio/repo/data/studies/OSD-655" target="_blank">OSD-655 (Tokyo Bekana Nutrition)</a>, and <a href="https://osdr.nasa.gov/bio/repo/data/studies/OSD-780" target="_blank">OSD-780 (Microbiology)</a> following FAIR data principles.</p>
+                <p>All data is sourced from NASA OSDR studies <a href="https://osdr.nasa.gov/bio/repo/data/studies/OSD-745" target="_blank">OSD-745 (Lettuce)</a>, <a href="https://osdr.nasa.gov/bio/repo/data/studies/OSD-655" target="_blank">OSD-655 (Mizuna Nutrition)</a>, and <a href="https://osdr.nasa.gov/bio/repo/data/studies/OSD-780" target="_blank">OSD-780 (Microbiology)</a> following FAIR data principles.</p>
 
                 <h3 class="mt-4">Citations</h3>
                 <pre class="citation-block">
@@ -522,7 +521,7 @@
   doi={10.3389/fpls.2020.00199}
 }
 
-% 2. Spaceflight Tokyo Bekana Pick-and-Eat Testing (OSD-655 & OSD-780)
+% 2. Spaceflight Mizuna Pick-and-Eat Testing (OSD-655 & OSD-780)
 @article{bunchek2024pick,
   title={Pick-and-eat space crop production flight testing on the International Space Station},
   author={Bunchek, Jess M and Hummerick, Mary E and Spencer, LaShelle E and Romeyn, Matthew W and Young, Millennia and Morrow, Robert C and Mitchell, Cary A and Douglas, Grace L and Wheeler, Raymond M and Massa, Gioia D},

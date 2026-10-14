@@ -221,7 +221,7 @@
         "condition":"Flight",
         "plant_number":"pillow11",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"blue"
     },
     {
@@ -230,7 +230,7 @@
         "condition":"Flight",
         "plant_number":"pillow12",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"blue"
     },
     {
@@ -239,7 +239,7 @@
         "condition":"Flight",
         "plant_number":"pillow1",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"red"
     },
     {
@@ -248,7 +248,7 @@
         "condition":"Flight",
         "plant_number":"pillow2",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"red"
     },
     {
@@ -257,7 +257,7 @@
         "condition":"Flight",
         "plant_number":"pillow3",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"red"
     },
     {
@@ -266,7 +266,7 @@
         "condition":"Flight",
         "plant_number":"pillow4",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"red"
     },
     {
@@ -275,7 +275,7 @@
         "condition":"Flight",
         "plant_number":"pillow6",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"red"
     },
     {
@@ -284,7 +284,7 @@
         "condition":"Flight",
         "plant_number":"pillow7",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"blue"
     },
     {
@@ -293,7 +293,7 @@
         "condition":"Ground",
         "plant_number":"pillow12",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"blue"
     },
     {
@@ -302,7 +302,7 @@
         "condition":"Ground",
         "plant_number":"pillow3",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"red"
     },
     {
@@ -311,7 +311,7 @@
         "condition":"Ground",
         "plant_number":"pillow5",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"red"
     },
     {
@@ -320,7 +320,7 @@
         "condition":"Ground",
         "plant_number":"pillow6",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"red"
     },
     {
@@ -329,7 +329,7 @@
         "condition":"Ground",
         "plant_number":"pillow7",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"blue"
     },
     {
@@ -338,7 +338,7 @@
         "condition":"Ground",
         "plant_number":"pillow8",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"blue"
     },
     {
@@ -347,7 +347,7 @@
         "condition":"Flight",
         "plant_number":"pillow10",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"blue"
     },
     {
@@ -356,7 +356,7 @@
         "condition":"Flight",
         "plant_number":"pillow11",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"blue"
     },
     {
@@ -365,7 +365,7 @@
         "condition":"Flight",
         "plant_number":"pillow12",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"blue"
     },
     {
@@ -374,7 +374,7 @@
         "condition":"Flight",
         "plant_number":"pillow1",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"red"
     },
     {
@@ -383,7 +383,7 @@
         "condition":"Flight",
         "plant_number":"pillow2",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"red"
     },
     {
@@ -392,7 +392,7 @@
         "condition":"Flight",
         "plant_number":"pillow3",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"red"
     },
     {
@@ -401,7 +401,7 @@
         "condition":"Flight",
         "plant_number":"pillow4",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"red"
     },
     {
@@ -410,7 +410,7 @@
         "condition":"Flight",
         "plant_number":"pillow5",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"red"
     },
     {
@@ -419,7 +419,7 @@
         "condition":"Flight",
         "plant_number":"pillow6",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"red"
     },
     {
@@ -428,7 +428,7 @@
         "condition":"Flight",
         "plant_number":"pillow8",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"blue"
     },
     {
@@ -437,7 +437,7 @@
         "condition":"Flight",
         "plant_number":"pillow9",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"blue"
     },
     {
@@ -446,7 +446,7 @@
         "condition":"Ground",
         "plant_number":"pillow10",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"blue"
     },
     {
@@ -455,7 +455,7 @@
         "condition":"Ground",
         "plant_number":"pillow11",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"blue"
     },
     {
@@ -464,7 +464,7 @@
         "condition":"Ground",
         "plant_number":"pillow12",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"blue"
     },
     {
@@ -473,7 +473,7 @@
         "condition":"Ground",
         "plant_number":"pillow1",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"red"
     },
     {
@@ -482,7 +482,7 @@
         "condition":"Ground",
         "plant_number":"pillow2",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"red"
     },
     {
@@ -491,7 +491,7 @@
         "condition":"Ground",
         "plant_number":"pillow3",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"red"
     },
     {
@@ -500,7 +500,7 @@
         "condition":"Ground",
         "plant_number":"pillow4",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"red"
     },
     {
@@ -509,7 +509,7 @@
         "condition":"Ground",
         "plant_number":"pillow5",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"red"
     },
     {
@@ -518,7 +518,7 @@
         "condition":"Ground",
         "plant_number":"pillow6",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"red"
     },
     {
@@ -527,7 +527,7 @@
         "condition":"Ground",
         "plant_number":"pillow7",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"blue"
     },
     {
@@ -536,7 +536,7 @@
         "condition":"Ground",
         "plant_number":"pillow8",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"blue"
     },
     {
@@ -545,7 +545,7 @@
         "condition":"Ground",
         "plant_number":"pillow9",
         "harvest_day":null,
-        "crop":"tokyo_bekana",
+        "crop":"mizuna",
         "Light":"blue"
     }
 ]

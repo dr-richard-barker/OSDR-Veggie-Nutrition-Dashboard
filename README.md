@@ -35,13 +35,13 @@ Two leafy green crops were evaluated aboard the ISS across 5 independent spacefl
 | *Lactuca sativa* | 'Outredgeous' (Red Romaine) | VEG-01A | May – Jun 2014 | Terminal harvest (33 d) | OSD-745 |
 | *Lactuca sativa* | 'Outredgeous' (Red Romaine) | VEG-01B | Jul – Aug 2015 | Terminal harvest (33 d) | OSD-745 |
 | *Lactuca sativa* | 'Outredgeous' (Red Romaine) | VEG-03A | Oct – Dec 2016 | Cut-and-come-again (33–56 d) | OSD-745 |
-| *Brassica rapa* | 'Tokyo Bekana' (Mizuna) | VEG-04A | Jun – Jul 2019 | Pick-and-eat testing (28 d) | OSD-655, OSD-780 |
-| *Brassica rapa* | 'Tokyo Bekana' (Mizuna) | VEG-04B | Nov – Dec 2019 | Pick-and-eat testing (28 d) | OSD-655, OSD-780 |
+| *Brassica rapa* | Mizuna (var. *japonica*) | VEG-04A | Jun – Jul 2019 | Pick-and-eat testing (28 d) | OSD-655, OSD-780 |
+| *Brassica rapa* | Mizuna (var. *japonica*) | VEG-04B | Nov – Dec 2019 | Pick-and-eat testing (28 d) | OSD-655, OSD-780 |
 
 Parallel ground controls were grown at Kennedy Space Center (KSC) in controlled environment chambers replicating ISS telemetry (temperature, relative humidity, $\text{CO}_2$) with a 24–72 h delay.
 
 ### Multi-Crop Findings & Data Provenance
-- **Open Science Data, read from the archive:** 24 lettuce samples (OSD-745; 11 flight, 13 ground) and 36 Tokyo Bekana (OSD-655; 18, 18), plus one Tokyo Bekana sample with a phenolic measurement but no elemental data, across 5 missions (VEG-01A, VEG-01B, VEG-03A, VEG-04A, VEG-04B). Downloaded by `data/fetch_osdr_data.py`; checksums and unit provenance in `data/raw/osdr_fetch_provenance.json`.
+- **Open Science Data, read from the archive:** 24 lettuce samples (OSD-745; 11 flight, 13 ground) and 36 mizuna (OSD-655; 18, 18), plus one mizuna sample with a phenolic measurement but no elemental data, across 5 missions (VEG-01A, VEG-01B, VEG-03A, VEG-04A, VEG-04B). Downloaded by `data/fetch_osdr_data.py`; checksums and unit provenance in `data/raw/osdr_fetch_provenance.json`.
 
 > **⚠️ Correction, 13 October 2026.** Earlier versions of this repository
 > reported figures that did not come from NASA OSDR. `data/fetch_osdr_data.py`
