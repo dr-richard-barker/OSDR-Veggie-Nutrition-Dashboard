@@ -82,6 +82,8 @@ def run_tabpfn_analysis(df, features, target_col, group_col):
     except Exception as e:
         logger.warning(f"Error during CV loop with primary classifier ({e}). Falling back to GradientBoosting.")
         clf = GradientBoostingClassifier(n_estimators=100, random_state=42)
+        # Record the model that actually produced the results, not the one requested.
+        model_name = "GradientBoosting"
         accuracies, precisions, recalls, f1s = [], [], [], []
         fold_results = {}
         for train_idx, test_idx in logo.split(X, y, groups):
