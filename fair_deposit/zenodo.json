@@ -1,6 +1,6 @@
 {
-  "title": "OSDR Veggie Nutritional Analysis Dashboard & ML Pipeline: Machine learning analysis of space-grown lettuce nutritional composition from NASA OSDR OSD-745",
-  "description": "Interactive dashboard and machine learning analysis pipeline for the nutritional composition of red romaine lettuce (Lactuca sativa cv. 'Outredgeous') grown in the Veggie plant growth hardware aboard the International Space Station. Analyzes elemental composition (Fe, K, Na, P, S, Zn, Ca, Mg, Mn, Cu), total phenolics, anthocyanins, and ORAC antioxidant capacity across three ISS missions (VEG-01A, VEG-01B, VEG-03A). Includes PCA dimensionality reduction, Random Forest classification (flight vs. ground) with SHAP feature importance, multi-target regression, and comprehensive statistical testing. Built with FAIR data principles and deployed as a static GitHub Pages dashboard.",
+  "title": "OSDR Multi-Crop Space Agriculture Meta-Analysis: Dashboard & ML Pipeline for space-grown lettuce and mizuna from NASA OSDR OSD-745, OSD-655 and OSD-780",
+  "description": "Interactive dashboard and machine learning analysis pipeline comparing the nutritional composition and food-safety microbiology of red romaine lettuce (Lactuca sativa cv. 'Outredgeous'; OSD-745; VEG-01A, VEG-01B, VEG-03A) and mizuna mustard (Brassica rapa var. japonica; OSD-655 and OSD-780; VEG-04A, VEG-04B) grown in the Veggie plant growth hardware aboard the International Space Station. Analyzes elemental composition by ICP-OES, total phenolics, anthocyanins (lettuce only), ORAC antioxidant capacity, and aerobic and yeast/mould plate counts on mizuna leaf. Includes joint PCA, Random Forest flight-versus-ground classification with leave-one-mission-out cross-validation (accuracy at chance), Gini feature importance, and Mann-Whitney tests with FDR correction. All values are read from the NASA OSDR archive. Built with FAIR data principles and deployed as a static GitHub Pages dashboard.",
   "creators": [
     {
       "name": "Barker, Richard",
@@ -41,7 +41,12 @@
     "FAIR data",
     "interactive dashboard",
     "space biology",
-    "controlled environment agriculture"
+    "controlled environment agriculture",
+    "mizuna",
+    "Brassica rapa",
+    "OSD-655",
+    "OSD-780",
+    "food safety microbiology"
   ],
   "license": "MIT",
   "communities": [

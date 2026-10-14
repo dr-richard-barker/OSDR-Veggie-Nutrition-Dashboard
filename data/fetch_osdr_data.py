@@ -163,6 +163,11 @@ RE_745 = re.compile(r"^(VEG-\d+[AB])_([A-Z])_(Flight|Ground)_(\d+)days$")
 RE_655 = re.compile(r"^(VEG04[AB])_(GC|F)_leaf_pillow(\d+)_(red|blue)$")
 
 
+def mission_label(raw: str) -> str:
+    """OSD-655/780 sample names write VEG04A; OSD-745 and the rest of the repo use VEG-04A."""
+    return re.sub(r"^VEG(\d)", r"VEG-\1", raw.upper())
+
+
 def _get(url: str, what: str) -> bytes:
     req = urllib.request.Request(url, headers={"User-Agent": UA})
     try:
@@ -266,7 +271,7 @@ def sample_metadata(sample: str, suffix: str, spec: dict) -> dict | None:
     m = RE_655.match(sample)
     if not m:
         return None
-    return {"Sample Name": sample, "Mission": m.group(1),
+    return {"Sample Name": sample, "Mission": mission_label(m.group(1)),
             "Spaceflight/Ground Control": "Ground" if m.group(2) == "GC" else "Flight",
             "Plant Number": f"pillow{m.group(3)}", "Harvest Day": "",
             "Crop": spec["crop"], "Light": m.group(4)}
@@ -391,7 +396,7 @@ def parse_microbiology_sample(sample: str) -> dict | None:
 
     return {
         "sample_name": sample.strip(),
-        "mission": m.group("mission").upper(),
+        "mission": mission_label(m.group("mission")),
         "condition": "Ground" if m.group("cond").upper() == "GC" else "Flight",
         "sample_type": sample_type,
         "light": light,

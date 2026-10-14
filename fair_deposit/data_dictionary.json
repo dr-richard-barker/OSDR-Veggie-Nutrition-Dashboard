@@ -2,82 +2,68 @@
   "columns": {
     "sample_id": {
       "type": "string",
-      "description": "Unique sample identifier combining mission, condition, and plant number",
-      "example": "VEG-01A_Flight_P1"
+      "description": "OSDR sample name: mission, plant, condition and harvest day for lettuce; mission, condition, pillow and light treatment for mizuna",
+      "example": "VEG-01A_A_Flight_33days"
     },
     "mission": {
       "type": "categorical",
       "description": "ISS Veggie mission identifier",
-      "values": ["VEG-01A", "VEG-01B", "VEG-03A", "VEG-04A", "VEG-04B"],
+      "values": [
+        "VEG-01A",
+        "VEG-01B",
+        "VEG-03A",
+        "VEG-04A",
+        "VEG-04B"
+      ],
       "source": "ISA-Tab study factor"
-    },
-    "crop": {
-      "type": "categorical",
-      "description": "Crop species classification: lettuce (OSD-745) or mizuna (OSD-655)",
-      "values": ["lettuce", "mizuna"]
     },
     "condition": {
       "type": "categorical",
       "description": "Experimental treatment: Flight (ISS Veggie) or Ground (KSC chamber control)",
-      "values": ["Flight", "Ground"],
+      "values": [
+        "Flight",
+        "Ground"
+      ],
       "source": "ISA-Tab study factor"
     },
     "plant_number": {
-      "type": "integer",
-      "description": "Plant replicate number within a mission and condition (1-6)",
-      "range": [1, 6]
+      "type": "string",
+      "description": "Plant or pillow identifier within a mission and condition: A-F for lettuce, pillowN for mizuna"
     },
     "harvest_day": {
       "type": "integer",
-      "description": "Day of growth at which leaves were harvested",
-      "unit": "days",
-      "range": [28, 56]
+      "description": "Day of growth at harvest, from the sample name; recorded for lettuce only (33 days) and empty for mizuna",
+      "unit": "days"
     },
-    "Fe": {
+    "crop": {
+      "type": "categorical",
+      "description": "Crop species classification: lettuce (OSD-745) or mizuna (OSD-655)",
+      "values": [
+        "lettuce",
+        "mizuna"
+      ]
+    },
+    "Light": {
+      "type": "string",
+      "description": "Light treatment for OSD-655 mizuna (red or blue light formulation, from the sample name); empty for lettuce"
+    },
+    "B": {
       "type": "float",
-      "description": "Iron concentration measured by ICP-OES",
       "unit": "mg/g dry weight",
       "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
-      "platform": "iCAP 7000 Series"
-    },
-    "K": {
-      "type": "float",
-      "description": "Potassium concentration measured by ICP-OES",
-      "unit": "mg/g dry weight",
-      "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
-      "platform": "iCAP 7000 Series"
-    },
-    "Na": {
-      "type": "float",
-      "description": "Sodium concentration measured by ICP-OES",
-      "unit": "mg/g dry weight",
-      "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
-      "platform": "iCAP 7000 Series"
-    },
-    "P": {
-      "type": "float",
-      "description": "Phosphorus concentration measured by ICP-OES",
-      "unit": "mg/g dry weight",
-      "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
-      "platform": "iCAP 7000 Series"
-    },
-    "S": {
-      "type": "float",
-      "description": "Sulfur concentration measured by ICP-OES",
-      "unit": "mg/g dry weight",
-      "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
-      "platform": "iCAP 7000 Series"
-    },
-    "Zn": {
-      "type": "float",
-      "description": "Zinc concentration measured by ICP-OES",
-      "unit": "mg/g dry weight",
-      "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
-      "platform": "iCAP 7000 Series"
+      "platform": "iCAP 7000 Series",
+      "description": "Boron concentration measured by ICP-OES; not reported for every sample"
     },
     "Ca": {
       "type": "float",
       "description": "Calcium concentration measured by ICP-OES",
+      "unit": "mg/g dry weight",
+      "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
+      "platform": "iCAP 7000 Series"
+    },
+    "Fe": {
+      "type": "float",
+      "description": "Iron concentration measured by ICP-OES",
       "unit": "mg/g dry weight",
       "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
       "platform": "iCAP 7000 Series"
@@ -96,9 +82,37 @@
       "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
       "platform": "iCAP 7000 Series"
     },
-    "Cu": {
+    "P": {
       "type": "float",
-      "description": "Copper concentration measured by ICP-OES",
+      "description": "Phosphorus concentration measured by ICP-OES",
+      "unit": "mg/g dry weight",
+      "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
+      "platform": "iCAP 7000 Series"
+    },
+    "K": {
+      "type": "float",
+      "description": "Potassium concentration measured by ICP-OES",
+      "unit": "mg/g dry weight",
+      "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
+      "platform": "iCAP 7000 Series"
+    },
+    "Na": {
+      "type": "float",
+      "description": "Sodium concentration measured by ICP-OES",
+      "unit": "mg/g dry weight",
+      "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
+      "platform": "iCAP 7000 Series"
+    },
+    "S": {
+      "type": "float",
+      "description": "Sulfur concentration measured by ICP-OES",
+      "unit": "mg/g dry weight",
+      "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
+      "platform": "iCAP 7000 Series"
+    },
+    "Zn": {
+      "type": "float",
+      "description": "Zinc concentration measured by ICP-OES",
       "unit": "mg/g dry weight",
       "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
       "platform": "iCAP 7000 Series"
@@ -124,30 +138,33 @@
       "assay": "Oxygen Radical Absorbance Capacity",
       "platform": "BioTek Synergy Hybrid"
     },
-    "micro_apc": {
+    "Cu": {
       "type": "float",
-      "description": "Aerobic Plate Count for microbial safety validation on leaf tissue",
-      "unit": "log10 CFU/g dry weight",
-      "assay": "Plate Count Assay",
-      "platform": "Standard Plate Count Agar"
+      "description": "Copper concentration measured by ICP-OES (OSD-655 mizuna only)",
+      "unit": "mg/g dry weight",
+      "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
+      "platform": "iCAP 7000 Series"
     },
-    "micro_ymc": {
+    "Al": {
       "type": "float",
-      "description": "Yeast and Mold Count for microbiological safety check",
-      "unit": "log10 CFU/g dry weight",
-      "assay": "Plate Count Assay",
-      "platform": "Potato Dextrose Agar"
+      "unit": "mg/g dry weight",
+      "assay": "Inductively Coupled Plasma Optical Emission Spectroscopy",
+      "platform": "iCAP 7000 Series",
+      "description": "Aluminium concentration measured by ICP-OES (OSD-655 mizuna only)"
     }
   },
   "metadata": {
     "dataset_name": "veggie_meta_master",
     "source_study": "NASA OSDR OSD-745, OSD-655, OSD-780",
-    "source_doi": ["10.3389/fpls.2020.00199", "10.1080/17429145.2023.2292220"],
+    "source_doi": [
+      "10.3389/fpls.2020.00199",
+      "10.1080/17429145.2023.2292220"
+    ],
     "organism": "Lactuca sativa cv. Outredgeous and Brassica rapa var. japonica (mizuna)",
     "hardware": "Veggie Plant Growth System",
     "n_samples_expected": 60,
     "n_missions": 5,
     "n_conditions": 2,
-    "n_features": 16
+    "n_features": 15
   }
 }

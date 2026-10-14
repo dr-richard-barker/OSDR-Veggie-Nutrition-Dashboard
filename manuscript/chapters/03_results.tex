@@ -119,8 +119,8 @@ and testing on the other is therefore worse than chance, which is the opposite
 of the conclusion withdrawn above. A universal cross-species signature is not
 supported by these data.
 
-\section{Feature Importance \& SHAP Interpretation}
-Shapley Additive Explanations (SHAP) and Gini feature importance were extracted from the joint classifiers to identify the primary drivers of the spaceflight signature.
+\section{Feature Importance}
+Gini feature importance (mean decrease in impurity) was extracted from the joint Random Forest classifier. SHAP values were computed only in the lettuce-only pipeline and are not reported for the joint analysis.
 
 \begin{figure}[htpb]
     \centering

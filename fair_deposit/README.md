@@ -1,27 +1,25 @@
-# OSDR Veggie Nutritional Analysis — Zenodo Deposit
+# OSDR Multi-Crop Space Agriculture Meta-Analysis — Zenodo Deposit Metadata
 
-This deposit contains the complete analysis pipeline, interactive dashboard, and manuscript for the nutritional composition analysis of lettuce grown aboard the International Space Station.
+This folder holds the deposit metadata and the compiled manuscript for the multi-crop meta-analysis of lettuce and mizuna grown aboard the International Space Station. The data, analysis code and dashboard are in the repository itself.
 
 ## Contents
 
 | File | Description |
 |------|-------------|
-| `veggie_nutrition_master.csv` | Curated dataset: 14 nutritional analytes × ~36 samples |
-| `ml_results_summary.json` | Complete ML analysis results (PCA, RF, SHAP, stats) |
-| `data_dictionary.json` | Machine-readable column schema |
-| `ml_pipeline.py` | Reproducible analysis script |
-| `OSDR_Veggie_Nutrition_Analysis.pdf` | Publication manuscript |
-| `docs/` | Interactive GitHub Pages dashboard |
+| `zenodo.json` | Zenodo deposit metadata |
+| `CITATION.cff` | Citation metadata (copy of the repository's `CITATION.cff`) |
+| `ro-crate-metadata.json` | RO-Crate description of the repository |
+| `data_dictionary.json` | Machine-readable column schema for `data/processed/veggie_meta_master.csv` |
+| `OSDR_Veggie_Nutrition_Analysis.pdf` | Compiled manuscript (copy of `manuscript/OSDR_Veggie_Nutrition_Analysis.pdf`) |
 
-## Data Source
+## Data Sources
 
-NASA Open Science Data Repository (OSDR) study **OSD-745**:
-*"Microbiological and Nutritional Analysis of Lettuce Crops Grown on the International Space Station"*
+NASA Open Science Data Repository (OSDR):
 
-- **DOI:** [10.3389/fpls.2020.00199](https://doi.org/10.3389/fpls.2020.00199)
-- **Organism:** *Lactuca sativa* cv. 'Outredgeous' (red romaine lettuce)
+- **OSD-745** — lettuce (*Lactuca sativa* cv. 'Outredgeous'); VEG-01A (2014), VEG-01B (2015), VEG-03A (2016). Khodadad et al. 2020, [10.3389/fpls.2020.00199](https://doi.org/10.3389/fpls.2020.00199)
+- **OSD-655** — mizuna mustard (*Brassica rapa* var. *japonica*) nutrition; VEG-04A and VEG-04B (2019). Bunchek et al. 2024, [10.1080/17429145.2023.2292220](https://doi.org/10.1080/17429145.2023.2292220)
+- **OSD-780** — VEG-04 mizuna plate counts (aerobic and yeast/mould); same publication as OSD-655
 - **Hardware:** Veggie plant growth system
-- **Missions:** VEG-01A (2014), VEG-01B (2015), VEG-03A (2016)
 
 ## License
 

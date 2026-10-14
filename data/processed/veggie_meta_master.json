@@ -577,7 +577,7 @@
     },
     {
         "sample_id":"VEG04A_F_leaf_pillow11_blue",
-        "mission":"VEG04A",
+        "mission":"VEG-04A",
         "condition":"Flight",
         "plant_number":"pillow11",
         "harvest_day":null,
@@ -601,7 +601,7 @@
     },
     {
         "sample_id":"VEG04A_F_leaf_pillow12_blue",
-        "mission":"VEG04A",
+        "mission":"VEG-04A",
         "condition":"Flight",
         "plant_number":"pillow12",
         "harvest_day":null,
@@ -625,7 +625,7 @@
     },
     {
         "sample_id":"VEG04A_F_leaf_pillow1_red",
-        "mission":"VEG04A",
+        "mission":"VEG-04A",
         "condition":"Flight",
         "plant_number":"pillow1",
         "harvest_day":null,
@@ -649,7 +649,7 @@
     },
     {
         "sample_id":"VEG04A_F_leaf_pillow2_red",
-        "mission":"VEG04A",
+        "mission":"VEG-04A",
         "condition":"Flight",
         "plant_number":"pillow2",
         "harvest_day":null,
@@ -673,7 +673,7 @@
     },
     {
         "sample_id":"VEG04A_F_leaf_pillow3_red",
-        "mission":"VEG04A",
+        "mission":"VEG-04A",
         "condition":"Flight",
         "plant_number":"pillow3",
         "harvest_day":null,
@@ -697,7 +697,7 @@
     },
     {
         "sample_id":"VEG04A_F_leaf_pillow4_red",
-        "mission":"VEG04A",
+        "mission":"VEG-04A",
         "condition":"Flight",
         "plant_number":"pillow4",
         "harvest_day":null,
@@ -721,7 +721,7 @@
     },
     {
         "sample_id":"VEG04A_F_leaf_pillow6_red",
-        "mission":"VEG04A",
+        "mission":"VEG-04A",
         "condition":"Flight",
         "plant_number":"pillow6",
         "harvest_day":null,
@@ -745,7 +745,7 @@
     },
     {
         "sample_id":"VEG04A_F_leaf_pillow7_blue",
-        "mission":"VEG04A",
+        "mission":"VEG-04A",
         "condition":"Flight",
         "plant_number":"pillow7",
         "harvest_day":null,
@@ -769,7 +769,7 @@
     },
     {
         "sample_id":"VEG04A_GC_leaf_pillow12_blue",
-        "mission":"VEG04A",
+        "mission":"VEG-04A",
         "condition":"Ground",
         "plant_number":"pillow12",
         "harvest_day":null,
@@ -793,7 +793,7 @@
     },
     {
         "sample_id":"VEG04A_GC_leaf_pillow3_red",
-        "mission":"VEG04A",
+        "mission":"VEG-04A",
         "condition":"Ground",
         "plant_number":"pillow3",
         "harvest_day":null,
@@ -817,7 +817,7 @@
     },
     {
         "sample_id":"VEG04A_GC_leaf_pillow5_red",
-        "mission":"VEG04A",
+        "mission":"VEG-04A",
         "condition":"Ground",
         "plant_number":"pillow5",
         "harvest_day":null,
@@ -841,7 +841,7 @@
     },
     {
         "sample_id":"VEG04A_GC_leaf_pillow6_red",
-        "mission":"VEG04A",
+        "mission":"VEG-04A",
         "condition":"Ground",
         "plant_number":"pillow6",
         "harvest_day":null,
@@ -865,7 +865,7 @@
     },
     {
         "sample_id":"VEG04A_GC_leaf_pillow7_blue",
-        "mission":"VEG04A",
+        "mission":"VEG-04A",
         "condition":"Ground",
         "plant_number":"pillow7",
         "harvest_day":null,
@@ -889,7 +889,7 @@
     },
     {
         "sample_id":"VEG04A_GC_leaf_pillow8_blue",
-        "mission":"VEG04A",
+        "mission":"VEG-04A",
         "condition":"Ground",
         "plant_number":"pillow8",
         "harvest_day":null,
@@ -913,7 +913,7 @@
     },
     {
         "sample_id":"VEG04B_F_leaf_pillow10_blue",
-        "mission":"VEG04B",
+        "mission":"VEG-04B",
         "condition":"Flight",
         "plant_number":"pillow10",
         "harvest_day":null,
@@ -937,7 +937,7 @@
     },
     {
         "sample_id":"VEG04B_F_leaf_pillow11_blue",
-        "mission":"VEG04B",
+        "mission":"VEG-04B",
         "condition":"Flight",
         "plant_number":"pillow11",
         "harvest_day":null,
@@ -961,7 +961,7 @@
     },
     {
         "sample_id":"VEG04B_F_leaf_pillow12_blue",
-        "mission":"VEG04B",
+        "mission":"VEG-04B",
         "condition":"Flight",
         "plant_number":"pillow12",
         "harvest_day":null,
@@ -985,7 +985,7 @@
     },
     {
         "sample_id":"VEG04B_F_leaf_pillow1_red",
-        "mission":"VEG04B",
+        "mission":"VEG-04B",
         "condition":"Flight",
         "plant_number":"pillow1",
         "harvest_day":null,
@@ -1009,7 +1009,7 @@
     },
     {
         "sample_id":"VEG04B_F_leaf_pillow2_red",
-        "mission":"VEG04B",
+        "mission":"VEG-04B",
         "condition":"Flight",
         "plant_number":"pillow2",
         "harvest_day":null,
@@ -1033,7 +1033,7 @@
     },
     {
         "sample_id":"VEG04B_F_leaf_pillow3_red",
-        "mission":"VEG04B",
+        "mission":"VEG-04B",
         "condition":"Flight",
         "plant_number":"pillow3",
         "harvest_day":null,
@@ -1057,7 +1057,7 @@
     },
     {
         "sample_id":"VEG04B_F_leaf_pillow4_red",
-        "mission":"VEG04B",
+        "mission":"VEG-04B",
         "condition":"Flight",
         "plant_number":"pillow4",
         "harvest_day":null,
@@ -1081,7 +1081,7 @@
     },
     {
         "sample_id":"VEG04B_F_leaf_pillow5_red",
-        "mission":"VEG04B",
+        "mission":"VEG-04B",
         "condition":"Flight",
         "plant_number":"pillow5",
         "harvest_day":null,
@@ -1105,7 +1105,7 @@
     },
     {
         "sample_id":"VEG04B_F_leaf_pillow6_red",
-        "mission":"VEG04B",
+        "mission":"VEG-04B",
         "condition":"Flight",
         "plant_number":"pillow6",
         "harvest_day":null,
@@ -1129,7 +1129,7 @@
     },
     {
         "sample_id":"VEG04B_F_leaf_pillow8_blue",
-        "mission":"VEG04B",
+        "mission":"VEG-04B",
         "condition":"Flight",
         "plant_number":"pillow8",
         "harvest_day":null,
@@ -1153,7 +1153,7 @@
     },
     {
         "sample_id":"VEG04B_F_leaf_pillow9_blue",
-        "mission":"VEG04B",
+        "mission":"VEG-04B",
         "condition":"Flight",
         "plant_number":"pillow9",
         "harvest_day":null,
@@ -1177,7 +1177,7 @@
     },
     {
         "sample_id":"VEG04B_GC_leaf_pillow10_blue",
-        "mission":"VEG04B",
+        "mission":"VEG-04B",
         "condition":"Ground",
         "plant_number":"pillow10",
         "harvest_day":null,
@@ -1201,7 +1201,7 @@
     },
     {
         "sample_id":"VEG04B_GC_leaf_pillow11_blue",
-        "mission":"VEG04B",
+        "mission":"VEG-04B",
         "condition":"Ground",
         "plant_number":"pillow11",
         "harvest_day":null,
@@ -1225,7 +1225,7 @@
     },
     {
         "sample_id":"VEG04B_GC_leaf_pillow12_blue",
-        "mission":"VEG04B",
+        "mission":"VEG-04B",
         "condition":"Ground",
         "plant_number":"pillow12",
         "harvest_day":null,
@@ -1249,7 +1249,7 @@
     },
     {
         "sample_id":"VEG04B_GC_leaf_pillow1_red",
-        "mission":"VEG04B",
+        "mission":"VEG-04B",
         "condition":"Ground",
         "plant_number":"pillow1",
         "harvest_day":null,
@@ -1273,7 +1273,7 @@
     },
     {
         "sample_id":"VEG04B_GC_leaf_pillow2_red",
-        "mission":"VEG04B",
+        "mission":"VEG-04B",
         "condition":"Ground",
         "plant_number":"pillow2",
         "harvest_day":null,
@@ -1297,7 +1297,7 @@
     },
     {
         "sample_id":"VEG04B_GC_leaf_pillow3_red",
-        "mission":"VEG04B",
+        "mission":"VEG-04B",
         "condition":"Ground",
         "plant_number":"pillow3",
         "harvest_day":null,
@@ -1321,7 +1321,7 @@
     },
     {
         "sample_id":"VEG04B_GC_leaf_pillow4_red",
-        "mission":"VEG04B",
+        "mission":"VEG-04B",
         "condition":"Ground",
         "plant_number":"pillow4",
         "harvest_day":null,
@@ -1345,7 +1345,7 @@
     },
     {
         "sample_id":"VEG04B_GC_leaf_pillow5_red",
-        "mission":"VEG04B",
+        "mission":"VEG-04B",
         "condition":"Ground",
         "plant_number":"pillow5",
         "harvest_day":null,
@@ -1369,7 +1369,7 @@
     },
     {
         "sample_id":"VEG04B_GC_leaf_pillow6_red",
-        "mission":"VEG04B",
+        "mission":"VEG-04B",
         "condition":"Ground",
         "plant_number":"pillow6",
         "harvest_day":null,
@@ -1393,7 +1393,7 @@
     },
     {
         "sample_id":"VEG04B_GC_leaf_pillow7_blue",
-        "mission":"VEG04B",
+        "mission":"VEG-04B",
         "condition":"Ground",
         "plant_number":"pillow7",
         "harvest_day":null,
@@ -1417,7 +1417,7 @@
     },
     {
         "sample_id":"VEG04B_GC_leaf_pillow8_blue",
-        "mission":"VEG04B",
+        "mission":"VEG-04B",
         "condition":"Ground",
         "plant_number":"pillow8",
         "harvest_day":null,
@@ -1441,7 +1441,7 @@
     },
     {
         "sample_id":"VEG04B_GC_leaf_pillow9_blue",
-        "mission":"VEG04B",
+        "mission":"VEG-04B",
         "condition":"Ground",
         "plant_number":"pillow9",
         "harvest_day":null,

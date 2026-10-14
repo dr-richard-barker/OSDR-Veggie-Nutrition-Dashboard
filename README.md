@@ -21,8 +21,8 @@
 ## 🔬 Key Outputs
 
 - 🌐 **[Interactive CoSE Dashboard](https://dr-richard-barker.github.io/OSDR-Veggie-Nutrition-Dashboard/)** — Multi-crop data explorer, ISS photography gallery, food safety microbiology, and ML benchmarking
-- 📊 **Meta-Analysis ML Pipeline** — Joint PCA, Leave-One-Mission-Out CV, TabPFN foundation model benchmarking, and Gini/SHAP feature importance. *(Leave-One-Crop-Out CV was previously listed here and has been withdrawn: no crop-based split is implemented — every `LeaveOneGroupOut` in `analysis/` groups on mission. On the real OSDR data, cross-crop transfer performs below a stratified-dummy baseline.)*
-- 📄 **LaTeX Manuscript** — Publication-ready PDF ([OSDR_Veggie_Nutrition_Analysis.pdf](manuscript/OSDR_Veggie_Nutrition_Analysis.pdf)) styled under the Center of Space Exploration (CoSE) design system
+- 📊 **Meta-Analysis ML Pipeline** — Joint PCA, Leave-One-Mission-Out CV, a benchmark model (written for TabPFN; without a license token it falls back to Gradient Boosting, and every reported benchmark result is that fallback), and Gini feature importance (SHAP is computed only in the lettuce-only `analysis/ml_pipeline.py`). *(Leave-One-Crop-Out CV was previously listed here and has been withdrawn: no crop-based split is implemented — every `LeaveOneGroupOut` in `analysis/` groups on mission. On the real OSDR data, cross-crop transfer performs below a stratified-dummy baseline.)*
+- 📄 **LaTeX Manuscript** — Publication-ready PDF ([OSDR_Veggie_Nutrition_Analysis.pdf](manuscript/OSDR_Veggie_Nutrition_Analysis.pdf)) styled with the CoSE (Collaborative Science Environment) design system
 
 ---
 
@@ -35,13 +35,13 @@ Two leafy green crops were evaluated aboard the ISS across 5 independent spacefl
 | *Lactuca sativa* | 'Outredgeous' (Red Romaine) | VEG-01A | May – Jun 2014 | Terminal harvest (33 d) | OSD-745 |
 | *Lactuca sativa* | 'Outredgeous' (Red Romaine) | VEG-01B | Jul – Aug 2015 | Terminal harvest (33 d) | OSD-745 |
 | *Lactuca sativa* | 'Outredgeous' (Red Romaine) | VEG-03A | Oct – Dec 2016 | Cut-and-come-again (33–56 d) | OSD-745 |
-| *Brassica rapa* | Mizuna (var. *japonica*) | VEG-04A | Jun – Jul 2019 | Pick-and-eat testing (28 d) | OSD-655, OSD-780 |
-| *Brassica rapa* | Mizuna (var. *japonica*) | VEG-04B | Nov – Dec 2019 | Pick-and-eat testing (28 d) | OSD-655, OSD-780 |
+| *Brassica rapa* | Mizuna (var. *japonica*) | VEG-04A | Jun – Jul 2019 | Single terminal harvest (35 d) | OSD-655, OSD-780 |
+| *Brassica rapa* | Mizuna (var. *japonica*) | VEG-04B | Oct – Nov 2019 | Repeated harvests (29, 43 and 58 d) | OSD-655, OSD-780 |
 
 Parallel ground controls were grown at Kennedy Space Center (KSC) in controlled environment chambers replicating ISS telemetry (temperature, relative humidity, $\text{CO}_2$) with a 24–72 h delay.
 
 ### Multi-Crop Findings & Data Provenance
-- **Translational Countermeasures & Astronaut Health:** Crop elemental mineral yields ($\text{K}^+$, $\text{Ca}^{2+}$, $\text{Mg}^{2+}$, $\text{Fe}^{2+}$, $\text{Zn}^{2+}$) provide dietary countermeasures for spaceflight mineral imbalances identified in human crew members. See companion repository [**astronaut-mineral-deficiency-multiomics**](https://github.com/dr-richard-barker/astronaut-mineral-deficiency-multiomics) for Inspiration4 multi-omics mineral pathway regulation and NHANES population comparisons.
+- **Translational Countermeasures & Astronaut Health:** Crop elemental mineral yields ($\text{K}^+$, $\text{Ca}^{2+}$, $\text{Mg}^{2+}$, $\text{Fe}^{2+}$, $\text{Zn}^{2+}$) could contribute to dietary countermeasures for the spaceflight mineral-pathway changes studied in astronaut crews. See companion repository [**astronaut-mineral-final**](https://github.com/dr-richard-barker/astronaut-mineral-final) for Inspiration4 multi-omics mineral pathway regulation and NHANES population comparisons.
 - **Open Science Data, read from the archive:** 24 lettuce samples (OSD-745; 11 flight, 13 ground) and 36 mizuna (OSD-655; 18, 18), plus one mizuna sample with a phenolic measurement but no elemental data, across 5 missions (VEG-01A, VEG-01B, VEG-03A, VEG-04A, VEG-04B). Downloaded by `data/fetch_osdr_data.py`; checksums and unit provenance in `data/raw/osdr_fetch_provenance.json`.
 
 > **⚠️ Correction, 13 October 2026.** Earlier versions of this repository
@@ -60,8 +60,8 @@ Parallel ground controls were grown at Kennedy Space Center (KSC) in controlled 
 > sulfur survive FDR correction; and the cross-species (LOCOCV) claim is
 > withdrawn — no crop-based split was ever implemented. Full detail in
 > [CORRECTION_NOTE_2_ANTIOXIDANTS.md](https://github.com/dr-richard-barker/SpaceMineralAtlas/blob/main/veggie_correction/CORRECTION_NOTE_2_ANTIOXIDANTS.md).
-- **Nutritional Safety & Equivalence:** Spaceflight crops exhibited nutritional equivalence to ground controls, with inter-mission environmental conditions (water availability, harvest regimes) driving greater variation than microgravity alone.
-- **Machine Learning Cross-Validation:** In Leave-One-Mission-Out Cross-Validation (LOGO-CV), tree-based models and foundation model benchmarks evaluate cross-mission generalization on authentic spaceflight biological data.
+- **Nutrition and food safety:** Only potassium and sulfur differ between flight and ground after FDR correction, both higher in flight, in a pooled test not blocked by crop or mission; equivalence was not formally tested. Flight mizuna leaf carries a substantially higher microbial load than ground controls (OSD-780).
+- **Machine Learning Cross-Validation:** Under Leave-One-Mission-Out Cross-Validation, neither the Random Forest (accuracy 0.490) nor the Gradient Boosting benchmark (0.572) separates flight from ground.
 
 ---
 
@@ -105,7 +105,7 @@ OSDR-Veggie-Nutrition-Dashboard/
 │   ├── curate_data.py                # Data harmonization pipeline
 │   ├── raw/                          # Unmodified OSDR downloads
 │   ├── processed/                    # Analysis-ready datasets
-│   │   ├── veggie_meta_master.csv    # Merged 60-sample master dataset
+│   │   ├── veggie_meta_master.csv    # Merged master dataset (61 rows; 60 with elemental data)
 │   │   └── veggie_nutrition_master.csv
 │   └── images/                       # ISS Veggie photographs
 │

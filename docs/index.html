@@ -120,7 +120,7 @@
             <div class="grid-3">
                 <div class="card mission-card">
                     <h3>VEG-01A & 01B (Lettuce)</h3>
-                    <p><strong>Dates:</strong> 2014 & 2015 | SpaceX-3/8</p>
+                    <p><strong>Dates:</strong> May–Jun 2014 &amp; Jul–Aug 2015</p>
                     <p>Validation of Veggie hardware and first astronaut on-orbit crop consumption.</p>
                 </div>
                 <div class="card mission-card">
@@ -130,7 +130,7 @@
                 </div>
                 <div class="card mission-card">
                     <h3>VEG-04A &amp; 04B (Mizuna)</h3>
-                    <p><strong>Dates:</strong> 2019-2020 | SpaceX-18/19</p>
+                    <p><strong>Dates:</strong> Jun–Jul &amp; Oct–Nov 2019 | SpaceX-16/18</p>
                     <p>Pick-and-eat space crop production, sensory, and microbiological safety testing.</p>
                 </div>
             </div>
@@ -499,9 +499,9 @@
                 <ol class="mt-2" style="margin-left: 20px; list-style-type: decimal;">
                     <li><strong>Data Harmonization:</strong> Merged metadata (missions, conditions) and assay measurements, resolving column types and standardizing units.</li>
                     <li><strong>Dimensionality Reduction:</strong> Standardized nutritional variables (z-score scaling) and applied Principal Component Analysis (PCA) to extract eigenvectors and coordinates, determining sample separation along the first two principal components.</li>
-                    <li><strong>Random Forest Classification:</strong> Trained an ensemble of 100 decision trees to classify Flight vs. Ground Control samples using the 10-element profile. Validated using <strong>Leave-One-Mission-Out Cross-Validation (LOMOCV)</strong> to guarantee model generalizability across independent spaceflights. Extracted permutation importance and SHAP (SHapley Additive exPlanations) values to identify the most predictive physiological markers.</li>
-                    <li><strong>Tabular Foundation Model Benchmarking:</strong> Implemented **TabPFN** (Tabular Prior-data Fitted Network) as described by Hollmann et al. (Nature 2025). Unlike gradient boosting trees or standard neural networks, TabPFN is a pre-trained transformer model optimized for zero-shot, prior-data fitted classification on small tabular datasets, providing a state-of-the-art comparison baseline.</li>
-                    <li><strong>Antioxidant Capacity Prediction:</strong> Implemented Random Forest regression to predict biochemical outcomes (ORAC and Phenolics) based on multi-element profiles, measuring model performance via R² and root-mean-squared error (RMSE).</li>
+                    <li><strong>Random Forest Classification:</strong> Trained an ensemble of 100 decision trees to classify Flight vs. Ground Control samples using the 11 features with complete coverage (nine elements plus phenolics and ORAC). Evaluated with <strong>Leave-One-Mission-Out Cross-Validation (LOMOCV)</strong>, which tests generalization to an unseen spaceflight; accuracy was at chance. Feature importance is Gini (mean decrease in impurity); SHAP and permutation importance are computed only in the lettuce-only pipeline.</li>
+                    <li><strong>Tabular Foundation Model Benchmarking:</strong> Written for <strong>TabPFN</strong> (Tabular Prior-data Fitted Network) as described by Hollmann et al. (Nature 2025). Unlike gradient boosting trees or standard neural networks, TabPFN is a pre-trained transformer model optimized for zero-shot, prior-data fitted classification on small tabular datasets, It did not run here: without a license token the pipeline falls back to Gradient Boosting, and that fallback is the benchmark shown.</li>
+                    <li><strong>Antioxidant Capacity Prediction:</strong> Implemented Random Forest regression to predict biochemical outcomes (ORAC and Phenolics) based on multi-element profiles, measuring model performance via R² and root-mean-squared error (RMSE). Scored out-of-fold on lettuce (n = 24), R² was −0.90 for phenolics and −2.16 for ORAC, worse than predicting the mean.</li>
                     <li><strong>Statistical Validation:</strong> Conducted non-parametric Mann-Whitney U tests for all analytes, applying false discovery rate (FDR, Benjamini-Hochberg) and Bonferroni corrections to prevent family-wise error rate inflation, and computed Cohen's <em>d</em> effect sizes.</li>
                 </ol>
 

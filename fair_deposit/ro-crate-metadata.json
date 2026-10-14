@@ -11,7 +11,7 @@
       "@id": "./",
       "@type": "Dataset",
       "name": "OSDR Multi-Crop Space Agriculture Meta-Analysis: Lettuce and Mizuna on ISS",
-      "description": "Comparative cross-species meta-analysis of spaceflight-grown leafy greens (Lettuce and Mizuna mustard) under NASA OSDR studies OSD-745, OSD-655, and OSD-780. Includes elemental composition (ICP-OES), biochemical assays (phenolics, anthocyanins, ORAC), microbial safety plate counts (APC, YMC), Random Forest, TabPFN models, SHAP interpretability, and statistical validation.",
+      "description": "Comparative cross-species meta-analysis of spaceflight-grown leafy greens (Lettuce and Mizuna mustard) under NASA OSDR studies OSD-745, OSD-655, and OSD-780. Includes elemental composition (ICP-OES), biochemical assays (phenolics, anthocyanins, ORAC), microbial plate counts (APC, YMC), Random Forest classification with a Gradient Boosting benchmark (the TabPFN path needs a license token and did not run), Gini feature importance, and statistical validation.",
       "datePublished": "2026-08-28",
       "license": {"@id": "https://spdx.org/licenses/MIT.html"},
       "creator": [
@@ -48,7 +48,7 @@
       "@id": "data/processed/veggie_meta_master.csv",
       "@type": "File",
       "name": "Combined Multi-Crop Meta-Analysis Dataset",
-      "description": "Harmonized master dataset combining elemental composition, phenolic content, anthocyanin content, ORAC values, and microbiological plate counts for both Lettuce (OSD-745) and Mizuna (OSD-655/OSD-780) across 5 ISS missions.",
+      "description": "Harmonized master dataset combining elemental composition, phenolic content, anthocyanin content, and ORAC values for lettuce (OSD-745) and mizuna (OSD-655) across 5 ISS missions: 61 rows, 60 with elemental data. Plate counts (OSD-780) are in data/processed/microbiology_osd780.csv.",
       "encodingFormat": "text/csv",
       "conformsTo": {"@id": "fair_deposit/data_dictionary.json"}
     },
@@ -63,7 +63,7 @@
       "@id": "analysis/meta_ml_pipeline.py",
       "@type": ["File", "SoftwareSourceCode"],
       "name": "Multi-Crop ML Meta-Analysis Pipeline",
-      "description": "Python script performing joint PCA, Random Forest and TabPFN classification (LOMOCV only: LeaveOneGroupOut groups on mission; no leave-one-crop-out split is implemented), SHAP feature importance, and non-parametric statistical testing with FDR/Bonferroni corrections.",
+      "description": "Python script performing joint PCA, Random Forest classification with a TabPFN benchmark that falls back to Gradient Boosting without a license token (LOMOCV only: LeaveOneGroupOut groups on mission; no leave-one-crop-out split is implemented), Gini feature importance, and non-parametric statistical testing with FDR/Bonferroni corrections.",
       "programmingLanguage": {"@id": "https://www.python.org/"},
       "input": [{"@id": "data/processed/veggie_meta_master.csv"}],
       "output": [{"@id": "analysis/results/meta_ml_results.json"}]

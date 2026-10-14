@@ -196,7 +196,7 @@
     "PC2":3.2938789873,
     "condition":"Flight",
     "crop":"mizuna",
-    "mission":"VEG04A",
+    "mission":"VEG-04A",
     "sample_id":"VEG04A_F_leaf_pillow11_blue"
   },
   {
@@ -204,7 +204,7 @@
     "PC2":2.2669851807,
     "condition":"Flight",
     "crop":"mizuna",
-    "mission":"VEG04A",
+    "mission":"VEG-04A",
     "sample_id":"VEG04A_F_leaf_pillow1_red"
   },
   {
@@ -212,7 +212,7 @@
     "PC2":1.8938060621,
     "condition":"Flight",
     "crop":"mizuna",
-    "mission":"VEG04A",
+    "mission":"VEG-04A",
     "sample_id":"VEG04A_F_leaf_pillow2_red"
   },
   {
@@ -220,7 +220,7 @@
     "PC2":4.1935500299,
     "condition":"Flight",
     "crop":"mizuna",
-    "mission":"VEG04A",
+    "mission":"VEG-04A",
     "sample_id":"VEG04A_F_leaf_pillow4_red"
   },
   {
@@ -228,7 +228,7 @@
     "PC2":0.725224579,
     "condition":"Flight",
     "crop":"mizuna",
-    "mission":"VEG04A",
+    "mission":"VEG-04A",
     "sample_id":"VEG04A_F_leaf_pillow6_red"
   },
   {
@@ -236,7 +236,7 @@
     "PC2":-0.1411633988,
     "condition":"Flight",
     "crop":"mizuna",
-    "mission":"VEG04A",
+    "mission":"VEG-04A",
     "sample_id":"VEG04A_F_leaf_pillow7_blue"
   },
   {
@@ -244,7 +244,7 @@
     "PC2":0.7427672663,
     "condition":"Ground",
     "crop":"mizuna",
-    "mission":"VEG04A",
+    "mission":"VEG-04A",
     "sample_id":"VEG04A_GC_leaf_pillow12_blue"
   },
   {
@@ -252,7 +252,7 @@
     "PC2":0.5293677805,
     "condition":"Ground",
     "crop":"mizuna",
-    "mission":"VEG04A",
+    "mission":"VEG-04A",
     "sample_id":"VEG04A_GC_leaf_pillow3_red"
   },
   {
@@ -260,7 +260,7 @@
     "PC2":0.9701491435,
     "condition":"Ground",
     "crop":"mizuna",
-    "mission":"VEG04A",
+    "mission":"VEG-04A",
     "sample_id":"VEG04A_GC_leaf_pillow5_red"
   },
   {
@@ -268,7 +268,7 @@
     "PC2":-1.2836661854,
     "condition":"Ground",
     "crop":"mizuna",
-    "mission":"VEG04A",
+    "mission":"VEG-04A",
     "sample_id":"VEG04A_GC_leaf_pillow6_red"
   },
   {
@@ -276,7 +276,7 @@
     "PC2":-0.2807803337,
     "condition":"Ground",
     "crop":"mizuna",
-    "mission":"VEG04A",
+    "mission":"VEG-04A",
     "sample_id":"VEG04A_GC_leaf_pillow7_blue"
   },
   {
@@ -284,7 +284,7 @@
     "PC2":0.553545038,
     "condition":"Ground",
     "crop":"mizuna",
-    "mission":"VEG04A",
+    "mission":"VEG-04A",
     "sample_id":"VEG04A_GC_leaf_pillow8_blue"
   },
   {
@@ -292,7 +292,7 @@
     "PC2":0.8580240876,
     "condition":"Flight",
     "crop":"mizuna",
-    "mission":"VEG04B",
+    "mission":"VEG-04B",
     "sample_id":"VEG04B_F_leaf_pillow10_blue"
   },
   {
@@ -300,7 +300,7 @@
     "PC2":0.2666838327,
     "condition":"Flight",
     "crop":"mizuna",
-    "mission":"VEG04B",
+    "mission":"VEG-04B",
     "sample_id":"VEG04B_F_leaf_pillow1_red"
   },
   {
@@ -308,7 +308,7 @@
     "PC2":1.4755401431,
     "condition":"Flight",
     "crop":"mizuna",
-    "mission":"VEG04B",
+    "mission":"VEG-04B",
     "sample_id":"VEG04B_F_leaf_pillow3_red"
   },
   {
@@ -316,7 +316,7 @@
     "PC2":-1.0346928984,
     "condition":"Flight",
     "crop":"mizuna",
-    "mission":"VEG04B",
+    "mission":"VEG-04B",
     "sample_id":"VEG04B_F_leaf_pillow4_red"
   },
   {
@@ -324,7 +324,7 @@
     "PC2":1.172576844,
     "condition":"Flight",
     "crop":"mizuna",
-    "mission":"VEG04B",
+    "mission":"VEG-04B",
     "sample_id":"VEG04B_F_leaf_pillow6_red"
   },
   {
@@ -332,7 +332,7 @@
     "PC2":2.498129387,
     "condition":"Flight",
     "crop":"mizuna",
-    "mission":"VEG04B",
+    "mission":"VEG-04B",
     "sample_id":"VEG04B_F_leaf_pillow8_blue"
   },
   {
@@ -340,7 +340,7 @@
     "PC2":3.8006485447,
     "condition":"Flight",
     "crop":"mizuna",
-    "mission":"VEG04B",
+    "mission":"VEG-04B",
     "sample_id":"VEG04B_F_leaf_pillow9_blue"
   },
   {
@@ -348,7 +348,7 @@
     "PC2":-0.6990227358,
     "condition":"Ground",
     "crop":"mizuna",
-    "mission":"VEG04B",
+    "mission":"VEG-04B",
     "sample_id":"VEG04B_GC_leaf_pillow10_blue"
   },
   {
@@ -356,7 +356,7 @@
     "PC2":0.9165703757,
     "condition":"Ground",
     "crop":"mizuna",
-    "mission":"VEG04B",
+    "mission":"VEG-04B",
     "sample_id":"VEG04B_GC_leaf_pillow11_blue"
   },
   {
@@ -364,7 +364,7 @@
     "PC2":0.3076770395,
     "condition":"Ground",
     "crop":"mizuna",
-    "mission":"VEG04B",
+    "mission":"VEG-04B",
     "sample_id":"VEG04B_GC_leaf_pillow12_blue"
   },
   {
@@ -372,7 +372,7 @@
     "PC2":0.4849451147,
     "condition":"Ground",
     "crop":"mizuna",
-    "mission":"VEG04B",
+    "mission":"VEG-04B",
     "sample_id":"VEG04B_GC_leaf_pillow1_red"
   },
   {
@@ -380,7 +380,7 @@
     "PC2":-0.1120379549,
     "condition":"Ground",
     "crop":"mizuna",
-    "mission":"VEG04B",
+    "mission":"VEG-04B",
     "sample_id":"VEG04B_GC_leaf_pillow2_red"
   },
   {
@@ -388,7 +388,7 @@
     "PC2":-0.504504193,
     "condition":"Ground",
     "crop":"mizuna",
-    "mission":"VEG04B",
+    "mission":"VEG-04B",
     "sample_id":"VEG04B_GC_leaf_pillow3_red"
   },
   {
@@ -396,7 +396,7 @@
     "PC2":0.0045626831,
     "condition":"Ground",
     "crop":"mizuna",
-    "mission":"VEG04B",
+    "mission":"VEG-04B",
     "sample_id":"VEG04B_GC_leaf_pillow4_red"
   },
   {
@@ -404,7 +404,7 @@
     "PC2":-0.7055606521,
     "condition":"Ground",
     "crop":"mizuna",
-    "mission":"VEG04B",
+    "mission":"VEG-04B",
     "sample_id":"VEG04B_GC_leaf_pillow5_red"
   },
   {
@@ -412,7 +412,7 @@
     "PC2":-0.6335496927,
     "condition":"Ground",
     "crop":"mizuna",
-    "mission":"VEG04B",
+    "mission":"VEG-04B",
     "sample_id":"VEG04B_GC_leaf_pillow6_red"
   },
   {
@@ -420,7 +420,7 @@
     "PC2":0.1083478991,
     "condition":"Ground",
     "crop":"mizuna",
-    "mission":"VEG04B",
+    "mission":"VEG-04B",
     "sample_id":"VEG04B_GC_leaf_pillow7_blue"
   },
   {
@@ -428,7 +428,7 @@
     "PC2":0.725393275,
     "condition":"Ground",
     "crop":"mizuna",
-    "mission":"VEG04B",
+    "mission":"VEG-04B",
     "sample_id":"VEG04B_GC_leaf_pillow8_blue"
   },
   {
@@ -436,7 +436,7 @@
     "PC2":0.7391667009,
     "condition":"Ground",
     "crop":"mizuna",
-    "mission":"VEG04B",
+    "mission":"VEG-04B",
     "sample_id":"VEG04B_GC_leaf_pillow9_blue"
   }
 ]
