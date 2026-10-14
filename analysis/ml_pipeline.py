@@ -49,7 +49,7 @@ def perform_eda(df, out_dir):
     #     excluded here and remains available for single-crop analyses.
     #   - Anthocyanin was assayed for OSD-745 only, so it cannot be a cross-crop
     #     feature; it too remains available for lettuce-only analyses.
-    # These nine give complete coverage: 24 lettuce + 36 Tokyo Bekana = 60 rows.
+    # These nine give complete coverage: 24 lettuce + 36 mizuna = 60 rows.
     elements = ['Fe', 'K', 'Na', 'P', 'S', 'Zn', 'Ca', 'Mg', 'Mn']
     biochemicals = ['phenolics', 'orac']
     features = elements + biochemicals
@@ -436,7 +436,7 @@ def main():
     #     excluded here and remains available for single-crop analyses.
     #   - Anthocyanin was assayed for OSD-745 only, so it cannot be a cross-crop
     #     feature; it too remains available for lettuce-only analyses.
-    # These nine give complete coverage: 24 lettuce + 36 Tokyo Bekana = 60 rows.
+    # These nine give complete coverage: 24 lettuce + 36 mizuna = 60 rows.
     elements = ['Fe', 'K', 'Na', 'P', 'S', 'Zn', 'Ca', 'Mg', 'Mn']
     biochemicals = ['phenolics', 'orac']
     features = elements + biochemicals

@@ -121,13 +121,15 @@ function renderPCAPlot(data) {
             traces[key].y.push(pc2);
             traces[key].text.push(text);
             traces[key].hovertemplate = '%{text}<br><b>PC1:</b> %{x:.3f}<br><b>PC2:</b> %{y:.3f}<extra></extra>';
+        } else {
+            console.warn(`PCA: no trace for ${key}; ${sampleId} not plotted`);
         }
     }
 
     const dataTraces = Object.values(traces).filter(t => t.x.length > 0);
 
-    const pc1Var = pcaData.variance_explained ? (pcaData.variance_explained[0] * 100).toFixed(1) : '42.0';
-    const pc2Var = pcaData.variance_explained ? (pcaData.variance_explained[1] * 100).toFixed(1) : '25.0';
+    const pc1Var = pcaData.variance_explained ? (pcaData.variance_explained[0] * 100).toFixed(1) : 'n/a';
+    const pc2Var = pcaData.variance_explained ? (pcaData.variance_explained[1] * 100).toFixed(1) : 'n/a';
 
     const layout = {
         autosize: true,
@@ -149,7 +151,7 @@ function renderPCAPlot(data) {
         },
         yaxis: {
             title: {
-                text: `PC2 (${pc2Var}% Explained Variance) — Microgravity Response`,
+                text: `PC2 (${pc2Var}% Explained Variance)`,
                 font: { size: 12, color: isDark ? '#9aa6b6' : '#5a6473' }
             },
             gridcolor: isDark ? '#232c39' : '#e5e9f0',
@@ -341,6 +343,14 @@ function renderComparisonTable(clfMetrics) {
     const rfF1 = document.getElementById('comp-rf-f1');
     const tabF1 = document.getElementById('comp-tab-f1');
 
+    // Name the benchmark that actually ran: without a license token the
+    // pipeline falls back from TabPFN and records which model it used.
+    const tabHeader = document.getElementById('comp-tab-header');
+    if (tabHeader && tab) {
+        const name = tab.model === 'GradientBoostingClassifier' ? 'Gradient Boosting' : (tab.model || 'Benchmark model');
+        tabHeader.textContent = tab.is_tabpfn === false ? `${name} (TabPFN did not run)` : name;
+    }
+
     if (rf && tab) {
         if (rfAcc) rfAcc.textContent = (rf.accuracy * 100).toFixed(1) + '%';
         if (tabAcc) tabAcc.textContent = (tab.accuracy * 100).toFixed(1) + '%';
@@ -367,7 +377,8 @@ function renderComparisonTable(clfMetrics) {
                     if (badge) {
                         const sign = diff >= 0 ? '+' : '';
                         badge.textContent = `${sign}${diff.toFixed(1)}%`;
-                        badge.className = `badge ${diff >= 0 ? 'sig-yes' : 'sig-no'}`;
+                        // Neutral badge: no significance test is run on these differences.
+                        badge.className = 'badge';
                     }
                 }
             });

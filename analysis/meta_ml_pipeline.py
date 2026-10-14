@@ -46,16 +46,26 @@ def perform_meta_pca(df, features, out_figures, out_results):
     
     # Save coordinates
     coords_df = pd.DataFrame(X_pca, columns=['PC1', 'PC2'])
-    coords_df['condition'] = df['condition']
-    coords_df['crop'] = df['crop']
-    coords_df['mission'] = df['mission']
-    coords_df['sample_id'] = df['sample_id']
+    # Assign by position: df keeps its original index after incomplete rows are
+    # dropped, so index-aligned assignment gave rows another sample's labels.
+    coords_df['condition'] = df['condition'].values
+    coords_df['crop'] = df['crop'].values
+    coords_df['mission'] = df['mission'].values
+    coords_df['sample_id'] = df['sample_id'].values
     coords_df.to_json(os.path.join(out_results, "meta_pca_coordinates.json"), orient="records", indent=2)
     
     # PCA Plot
+    # A sample whose crop/condition has no series would vanish from the plot
+    # without an error, as every OSD-655 sample did while the crop was
+    # mislabelled; fail instead.
+    crops, conds = ['lettuce', 'mizuna'], ['Flight', 'Ground']
+    unplotted = coords_df[~(coords_df['crop'].isin(crops) & coords_df['condition'].isin(conds))]
+    if len(unplotted):
+        raise ValueError(f"PCA plot has no series for {len(unplotted)} samples: "
+                         f"{sorted(set(zip(unplotted['crop'], unplotted['condition'])))}")
     plt.figure(figsize=(10, 8))
-    for crop in ['lettuce', 'mizuna']:
-        for cond in ['Flight', 'Ground']:
+    for crop in crops:
+        for cond in conds:
             subset = coords_df[(coords_df['crop'] == crop) & (coords_df['condition'] == cond)]
             color_key = f"{cond}_{crop}"
             marker = 'o' if cond == 'Flight' else 's'
@@ -315,7 +325,7 @@ def perform_microbiology_analysis(df, out_figures, base_dir):
         sns.stripplot(data=subset, x='condition', y='log10_cfu', ax=ax,
                       color='black', size=3, alpha=0.5)
         label = 'Aerobic Plate Count' if assay == 'APC' else 'Yeast & Mould Count'
-        ax.set_title(f"{label} — Tokyo Bekana leaf (OSD-780)")
+        ax.set_title(f"{label} — Mizuna leaf (OSD-780)")
         ax.set_ylabel("log10(CFU/g fresh weight + 1)")
         ax.set_xlabel("")
     plt.tight_layout()
@@ -325,7 +335,7 @@ def perform_microbiology_analysis(df, out_figures, base_dir):
     # --- statistics -----------------------------------------------------------
     out = {
         'source': 'OSD-780 (LSDS-128 plate counts)',
-        'scope': ('VEG-04 Tokyo Bekana only; no microbiology exists for lettuce '
+        'scope': ('VEG-04 mizuna only; no microbiology exists for lettuce '
                   '(OSD-745) in the archive'),
         'tissue': 'leaf (edible tissue) only; soil, root, wick, water and '
                   'hardware swab samples excluded from food-safety comparisons',
@@ -426,7 +436,7 @@ def main():
     #     excluded here and remains available for single-crop analyses.
     #   - Anthocyanin was assayed for OSD-745 only, so it cannot be a cross-crop
     #     feature; it too remains available for lettuce-only analyses.
-    # These nine give complete coverage: 24 lettuce + 36 Tokyo Bekana = 60 rows.
+    # These nine give complete coverage: 24 lettuce + 36 mizuna = 60 rows.
     elements = ['Fe', 'K', 'Na', 'P', 'S', 'Zn', 'Ca', 'Mg', 'Mn']
     biochemicals = ['phenolics', 'orac']
     features = elements + biochemicals

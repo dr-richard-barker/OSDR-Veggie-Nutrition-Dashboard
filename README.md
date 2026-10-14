@@ -13,7 +13,7 @@
 > **Data Sources:** [NASA OSDR OSD-745](https://osdr.nasa.gov/bio/repo/data/studies/OSD-745), [OSD-655](https://osdr.nasa.gov/bio/repo/data/studies/OSD-655), [OSD-780](https://osdr.nasa.gov/bio/repo/data/studies/OSD-780)  
 > **Reference Publications:** 
 > - Khodadad et al. (2020) *Front. Plant Sci.* [DOI: 10.3389/fpls.2020.00199](https://doi.org/10.3389/fpls.2020.00199)
-> - Bunchek et al. (2023) *Int. J. Veg. Sci.* [DOI: 10.1080/17429145.2023.2292220](https://doi.org/10.1080/17429145.2023.2292220)
+> - Bunchek et al. (2024) *J. Plant Interact.* [DOI: 10.1080/17429145.2023.2292220](https://doi.org/10.1080/17429145.2023.2292220)
 > - Hollmann et al. (2025) *Nature* [DOI: 10.1038/s41586-024-08328-6](https://doi.org/10.1038/s41586-024-08328-6)
 
 ---
@@ -35,14 +35,14 @@ Two leafy green crops were evaluated aboard the ISS across 5 independent spacefl
 | *Lactuca sativa* | 'Outredgeous' (Red Romaine) | VEG-01A | May – Jun 2014 | Terminal harvest (33 d) | OSD-745 |
 | *Lactuca sativa* | 'Outredgeous' (Red Romaine) | VEG-01B | Jul – Aug 2015 | Terminal harvest (33 d) | OSD-745 |
 | *Lactuca sativa* | 'Outredgeous' (Red Romaine) | VEG-03A | Oct – Dec 2016 | Cut-and-come-again (33–56 d) | OSD-745 |
-| *Brassica rapa* | 'Tokyo Bekana' (Mizuna) | VEG-04A | Jun – Jul 2019 | Pick-and-eat testing (28 d) | OSD-655, OSD-780 |
-| *Brassica rapa* | 'Tokyo Bekana' (Mizuna) | VEG-04B | Nov – Dec 2019 | Pick-and-eat testing (28 d) | OSD-655, OSD-780 |
+| *Brassica rapa* | Mizuna (var. *japonica*) | VEG-04A | Jun – Jul 2019 | Pick-and-eat testing (28 d) | OSD-655, OSD-780 |
+| *Brassica rapa* | Mizuna (var. *japonica*) | VEG-04B | Nov – Dec 2019 | Pick-and-eat testing (28 d) | OSD-655, OSD-780 |
 
 Parallel ground controls were grown at Kennedy Space Center (KSC) in controlled environment chambers replicating ISS telemetry (temperature, relative humidity, $\text{CO}_2$) with a 24–72 h delay.
 
 ### Multi-Crop Findings & Data Provenance
 - **Translational Countermeasures & Astronaut Health:** Crop elemental mineral yields ($\text{K}^+$, $\text{Ca}^{2+}$, $\text{Mg}^{2+}$, $\text{Fe}^{2+}$, $\text{Zn}^{2+}$) provide dietary countermeasures for spaceflight mineral imbalances identified in human crew members. See companion repository [**astronaut-mineral-deficiency-multiomics**](https://github.com/dr-richard-barker/astronaut-mineral-deficiency-multiomics) for Inspiration4 multi-omics mineral pathway regulation and NHANES population comparisons.
-- **Open Science Data, read from the archive:** 24 lettuce samples (OSD-745; 11 flight, 13 ground) and 36 Tokyo Bekana (OSD-655; 18, 18), plus one Tokyo Bekana sample with a phenolic measurement but no elemental data, across 5 missions (VEG-01A, VEG-01B, VEG-03A, VEG-04A, VEG-04B). Downloaded by `data/fetch_osdr_data.py`; checksums and unit provenance in `data/raw/osdr_fetch_provenance.json`.
+- **Open Science Data, read from the archive:** 24 lettuce samples (OSD-745; 11 flight, 13 ground) and 36 mizuna (OSD-655; 18, 18), plus one mizuna sample with a phenolic measurement but no elemental data, across 5 missions (VEG-01A, VEG-01B, VEG-03A, VEG-04A, VEG-04B). Downloaded by `data/fetch_osdr_data.py`; checksums and unit provenance in `data/raw/osdr_fetch_provenance.json`.
 
 > **⚠️ Correction, 13 October 2026.** Earlier versions of this repository
 > reported figures that did not come from NASA OSDR. `data/fetch_osdr_data.py`
@@ -153,14 +153,14 @@ OSDR-Veggie-Nutrition-Dashboard/
   doi       = {10.3389/fpls.2020.00199}
 }
 
-@article{bunchek2023pick,
+@article{bunchek2024pick,
   title     = {Pick-and-eat space crop production flight testing on the International Space Station},
   author    = {Bunchek, Jess M. and Hummerick, Mary E. and Spencer, LaShelle E. and Romeyn, Matthew W. and Young, Millennia and Morrow, Robert C. and Mitchell, Cary A. and Douglas, Grace L. and Wheeler, Raymond M. and Massa, Gioia D.},
-  journal   = {International Journal of Vegetable Science},
-  volume    = {30},
+  journal   = {Journal of Plant Interactions},
+  volume    = {19},
   number    = {1},
-  pages     = {1--22},
-  year      = {2023},
+  pages     = {2292220},
+  year      = {2024},
   doi       = {10.1080/17429145.2023.2292220}
 }
 
