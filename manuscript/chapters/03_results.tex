@@ -171,16 +171,53 @@ detail, including the measured values, is in
 SpaceMineralAtlas repository.
 
 \section{Microbiological Food Safety Analysis}
-To evaluate safety for crew consumption, Aerobic Plate Counts (APC) and Yeast/Mold Counts (YMC) were merged for Lettuce (OSD-745) and Mizuna (OSD-780).
+This section is rebuilt from OSD-780 (LSDS-128 plate counts). The superseded
+version read per-sample APC and YMC values off the nutrient table; those columns
+were part of the literal data and were not measurements. It also reported counts
+for lettuce, and stated that ``all harvested leaves fell well within safe food
+guidelines ($< 5.0\log_{10}$ CFU/g)''. Neither is supportable.
+
+\textbf{Scope.} OSD-780 covers the VEG-04 (Tokyo Bekana) missions only.
+\textbf{There is no microbiology for lettuce in the archive}, so no lettuce
+count can be reported. The study samples leaf, soil, root, wick, water and
+hardware swabs; only leaf is edible tissue, and the comparisons below use leaf
+alone. Swab and water samples carry no fresh weight and are reported per swab,
+so they are never pooled with per-gram tissue counts.
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/meta_microbiology_boxplot.png}
-    \caption{Microbiological safety counts (APC and YMC in log10 CFU/g) on Flight (FLT) and Ground Control (GC) leaf tissues for Lettuce and Mizuna crops.}
+    \caption{Aerobic plate counts and yeast/mould counts on Tokyo Bekana leaf
+    tissue (OSD-780), flight versus ground control. Plotted as
+    $\log_{10}(\text{CFU/g}+1)$: raw counts span zero to $1.7\times10^{7}$
+    CFU/g and over half the ground samples are exactly zero, so a linear axis
+    and arithmetic means would both be misleading.}
     \label{fig:meta_microbiology}
 \end{figure}
 
-As shown in Figure \ref{fig:meta_microbiology}, all harvested leaves fell well within safe food guidelines ($< 5.0\log_{10}$ CFU/g). Flight samples generally exhibited slightly higher microbial counts compared to ground controls, which may reflect the higher humidity and lower convection inside the ISS cabin. Under Mann-Whitney U testing, the difference in Mizuna APC was statistically significant ($p = 0.038$), while lettuce counts did not reach the significance threshold ($p = 0.120$).
+\textbf{Flight leaf tissue carries a substantially higher microbial load.}
+Median aerobic count is $7{,}380$ CFU/g in flight ($n = 36$) against $0$ in
+ground controls ($n = 87$), $p = 7.6\times10^{-10}$; yeast and mould $699$
+against $0$, $p = 3.1\times10^{-7}$. Zero counts are common on the ground
+(52.9\% of aerobic samples) and rare in flight (8.3\%).
+
+That comparison has a confound worth stating: sanitisation is labelled on
+ground samples only, so the whole-ground pool is roughly half sanitised while
+flight tissue carries no such label. Restricting the ground arm to unsanitised
+samples --- the matched comparison --- the difference persists: aerobic medians
+$7{,}380$ versus $41$ CFU/g, $p = 2.0\times10^{-6}$; yeast and mould $699$
+versus $0$, $p = 1.4\times10^{-5}$. Sanitisation itself measurably reduces
+aerobic load on the ground (median $0$ cleaned against $41$ uncleaned,
+$p = 0.0025$) but has no detectable effect on yeast and mould ($p = 0.67$).
+
+\textbf{The earlier safety statement does not hold.} Twelve of 123 aerobic leaf
+measurements (9.8\%) exceed $5.0\log_{10}$ CFU/g --- nine flight, three ground
+--- with a flight maximum of $7.23\log_{10}$ ($1.7\times10^{7}$ CFU/g). Yeast
+and mould counts stay below that bound throughout (maximum $4.99\log_{10}$).
+Whether $5.0\log_{10}$ is the applicable acceptance limit for this product is
+not established here, and no acceptance threshold is asserted; what can be said
+is that the previous claim that all leaves fell well within it is contradicted
+by the archive data.
 
 \section{Statistical Validation and Effect Sizes}
 Non-parametric Mann-Whitney U tests with False Discovery Rate (FDR) corrections were performed on the joint dataset to validate the univariate significance of all features.

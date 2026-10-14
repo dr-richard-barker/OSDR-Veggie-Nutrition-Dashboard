@@ -209,9 +209,31 @@
             <div class="card mt-4">
                 <div class="card-header">
                     <h3>Microbiological Food Safety Analysis (APC & YMC Counts)</h3>
-                    <span class="cond-badge cond-ground">OSD-745 & OSD-780</span>
+                    <span class="cond-badge cond-ground">OSD-780 (VEG-04 only)</span>
                 </div>
-                <p>Space-grown crops are evaluated for microbial hygiene to ensure safety for crew consumption. These boxplots show Aerobic Plate Counts (APC) and Yeast & Mold Counts (YMC) in log10 CFU/g across conditions, compiled from OSD-745 and OSD-780.</p>
+                <p>Aerobic Plate Counts (APC) and Yeast &amp; Mould Counts (YMC) on
+                <strong>Tokyo Bekana leaf tissue</strong>, from OSD-780. Plotted as
+                log<sub>10</sub>(CFU/g + 1): raw counts span zero to 1.7×10<sup>7</sup> CFU/g
+                and over half the ground samples are exactly zero.</p>
+                <div class="data-notice">
+                    <p><strong>Rebuilt from OSD-780 on 13 October 2026.</strong> This section
+                    previously read per-sample APC and YMC values off the nutrient table. Those
+                    columns were part of the fabricated data and were not measurements. It also
+                    showed counts for lettuce: <strong>OSD-780 covers the VEG-04 missions only,
+                    so no lettuce microbiology exists in the archive.</strong> Only leaf tissue is
+                    used here — the study also samples soil, root, wick, water and hardware swabs,
+                    which are not edible tissue.</p>
+                    <p><strong>Flight tissue carries a substantially higher microbial load:</strong>
+                    median aerobic count 7,380 CFU/g in flight (n=36) against 0 in ground controls
+                    (n=87), p = 7.6×10⁻¹⁰. Sanitisation is labelled on ground samples only, so the
+                    matched comparison restricts ground to unsanitised samples — the difference
+                    persists (7,380 vs 41 CFU/g, p = 2.0×10⁻⁶).</p>
+                    <p><strong>The earlier safety statement has been withdrawn.</strong> It claimed
+                    all harvested leaves fell well within <em>&lt; 5.0 log₁₀ CFU/g</em>. Twelve of
+                    123 aerobic leaf measurements (9.8%) exceed that — nine flight, three ground —
+                    with a flight maximum of 7.23 log₁₀. No acceptance threshold is asserted here;
+                    what is shown is that the previous claim is contradicted by the archive data.</p>
+                </div>
                 <div style="display: flex; justify-content: center; align-items: center; padding: 10px;">
                     <img id="microbiology-img" src="figures/meta_microbiology_boxplot.png" alt="Microbiology Boxplot" style="max-width: 90%; height: auto; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);">
                 </div>

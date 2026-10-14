@@ -515,5 +515,81 @@
       "p_value_bonferroni": 1.0
     }
   ],
-  "microbiology": null
+  "microbiology": {
+    "source": "OSD-780 (LSDS-128 plate counts)",
+    "scope": "VEG-04 Tokyo Bekana only; no microbiology exists for lettuce (OSD-745) in the archive",
+    "tissue": "leaf (edible tissue) only; soil, root, wick, water and hardware swab samples excluded from food-safety comparisons",
+    "unit": "CFU per gram fresh weight",
+    "n_leaf_rows": 212,
+    "by_assay": {
+      "APC": {
+        "n_flight": 36,
+        "n_ground": 87,
+        "median_flight": 7380.04,
+        "median_ground": 0.0,
+        "max_flight": 17034000.0,
+        "max_ground": 124772.7273,
+        "zero_fraction_flight": 0.08333333333333333,
+        "zero_fraction_ground": 0.5287356321839081,
+        "mannwhitney_u": 2638.0,
+        "p_value": 7.568101185804866e-10,
+        "sanitisation": {
+          "n_clean": 42,
+          "n_unclean": 42,
+          "median_clean": 0.0,
+          "median_unclean": 40.54027027,
+          "p_value": 0.0024572336955574607,
+          "conditions_labelled": [
+            "Ground"
+          ]
+        },
+        "flight_vs_unsanitised_ground": {
+          "note": "Preferred comparison: flight leaf carries no sanitisation label, so ground is restricted to unsanitised samples.",
+          "n_flight": 36,
+          "n_ground_unclean": 42,
+          "median_flight": 7380.04,
+          "median_ground_unclean": 40.54027027,
+          "p_value": 2.031620385516061e-06
+        }
+      },
+      "YMC": {
+        "n_flight": 26,
+        "n_ground": 63,
+        "median_flight": 698.5155816500001,
+        "median_ground": 0.0,
+        "max_flight": 97881.356,
+        "max_ground": 11125.0,
+        "zero_fraction_flight": 0.2692307692307692,
+        "zero_fraction_ground": 0.7301587301587301,
+        "mannwhitney_u": 1323.5,
+        "p_value": 3.060390174398057e-07,
+        "sanitisation": {
+          "n_clean": 30,
+          "n_unclean": 30,
+          "median_clean": 0.0,
+          "median_unclean": 0.0,
+          "p_value": 0.6680538237185041,
+          "conditions_labelled": [
+            "Ground"
+          ]
+        },
+        "flight_vs_unsanitised_ground": {
+          "note": "Preferred comparison: flight leaf carries no sanitisation label, so ground is restricted to unsanitised samples.",
+          "n_flight": 26,
+          "n_ground_unclean": 30,
+          "median_flight": 698.5155816500001,
+          "median_ground_unclean": 0.0,
+          "p_value": 1.3861375197919373e-05
+        }
+      }
+    },
+    "sample_type_counts": {
+      "leaf": 212,
+      "swab": 64,
+      "soil": 52,
+      "water": 16,
+      "wick": 14,
+      "root": 14
+    }
+  }
 }

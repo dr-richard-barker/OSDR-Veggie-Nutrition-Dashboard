@@ -63,9 +63,47 @@ UA = "OSDR-Veggie-Nutrition-Dashboard/2.0"
 THROTTLE_S = 2.0            # OSDR returns 502/503 without pacing
 TIMEOUT_S = 120
 
-# OSD-780 is the microbial food-safety study. Its metadata is still fetched for
-# the site's microbiology section, but it contributes no per-sample nutrient row.
 METADATA_STUDIES = ["OSD-745", "OSD-655", "OSD-780"]
+
+# OSD-780 is the microbial food-safety study for the VEG-04 (Tokyo Bekana)
+# missions. It is fetched as its own table rather than as columns on the
+# nutrient rows, because it is not a per-sample measurement of those rows:
+#
+#   * It covers VEG04A and VEG04B only. There is no microbiology for lettuce
+#     (OSD-745) at all, so any lettuce APC/YMC value is necessarily invented.
+#   * Only 11 of the 37 OSD-655 nutrient samples share a base sample name with
+#     it; 185 of its base names have no nutrient counterpart.
+#   * It samples substrates the nutrient study does not: soil, wick, root,
+#     water and hardware swabs as well as leaf. Pooling those with leaf would
+#     misstate the food-safety question, which is about edible tissue.
+#   * Leaf samples carry a sanitisation treatment (clean / unclean) and, on
+#     VEG04B, up to three sequential harvests, so one plant maps to several
+#     microbiology rows.
+#
+# The superseded literal data asserted one APC and one YMC value for every
+# nutrient sample in both crops. None of that was measured.
+MICROBIOLOGY = {
+    "osd": "OSD-780",
+    "assays": {
+        "apc": ("Aerobic_Plate_Count", "TRANSFORMED"),
+        "ymc": ("Yeast_Mold_Plate_Count", "Transformed"),
+    },
+    # Two value columns, used for different sample types and NOT interchangeable.
+    # Tissue and substrate samples are homogenised and reported per gram fresh
+    # weight. Hardware swabs and water samples have no fresh weight, so they are
+    # reported per swab. Reading only the per-gram column silently discards the
+    # 32 swab and 8 water rows; pooling the two would compare different units.
+    "value_columns": {
+        "colony_forming_unit_per_gram_fresh_weight_per_swab":
+            "cfu_per_gram_fresh_weight",
+        "colony_forming_units_per_swab": "cfu_per_swab",
+    },
+}
+
+# VEG04A_GC_leaf_pillow3_red_clean / VEG04B_F_leaf_pillow7_blue_red_harvest2 /
+# VEG04A_GC_soil_1_pillow3_red / VEG04A_F_Swab_Sample2_blue / VEG04A_F_water_preOp_1
+RE_780 = re.compile(
+    r"^(?P<mission>VEG04[AB])_(?P<cond>GC|F)_(?P<rest>.+)$", re.IGNORECASE)
 
 STUDIES = {
     "745": {
@@ -321,6 +359,149 @@ def build(suffix: str, spec: dict, raw_dir: Path, dry_run: bool) -> dict:
     }
 
 
+def parse_microbiology_sample(sample: str) -> dict | None:
+    """Decompose an OSD-780 sample name into its experimental factors.
+
+    Returns None for a name that does not match, so an unparsed name becomes a
+    hard failure rather than a silently mis-grouped row.
+    """
+    m = RE_780.match(sample.strip())
+    if not m:
+        return None
+    rest = m.group("rest")
+    tokens = rest.split("_")
+
+    # Sample type: the material swabbed or homogenised.
+    lowered = rest.lower()
+    for token, kind in (("leaf", "leaf"), ("soil", "soil"), ("wick", "wick"),
+                        ("root", "root"), ("water", "water"), ("swab", "swab")):
+        if token in lowered:
+            sample_type = kind
+            break
+    else:
+        sample_type = "other"
+
+    light = next((c for c in ("red", "blue") if c in lowered), "")
+    treatment = ("clean" if "_clean" in lowered
+                 else "unclean" if "unclean" in lowered else "")
+    harvest = re.search(r"harvest(\d)", lowered)
+    pillow = re.search(r"pillow(\d+)", lowered)
+
+    return {
+        "sample_name": sample.strip(),
+        "mission": m.group("mission").upper(),
+        "condition": "Ground" if m.group("cond").upper() == "GC" else "Flight",
+        "sample_type": sample_type,
+        "light": light,
+        "sanitisation": treatment,
+        "harvest": int(harvest.group(1)) if harvest else None,
+        "pillow": int(pillow.group(1)) if pillow else None,
+        "is_edible_tissue": sample_type == "leaf",
+    }
+
+
+def build_microbiology(raw_dir: Path, dry_run: bool) -> dict:
+    """Fetch OSD-780 and emit a standalone microbiology table."""
+    osd = MICROBIOLOGY["osd"]
+    files = list_files(osd)
+    chosen = {a: pick(files, f, osd, a) for a, f in MICROBIOLOGY["assays"].items()}
+    logger.info("%s (microbiology): %d files listed; selected:", osd, len(files))
+    for assay, name in chosen.items():
+        logger.info("    %-5s %s", assay, name)
+    if dry_run:
+        return {"study": osd, "files": chosen, "dry_run": True}
+
+    frames, checksums = {}, []
+    value_columns = MICROBIOLOGY["value_columns"]
+    for assay, name in chosen.items():
+        blob = download(files, name, osd)
+        (raw_dir / name.replace("/", "_")).write_bytes(blob)
+        checksums.append({"file": name, "bytes": len(blob),
+                          "sha256": hashlib.sha256(blob).hexdigest()})
+        frame = pd.read_csv(io.BytesIO(blob), encoding="utf-8-sig")
+        # The yeast/mould export's first header carries a literal newline.
+        frame.columns = [c.strip() for c in frame.columns]
+        for column in value_columns:
+            if column not in frame.columns:
+                raise SystemExit(f"FATAL: {osd}/{name}: missing column {column!r}")
+        frames[assay] = frame
+        time.sleep(THROTTLE_S)
+
+    records = []
+    for assay, frame in frames.items():
+        for _, row in frame.iterrows():
+            raw_name = str(row["Sample Name"]).strip()
+            # Trailing blank rows are skipped. A name that is present but does
+            # not parse is still fatal: silently mis-grouping a real sample is
+            # the failure mode this guard exists for.
+            if not raw_name or raw_name.lower() == "nan":
+                continue
+            parsed = parse_microbiology_sample(raw_name)
+            if parsed is None:
+                raise SystemExit(
+                    f"FATAL: {osd}: unparsed sample name {raw_name!r}")
+            values = {out: pd.to_numeric(row[src], errors="coerce")
+                      for src, out in value_columns.items()}
+            if all(pd.isna(v) for v in values.values()):
+                continue
+            # Record which basis this row is measured on, so the two are never
+            # pooled: per gram of fresh tissue, or per hardware/water swab.
+            basis = ("per_gram_fresh_weight"
+                     if pd.notna(values["cfu_per_gram_fresh_weight"])
+                     else "per_swab")
+            records.append({
+                **parsed, "assay": assay.upper(), "measurement_basis": basis,
+                **{k: (float(v) if pd.notna(v) else None) for k, v in values.items()},
+                "fresh_weight_gram": pd.to_numeric(
+                    row.get("fresh_weight_gram"), errors="coerce"),
+            })
+
+    table = pd.DataFrame(records)
+    if table.empty:
+        raise SystemExit(f"FATAL: {osd}: no usable microbiology rows")
+    out = raw_dir.parent / "processed" / "microbiology_osd780.csv"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    table.to_csv(out, index=False)
+
+    leaf = table[table["is_edible_tissue"]]
+    logger.info("  -> %d rows (%d leaf); types: %s; missions: %s; bases: %s",
+                len(table), len(leaf),
+                ", ".join(sorted(table["sample_type"].unique())),
+                ", ".join(sorted(table["mission"].unique())),
+                ", ".join(f"{k}={v}" for k, v in
+                          table["measurement_basis"].value_counts().items()))
+
+    # How far this can be joined to the nutrient cohort, stated rather than assumed.
+    try:
+        nutrient = set(pd.read_csv(raw_dir / "osd_655_nutrients.csv")["Sample Name"])
+    except FileNotFoundError:
+        nutrient = set()
+    base = {re.sub(r"_(clean|unclean)(_harvest\d)?$", "", s)
+            for s in leaf["sample_name"]}
+    overlap = sorted(nutrient & base)
+
+    return {
+        "study": osd, "files": chosen, "checksums": checksums,
+        "n_rows": int(len(table)), "n_leaf_rows": int(len(leaf)),
+        "value_units": {
+            "cfu_per_gram_fresh_weight": "tissue and substrate samples",
+            "cfu_per_swab": "hardware swab and water samples (no fresh weight)",
+        },
+        "n_by_measurement_basis": table["measurement_basis"].value_counts().to_dict(),
+        "n_by_assay": table["assay"].value_counts().to_dict(),
+        "n_by_sample_type": table["sample_type"].value_counts().to_dict(),
+        "missions": sorted(table["mission"].unique()),
+        "covers_lettuce": False,
+        "join_to_nutrients": {
+            "note": ("Not a per-sample join. Reported so the partial overlap is "
+                     "visible rather than assumed."),
+            "n_nutrient_samples": len(nutrient),
+            "n_matching_by_base_name": len(overlap),
+            "matching": overlap,
+        },
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Fetch real NASA OSDR Veggie data.")
     parser.add_argument("--dry-run", action="store_true",
@@ -336,6 +517,7 @@ def main() -> int:
 
     report = [build(suffix, spec, raw_dir, args.dry_run)
               for suffix, spec in STUDIES.items()]
+    micro = build_microbiology(raw_dir, args.dry_run)
     if args.dry_run:
         print("\n--dry-run: nothing downloaded.")
         return 0
@@ -346,6 +528,7 @@ def main() -> int:
         "note": ("Values are read from the NASA OSDR archive. This replaces a "
                  "version that emitted literals. No synthetic fallback exists."),
         "studies": report,
+        "microbiology": micro,
     }, indent=2) + "\n")
     logger.info("wrote data/raw/osdr_fetch_provenance.json")
     return 0

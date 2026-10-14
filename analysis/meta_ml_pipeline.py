@@ -267,63 +267,136 @@ def perform_meta_stats(df, features, out_results):
         
     return results
 
-def perform_microbiology_analysis(df, out_figures):
-    logger.info("Analyzing microbiological counts...")
+def perform_microbiology_analysis(df, out_figures, base_dir):
+    """Microbial load on edible tissue, from OSD-780.
 
-    # The superseded literal dataset carried a per-sample APC and YMC value for
-    # every nutrient sample. Those were not measurements of these plants:
-    # microbial counts come from OSD-780, a separate study with its own samples,
-    # and cannot be joined to a nutrient sample row. Rather than fabricate the
-    # join, this analysis is skipped when the columns are absent.
-    required = ['micro_apc', 'micro_ymc']
-    missing = [c for c in required if c not in df.columns]
-    if missing:
-        logger.warning(
-            "Skipping microbiology analysis: %s not present. Per-sample microbial "
-            "counts do not exist in the archive for these studies; OSD-780 is a "
-            "separate study and is not joinable to these nutrient samples.",
-            ", ".join(missing))
+    This replaces an analysis that read per-sample APC and YMC columns off the
+    nutrient table. Those columns were not measurements: the superseded literal
+    data asserted one microbial count per nutrient sample in both crops, and
+    OSD-780 contains nothing of the kind.
+
+    What OSD-780 actually is, and what constrains this analysis:
+
+      * It covers the VEG-04 missions only. There is NO microbiology for
+        lettuce (OSD-745), so no lettuce count can be reported.
+      * It samples leaf, soil, root, wick, water and hardware swabs. Only leaf
+        is edible tissue, and food-safety statements use leaf alone -- pooling
+        soil or hardware swabs into a produce-safety number would overstate it.
+      * Swab and water samples have no fresh weight and are reported per swab
+        rather than per gram, so the two bases are never combined.
+      * Counts span zero to ~1.7e7 CFU/g and over half the ground leaf samples
+        are exactly zero, so comparisons are Mann-Whitney on raw counts and
+        plots use log10(x+1). Means would be meaningless here.
+    """
+    logger.info("Analyzing microbiological counts (OSD-780)...")
+
+    path = os.path.join(base_dir, "data", "processed", "microbiology_osd780.csv")
+    if not os.path.exists(path):
+        logger.warning("Skipping microbiology: %s not present. Run "
+                       "data/fetch_osdr_data.py first.", path)
         return None
 
-    # Filter valid rows
-    micro_df = df[['crop', 'condition', 'micro_apc', 'micro_ymc']].dropna()
+    micro = pd.read_csv(path)
+    leaf = micro[micro['is_edible_tissue'] &
+                 micro['cfu_per_gram_fresh_weight'].notna()].copy()
+    if leaf.empty:
+        logger.warning("Skipping microbiology: no leaf rows with per-gram counts.")
+        return None
+    leaf['log10_cfu'] = np.log10(leaf['cfu_per_gram_fresh_weight'] + 1)
 
-    plt.figure(figsize=(12, 5))
-    
-    # 1. APC Boxplot
-    plt.subplot(1, 2, 1)
-    sns.boxplot(data=micro_df, x='crop', y='micro_apc', hue='condition', palette=[COLORS['Flight_lettuce'], COLORS['Flight_mizuna']])
-    plt.title("Aerobic Plate Counts (APC)")
-    plt.ylabel("log10 CFU/g")
-    plt.xlabel("Crop")
-    
-    # 2. YMC Boxplot
-    plt.subplot(1, 2, 2)
-    sns.boxplot(data=micro_df, x='crop', y='micro_ymc', hue='condition', palette=[COLORS['Flight_lettuce'], COLORS['Flight_mizuna']])
-    plt.title("Yeast & Mold Counts (YMC)")
-    plt.ylabel("log10 CFU/g")
-    plt.xlabel("Crop")
-    
+    # --- figure: flight vs ground, and sanitised vs not -----------------------
+    fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+    for ax, assay in zip(axes, ['APC', 'YMC']):
+        subset = leaf[leaf['assay'] == assay]
+        if subset.empty:
+            continue
+        sns.boxplot(data=subset, x='condition', y='log10_cfu', hue='condition',
+                    ax=ax, legend=False)
+        sns.stripplot(data=subset, x='condition', y='log10_cfu', ax=ax,
+                      color='black', size=3, alpha=0.5)
+        label = 'Aerobic Plate Count' if assay == 'APC' else 'Yeast & Mould Count'
+        ax.set_title(f"{label} — Tokyo Bekana leaf (OSD-780)")
+        ax.set_ylabel("log10(CFU/g fresh weight + 1)")
+        ax.set_xlabel("")
     plt.tight_layout()
-    fig_path = os.path.join(out_figures, "meta_microbiology_boxplot.png")
-    plt.savefig(fig_path, dpi=300)
+    plt.savefig(os.path.join(out_figures, "meta_microbiology_boxplot.png"), dpi=300)
     plt.close()
-    
-    # Calculate stats
-    stats_out = {}
-    for crop in ['lettuce', 'mizuna']:
-        crop_data = micro_df[micro_df['crop'] == crop]
-        flt_apc = crop_data[crop_data['condition'] == 'Flight']['micro_apc'].values
-        grd_apc = crop_data[crop_data['condition'] == 'Ground']['micro_apc'].values
-        
-        stat, p_val = stats.mannwhitneyu(flt_apc, grd_apc)
-        stats_out[crop] = {
-            'apc_flight_mean': float(np.mean(flt_apc)),
-            'apc_ground_mean': float(np.mean(grd_apc)),
-            'apc_p_value': float(p_val)
+
+    # --- statistics -----------------------------------------------------------
+    out = {
+        'source': 'OSD-780 (LSDS-128 plate counts)',
+        'scope': ('VEG-04 Tokyo Bekana only; no microbiology exists for lettuce '
+                  '(OSD-745) in the archive'),
+        'tissue': 'leaf (edible tissue) only; soil, root, wick, water and '
+                  'hardware swab samples excluded from food-safety comparisons',
+        'unit': 'CFU per gram fresh weight',
+        'n_leaf_rows': int(len(leaf)),
+        'by_assay': {},
+        'sample_type_counts': micro['sample_type'].value_counts().to_dict(),
+    }
+
+    for assay in sorted(leaf['assay'].unique()):
+        subset = leaf[leaf['assay'] == assay]
+        flight = subset[subset['condition'] == 'Flight']['cfu_per_gram_fresh_weight']
+        ground = subset[subset['condition'] == 'Ground']['cfu_per_gram_fresh_weight']
+        entry = {
+            'n_flight': int(len(flight)), 'n_ground': int(len(ground)),
+            'median_flight': float(flight.median()) if len(flight) else None,
+            'median_ground': float(ground.median()) if len(ground) else None,
+            'max_flight': float(flight.max()) if len(flight) else None,
+            'max_ground': float(ground.max()) if len(ground) else None,
+            'zero_fraction_flight': float((flight == 0).mean()) if len(flight) else None,
+            'zero_fraction_ground': float((ground == 0).mean()) if len(ground) else None,
         }
-        
-    return stats_out
+        if len(flight) and len(ground):
+            stat, p_val = stats.mannwhitneyu(flight, ground, alternative='two-sided')
+            entry['mannwhitney_u'] = float(stat)
+            entry['p_value'] = float(p_val)
+
+        # Sanitisation, where the archive labels it.
+        labelled = subset[subset['sanitisation'].isin(['clean', 'unclean'])]
+        if not labelled.empty:
+            clean = labelled[labelled['sanitisation'] == 'clean']['cfu_per_gram_fresh_weight']
+            unclean = labelled[labelled['sanitisation'] == 'unclean']['cfu_per_gram_fresh_weight']
+            san = {'n_clean': int(len(clean)), 'n_unclean': int(len(unclean)),
+                   'median_clean': float(clean.median()) if len(clean) else None,
+                   'median_unclean': float(unclean.median()) if len(unclean) else None}
+            if len(clean) and len(unclean):
+                _, p_san = stats.mannwhitneyu(clean, unclean, alternative='two-sided')
+                san['p_value'] = float(p_san)
+            san['conditions_labelled'] = sorted(labelled['condition'].unique())
+            entry['sanitisation'] = san
+
+            # The sanitisation labels sit on GROUND samples only; flight leaf
+            # samples carry none. Comparing flight against the whole ground pool
+            # therefore compares unsanitised tissue against a pool that is
+            # roughly half sanitised, which would inflate the difference. The
+            # defensible comparison restricts ground to the unsanitised rows.
+            unclean_ground = subset[(subset['condition'] == 'Ground') &
+                                    (subset['sanitisation'] == 'unclean')
+                                    ]['cfu_per_gram_fresh_weight']
+            if len(flight) and len(unclean_ground):
+                _, p_matched = stats.mannwhitneyu(flight, unclean_ground,
+                                                  alternative='two-sided')
+                entry['flight_vs_unsanitised_ground'] = {
+                    'note': ('Preferred comparison: flight leaf carries no '
+                             'sanitisation label, so ground is restricted to '
+                             'unsanitised samples.'),
+                    'n_flight': int(len(flight)),
+                    'n_ground_unclean': int(len(unclean_ground)),
+                    'median_flight': float(flight.median()),
+                    'median_ground_unclean': float(unclean_ground.median()),
+                    'p_value': float(p_matched),
+                }
+
+        out['by_assay'][assay] = entry
+        logger.info("  %s leaf: flight median %.1f (n=%d), ground median %.1f (n=%d)%s",
+                    assay, entry['median_flight'] or 0, entry['n_flight'],
+                    entry['median_ground'] or 0, entry['n_ground'],
+                    f", p={entry['p_value']:.4g}" if 'p_value' in entry else "")
+
+    return out
+
 
 def main():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -386,7 +459,7 @@ def main():
     clf_res['n_samples_used'] = int(len(complete))
     clf_res['n_samples_dropped_incomplete'] = int(dropped)
     stats_res = perform_meta_stats(df, features, out_results)
-    micro_res = perform_microbiology_analysis(df, out_figures)
+    micro_res = perform_microbiology_analysis(df, out_figures, base_dir)
     
     # Export Meta Results Summary JSON
     summary = {
