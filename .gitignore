@@ -42,3 +42,6 @@ Thumbs.db
 
 # Data (raw downloads can be re-fetched)
 data/raw/
+
+# ABAI pre-publish verification records (local only)
+.abai/
