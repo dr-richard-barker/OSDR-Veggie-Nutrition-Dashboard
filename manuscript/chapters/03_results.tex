@@ -46,7 +46,41 @@ As illustrated in Figure \ref{fig:meta_feature_importance}, Iron (Fe) was ranked
 - **Calcium (Ca):** Emerged as a critical classifier parameter due to its central role in plant gravitropic signaling.
 
 \section{Regression: Predicting Biochemical Outputs}
-Multi-target regression was applied to predict antioxidant capacity (ORAC) and phenolic content based on elemental profiles. The Random Forest regressor achieved an $R^2$ of 0.528 for ORAC and 0.491 for phenolics. The feature importances highlighted Sulfur (S) and Manganese (Mn) as top predictors for ORAC, confirming that sulfur-containing compounds (such as glutathione) and manganese-dependent superoxide dismutases are key components of the stress response in space crops.
+\textbf{This section has been withdrawn.} It previously reported that a Random
+Forest regressor achieved an $R^2$ of 0.528 for ORAC and 0.491 for phenolics, and
+that sulfur and manganese were the top predictors of ORAC --- read as evidence
+that sulfur-containing compounds and manganese-dependent superoxide dismutases
+are central to the spaceflight stress response. None of that is supported by this
+repository's own output.
+
+\begin{itemize}
+    \item \textbf{The $R^2$ values appear in no result file.} They were written
+          directly into \texttt{docs/index.html} and \texttt{docs/js/ml-results.js}.
+          The regression that is actually computed
+          (\texttt{analysis/ml\_pipeline.py}) calls \texttt{fit} and
+          \texttt{predict} on the same rows, so its $R^2$ of 0.96--0.99 is
+          in-sample and is not a generalisation estimate either. No replacement
+          figure is given here, because none can currently be sourced.
+    \item \textbf{No regression feature importances were ever computed.}
+          \texttt{meta\_ml\_results.json} contains
+          \texttt{classification\_metrics.feature\_importance} only; there is no
+          \texttt{regression\_metrics} entry. In the classification importances
+          that do exist, sulfur ranks fifth (0.068) and manganese eleventh of
+          thirteen (0.023). The highest-ranked feature is phenolic content itself
+          (0.351).
+    \item \textbf{The biochemical inputs did not come from the archive.} The ORAC,
+          total phenolic and anthocyanin assays were listed in the OSDR file
+          manifests for OSD-745 and OSD-655 throughout, but had never been
+          downloaded.
+\end{itemize}
+
+Those assays have since been retrieved from OSDR and analysed. Between-mission
+variation in them exceeds the within-mission flight effect by roughly an order of
+magnitude, so the comparison must block on mission; under a stratified test that
+does so, \textbf{no assay shows a flight effect at FDR 0.05 in either crop}. Full
+detail, including the measured values, is in
+\texttt{veggie\_correction/CORRECTION\_NOTE\_2\_ANTIOXIDANTS.md} in the
+SpaceMineralAtlas repository.
 
 \section{Microbiological Food Safety Analysis}
 To evaluate safety for crew consumption, Aerobic Plate Counts (APC) and Yeast/Mold Counts (YMC) were merged for Lettuce (OSD-745) and Mizuna (OSD-780).
